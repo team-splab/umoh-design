@@ -12,13 +12,19 @@ const meta = {
       appDirectory: true,
     },
   },
+  argTypes: {
+    variant: {
+      options: ['default', 'destructive'],
+      control: { type: 'radio' },
+    },
+  },
 } satisfies Meta<typeof Alert>;
 
 export default meta;
 
 export const DefaultAlert: StoryObj<typeof Alert> = {
-  render: () => (
-    <Alert variant="default">
+  render: args => (
+    <Alert variant="default" {...args}>
       <Terminal className="h-4 w-4" />
       <AlertTitle>Heads up!</AlertTitle>
       <AlertDescription>
@@ -29,8 +35,8 @@ export const DefaultAlert: StoryObj<typeof Alert> = {
 };
 
 export const DestructiveAlert: StoryObj<typeof Alert> = {
-  render: () => (
-    <Alert variant="destructive">
+  render: args => (
+    <Alert variant="destructive" {...args}>
       <Terminal className="h-4 w-4" />
       <AlertTitle>Heads up!</AlertTitle>
       <AlertDescription>
