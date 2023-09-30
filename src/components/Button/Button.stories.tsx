@@ -202,7 +202,8 @@ export const WithIconButton: StoryObj<typeof Button> = {
   },
   render: args => (
     <Button {...args}>
-      <Mail className="mr-2 h-4 w-4" /> Login with Email
+      <Mail className="mr-2 h-4 w-4" />
+      Login with Email
     </Button>
   ),
 };
@@ -233,7 +234,7 @@ export const AsChildButton: StoryObj<typeof Button> = {
     },
   },
   render: args => (
-    <Button asChild>
+    <Button asChild {...args}>
       <Link href="/login">Login</Link>
     </Button>
   ),
