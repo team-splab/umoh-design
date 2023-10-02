@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
-import { ChevronRight, Loader2, Mail } from 'lucide-react';
 import Link from 'next/link';
+
+import { ChevronRight, Loader2, Mail } from 'lucide-react';
+
+import { Button } from './Button';
 
 const meta = {
   title: 'Components/Button',

@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Alert, AlertDescription, AlertTitle } from './Alert';
+
 import { Terminal } from 'lucide-react';
+
+import { Alert, AlertDescription, AlertTitle } from './Alert';
 
 const meta = {
   title: 'Components/Alert',
