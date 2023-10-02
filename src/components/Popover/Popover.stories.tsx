@@ -15,10 +15,12 @@ const meta = {
       appDirectory: true,
     },
     componentSubtitle:
-      'Popover는 사용자가 버튼을 통해 선택할 수 있는 옵션 목록을 표시하는 컴포넌트입니다.',
+      'Popover는 부가 정보가 필요한 요소에 사용자 액션 시 노출되는 요소로 사용하는 컴포넌트입니다.',
     docs: {
       description: {
-        component: '• modal 값으로 true | false 중 하나를 선택할 수 있습니다.',
+        component: `포커스한 것에 관한 정보 제공 요소인 Tooltip과 구분해 사용합니다.\n
+Info에 대한 단순하고 빠른 정보 전달이 필요할 경우 Popover를 사용하되 변동성있는 서술적 정보에 관해서는 Sheets를 활용합니다.\n
+• modal 값으로 true | false 중 하나를 선택할 수 있습니다.`,
       },
     },
   },
