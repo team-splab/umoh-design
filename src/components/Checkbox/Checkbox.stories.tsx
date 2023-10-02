@@ -15,10 +15,12 @@ const meta = {
       'Checkbox는 사용자가 Set에서 하나 이상의 항목을 선택할 수 있도록 하는 컴포넌트입니다.',
     docs: {
       description: {
-        component: `Checkbox를 사용하여 Option을 끄거나 켤 수 있습니다.\n
-• asChild값으로 true | false 중 하나를 선택할 수 있습니다.\n
-• disabled값으로 true | false 중 하나를 선택할 수 있습니다.\n
-• required값으로 true | false 중 하나를 선택할 수 있습니다.`,
+        component: `
+Checkbox를 사용하여 Option을 끄거나 켤 수 있습니다.\n
+- asChild값으로 true | false 중 하나를 선택할 수 있습니다.\n
+- disabled값으로 true | false 중 하나를 선택할 수 있습니다.\n
+- required값으로 true | false 중 하나를 선택할 수 있습니다.
+`,
       },
     },
   },

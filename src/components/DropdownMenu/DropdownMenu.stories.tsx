@@ -53,9 +53,11 @@ const meta = {
       'DropdownMenu는 사용자가 옵션 리스트 중 하나의 옵션 선택 시 활용되는 컴포넌트입니다.',
     docs: {
       description: {
-        component: `선택 가능한 옵션 개수가 다수일 경우, 드롭다운 메뉴를 사용해 값을 노출합니다.\n
-• modal값으로 true | false 중 하나를 선택할 수 있습니다.\n
-• dir값으로 "ltr" | "rtl" 중 하나를 선택할 수 있습니다.`,
+        component: `
+- 선택 가능한 옵션 개수가 다수일 경우, 드롭다운 메뉴를 사용해 값을 노출합니다.\n
+- modal값으로 true | false 중 하나를 선택할 수 있습니다.\n
+- dir값으로 "ltr" | "rtl" 중 하나를 선택할 수 있습니다.
+`,
       },
     },
   },

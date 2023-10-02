@@ -17,7 +17,8 @@ const meta = {
       'Alert는 사용자의 주의를 끌기 위한 콜아웃을 표시하는 컴포넌트입니다.',
     docs: {
       description: {
-        component: `variant값으로 "default" | "destructive" 중 하나를 선택할 수 있습니다.`,
+        component:
+          '- variant값으로 "default" | "destructive" 중 하나를 선택할 수 있습니다.',
       },
     },
   },

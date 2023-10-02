@@ -24,12 +24,13 @@ const meta = {
       'Card는 사용자에게 정보를 집약적으로 전달하기 위한 컴포넌트입니다.',
     docs: {
       description: {
-        component: `• Card : Card를 감싸는 Container 역할을 합니다.\n
-• CardHeader : Card의 CardTitle과 CardDescription을 감싸는 Container 역할을 합니다.\n
-• CardTitle : Card의 Title을 작성할 수 있습니다.\n
-• CardDescription : Card의 Description을 작성할 수 있습니다.\n
-• CardContent : Card의 Content를 작성할 수 있습니다.\n
-• CardFooter : Card의 Footer를 작성할 수 있습니다.\n
+        component: `
+- Card : Card를 감싸는 Container 역할을 합니다.\n
+- CardHeader : Card의 CardTitle과 CardDescription을 감싸는 Container 역할을 합니다.\n
+- CardTitle : Card의 Title을 작성할 수 있습니다.\n
+- CardDescription : Card의 Description을 작성할 수 있습니다.\n
+- CardContent : Card의 Content를 작성할 수 있습니다.\n
+- CardFooter : Card의 Footer를 작성할 수 있습니다.
 `,
       },
     },

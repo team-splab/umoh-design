@@ -16,8 +16,10 @@ const meta = {
       'Input는 사용자가 UI 상 텍스트 입력 및 확인 시 활용되는 컴포넌트입니다.',
     docs: {
       description: {
-        component: `• input의 type값인 "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit" | "tel" | "text" | "time" | "url" | "week" 중 하나를 선택할 수 있습니다.\n
-• disabled값으로 true | false 중 하나를 선택할 수 있습니다.\n`,
+        component: `
+- input의 type값인 "button" | "checkbox" | "color" | "date" | "datetime-local" | "email" | "file" | "hidden" | "image" | "month" | "number" | "password" | "radio" | "range" | "reset" | "search" | "submit" | "tel" | "text" | "time" | "url" | "week" 중 하나를 선택할 수 있습니다.\n
+- disabled값으로 true | false 중 하나를 선택할 수 있습니다.
+`,
       },
     },
   },

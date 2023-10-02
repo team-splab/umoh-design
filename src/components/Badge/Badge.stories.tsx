@@ -15,8 +15,10 @@ const meta = {
       'Badge는 사용자에게 정보를 강조하거나 특정 요소에 주의를 끌기 위해 아이콘 또는 텍스트에 추가적인 요소를 사용하여 표시하는 컴포넌트입니다.',
     docs: {
       description: {
-        component: `배지 내의 콘텐츠는 일반적으로 숫자나 아이콘을 포함합니다.\n
-• variant값으로 "default" | "secondary" | "destructive" | "outline" 중 하나를 선택할 수 있습니다.`,
+        component: `
+배지 내의 콘텐츠는 일반적으로 숫자나 아이콘을 포함합니다.\n
+- variant값으로 "default" | "secondary" | "destructive" | "outline" 중 하나를 선택할 수 있습니다.
+`,
       },
     },
   },

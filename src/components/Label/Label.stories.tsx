@@ -16,8 +16,10 @@ const meta = {
       'Label는 컨트롤과 연결된 접근 가능한 label을 렌더링하는 컴포넌트입니다.',
     docs: {
       description: {
-        component: `• asChild값으로 true | false 중 하나를 선택할 수 있습니다.\n
-• htmlFor값으로 label이 연결된 요소의 ID를 작성할 수 있습니다.`,
+        component: `
+- asChild값으로 true | false 중 하나를 선택할 수 있습니다.\n
+- htmlFor값으로 label이 연결된 요소의 ID를 작성할 수 있습니다.
+`,
       },
     },
   },

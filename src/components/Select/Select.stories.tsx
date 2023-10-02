@@ -23,9 +23,11 @@ const meta = {
       'Select는 사용자가 버튼을 통해 선택할 수 있는 옵션 목록을 표시하는 컴포넌트입니다.',
     docs: {
       description: {
-        component: `• dir 값으로 ltr | rtl 중 하나를 선택할 수 있습니다.\n
-• disabled값으로 true | false 중 하나를 선택할 수 있습니다.\n
-• required값으로 true | false 중 하나를 선택할 수 있습니다.`,
+        component: `
+- dir 값으로 ltr | rtl 중 하나를 선택할 수 있습니다.\n
+- disabled값으로 true | false 중 하나를 선택할 수 있습니다.\n
+- required값으로 true | false 중 하나를 선택할 수 있습니다.
+`,
       },
     },
   },

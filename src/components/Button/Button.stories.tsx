@@ -18,10 +18,12 @@ const meta = {
       'Button은 사용자가 한 번의 탭으로 작업을 수행하고 선택할 수 있는 컴포넌트입니다. ',
     docs: {
       description: {
-        component: `• variant값으로 "default" | "secondary" |  "destructive" | "outline" | "ghost" | "link" 중 하나를 선택할 수 있습니다.\n
-• size값으로 "default" | "sm" |  "lg" | "icon" 중 하나를 선택할 수 있습니다.\n
-• disabled값으로 true | false 중 하나를 선택할 수 있습니다.\n
-• asChild값으로 true | false 중 하나를 선택할 수 있습니다.\n`,
+        component: `
+- variant값으로 "default" | "secondary" |  "destructive" | "outline" | "ghost" | "link" 중 하나를 선택할 수 있습니다.\n
+- size값으로 "default" | "sm" |  "lg" | "icon" 중 하나를 선택할 수 있습니다.\n
+- disabled값으로 true | false 중 하나를 선택할 수 있습니다.\n
+- asChild값으로 true | false 중 하나를 선택할 수 있습니다.
+`,
       },
     },
   },
