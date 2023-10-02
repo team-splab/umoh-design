@@ -218,7 +218,28 @@ export const ExampleTable: StoryObj<typeof Table> = {
   parameters: {
     docs: {
       description: {
-        story: '예제로 사용되는 Example Table입니다.',
+        story: `
+TanStack Table을 사용한 Example Table입니다.\n
+- Cell Formatters
+- Auto-managed internal state
+- Opt-in fully controlled state
+- Sorting
+- Multi Sort
+- Global Filters
+- Columns Filters
+- Pagination
+- Row Grouping
+- Aggregation
+- Row Selection
+- Row Expansion
+- Column Ordering
+- Column Visibility
+- Column Resizing
+- Virtualizable
+- Server-side/external Data
+- Nested/Grouped Headers
+- Footers
+`,
       },
     },
   },
