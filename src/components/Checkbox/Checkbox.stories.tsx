@@ -16,13 +16,35 @@ const meta = {
     docs: {
       description: {
         component: `Checkbox를 사용하여 Option을 끄거나 켤 수 있습니다.\n
-• disabled값으로 true | false 중 하나를 선택할 수 있습니다.`,
+• asChild값으로 true | false 중 하나를 선택할 수 있습니다.\n
+• disabled값으로 true | false 중 하나를 선택할 수 있습니다.\n
+• required값으로 true | false 중 하나를 선택할 수 있습니다.`,
       },
     },
   },
   argTypes: {
+    asChild: {
+      description: 'Checkbox의 asChild 여부를 설정합니다.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+      control: {
+        type: 'boolean',
+      },
+    },
     disabled: {
       description: 'Button의 disabled 여부를 설정합니다.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+      control: {
+        type: 'boolean',
+      },
+    },
+    required: {
+      description: 'Button의 required 여부를 설정합니다.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
