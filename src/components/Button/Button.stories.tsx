@@ -29,7 +29,7 @@ const meta = {
   },
   argTypes: {
     variant: {
-      description: 'Button의 Type을 설정합니다.',
+      description: 'Button의 Variant를 설정합니다.',
       table: {
         type: { summary: 'ButtonVariant' },
         defaultValue: { summary: 'default' },
