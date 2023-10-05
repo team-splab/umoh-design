@@ -62,7 +62,7 @@ const meta = {
 
 export default meta;
 
-export const DefaultAvatar: StoryObj<typeof Collapsible> = {
+export const DefaultCollapsible: StoryObj<typeof Collapsible> = {
   parameters: {
     docs: {
       description: {
