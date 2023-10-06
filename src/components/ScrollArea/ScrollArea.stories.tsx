@@ -102,7 +102,7 @@ export const ExampleScrollArea: StoryObj<typeof ScrollArea> = {
   parameters: {
     docs: {
       description: {
-        story: '예시로 사용되는 ExampleScrollArea 입니다.',
+        story: '예시로 사용되는 Example ScrollArea 입니다.',
       },
     },
   },

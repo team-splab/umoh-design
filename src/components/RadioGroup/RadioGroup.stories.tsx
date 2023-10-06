@@ -127,7 +127,7 @@ export const ExampleRadioGroup: StoryObj<typeof RadioGroup> = {
   parameters: {
     docs: {
       description: {
-        story: '예시로 사용되는 ExampleRadioGroup 입니다.',
+        story: '예시로 사용되는 Example RadioGroup 입니다.',
       },
     },
   },
