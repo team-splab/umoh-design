@@ -54,9 +54,9 @@ const meta = {
       table: {
         defaultValue: { summary: 'ltr' },
       },
+      options: ['ltr', 'rtl'],
       control: {
         type: 'radio',
-        options: ['ltr', 'rtl'],
       },
     },
     loop: {
