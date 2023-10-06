@@ -24,7 +24,7 @@ const meta = {
     docs: {
       description: {
         component: `
-- dir 값으로 ltr | rtl 중 하나를 선택할 수 있습니다.\n
+- dir 값으로 "ltr" | "rtl" 중 하나를 선택할 수 있습니다.\n
 - disabled값으로 true | false 중 하나를 선택할 수 있습니다.\n
 - required값으로 true | false 중 하나를 선택할 수 있습니다.
 `,
