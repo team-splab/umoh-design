@@ -26,7 +26,7 @@ const meta = {
       appDirectory: true,
     },
     componentSubtitle:
-      'Menubar는 사용자가 UI 상 텍스트 입력 및 확인 시 활용되는 컴포넌트입니다.',
+      'Menubar는 명령 세트에 대한 빠른 액세스를 제공하는 메뉴 컴포넌트입니다.',
     docs: {
       description: {
         component: `
