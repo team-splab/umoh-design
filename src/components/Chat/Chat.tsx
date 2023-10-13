@@ -88,7 +88,7 @@ const ChatContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'h-[80vh] overflow-hidden text-sm transition-all data-[state=close]:animate-accordion-up data-[state=open]:animate-accordion-down',
+      'h-[80vh] overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
       className
     )}
     {...props}
