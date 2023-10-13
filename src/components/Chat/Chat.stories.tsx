@@ -9,7 +9,7 @@ import {
 } from './Chat';
 
 const meta = {
-  title: 'Components/Chat',
+  title: 'CustomComponent/Chat',
   component: Chat,
   tags: ['autodocs'],
   parameters: {
