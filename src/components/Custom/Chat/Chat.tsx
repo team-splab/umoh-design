@@ -17,10 +17,7 @@ const ChatContainer = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn(
-      'flex flex-col shadow-lg data-[state=closed]:h-full data-[state=open]:h-screen',
-      className
-    )}
+    className={cn('flex flex-col shadow-lg', className)}
     {...props}
   />
 ));
@@ -76,15 +73,15 @@ const ChatContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'flex h-full flex-col overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
+      'relative flex-col overflow-hidden text-sm transition-all data-[state=closed]:h-full data-[state=open]:h-[calc(100vh-4rem)] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
       className
     )}
     {...props}
   >
-    <ScrollArea className="h-full" type="scroll">
-      {children}
-    </ScrollArea>
-    <div className="flex w-full">
+    <div className="flex h-full flex-col">
+      <ScrollArea className="flex h-full" type="scroll">
+        {children}
+      </ScrollArea>
       <ChatTextField />
     </div>
   </AccordionPrimitive.Content>
