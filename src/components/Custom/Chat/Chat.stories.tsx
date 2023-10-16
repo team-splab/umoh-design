@@ -8,6 +8,8 @@ import {
   ChatContent,
 } from './Chat';
 
+import { ChatCard, ChatCardHeader, ChatCardContent } from './ChatCard';
+
 const meta = {
   title: 'CustomComponent/Chat',
   component: Chat,
@@ -22,7 +24,6 @@ const meta = {
     docs: {
       description: {
         component: `
-- type값으로 "single" | "multiple" 중 하나를 선택할 수 있습니다.\n
 - collapsible값으로 true | false 중 하나를 선택할 수 있습니다.\n
 - disabled값으로 true | false 중 하나를 선택할 수 있습니다.\n
 - dir값으로 "ltr" | "rtl" 중 하나를 선택할 수 있습니다.\n
@@ -104,7 +105,7 @@ export default meta;
 
 export const DefaultChat: StoryObj<typeof Chat> = {
   render: args => (
-    <Chat className="absolute bottom-0 right-0 w-full" {...args}>
+    <Chat className="fixed bottom-0 right-0 w-full max-w-[344px]" {...args}>
       <ChatContainer value="chat">
         <ChatTrigger />
         <ChatPreview>
@@ -112,9 +113,171 @@ export const DefaultChat: StoryObj<typeof Chat> = {
           오시는 길 이실텐데, 도착하시면 “B1” 입구로 입장 부탁드립니다. 앞에 ...
         </ChatPreview>
         <ChatContent>
-          Yes. It adheres to the WAI-ARIA design pattern.
+          {cardData.map(item => (
+            <ChatCard id={item.id} key={item.id}>
+              <ChatCardHeader
+                host={item.host}
+                profile_img={item.profile_img}
+                name={item.name}
+                date={item.date}
+              />
+              <ChatCardContent content={item.content} reply={item.reply} />
+            </ChatCard>
+          ))}
         </ChatContent>
       </ChatContainer>
     </Chat>
   ),
 };
+
+export const DefaultChatCard: StoryObj<typeof ChatCard> = {
+  decorators: [
+    Story => (
+      <div className="m-12 w-[400px]">
+        <Story />
+      </div>
+    ),
+  ],
+  render: args => {
+    return (
+      <>
+        {cardData.map(item => (
+          <ChatCard id={item.id} key={item.id} {...args}>
+            <ChatCardHeader
+              host={item.host}
+              profile_img={item.profile_img}
+              name={item.name}
+              date={item.date}
+            />
+            <ChatCardContent content={item.content} reply={item.reply} />
+          </ChatCard>
+        ))}
+      </>
+    );
+  },
+};
+
+const cardData = [
+  {
+    id: '1',
+    host: true,
+    profile_img: 'https://ui-avatars.com/api/?name=Host.png',
+    name: 'Host',
+    date: new Date().toDateString(),
+    content: 'First Host ChatCard Content',
+    reply: [
+      {
+        id: '2',
+        host: true,
+        profile_img: 'https://ui-avatars.com/api/?name=Host.png',
+        name: 'Host',
+        date: new Date().toDateString(),
+        content: 'Second Host ChatCard Content',
+        reply: [
+          {
+            id: '7',
+            host: false,
+            profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
+            name: 'Guest',
+            date: new Date().toDateString(),
+            content: 'Second Guest ChatCard Content',
+            reply: [],
+          },
+        ],
+      },
+      {
+        id: '3',
+        host: false,
+        profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
+        name: 'Guest2',
+        date: new Date().toDateString(),
+        content: 'Third Guest ChatCard Content',
+        reply: [],
+      },
+    ],
+  },
+  {
+    id: '4',
+    host: false,
+    profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
+    name: 'Guest',
+    date: new Date().toDateString(),
+    content: 'ChatCard Content',
+    reply: [
+      {
+        id: '5',
+        host: true,
+        profile_img: 'https://ui-avatars.com/api/?name=Host.png',
+        name: 'Host',
+        date: new Date().toDateString(),
+        content: 'ChatCard Content',
+        reply: [],
+      },
+    ],
+  },
+  {
+    id: '6',
+    host: false,
+    profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
+    name: 'Guest4',
+    date: new Date().toDateString(),
+    content: 'ChatCard Content',
+    reply: [],
+  },
+  {
+    id: '8',
+    host: true,
+    profile_img: 'https://ui-avatars.com/api/?name=Host.png',
+    name: 'Host',
+    date: new Date().toDateString(),
+    content: 'Fourth Host ChatCard Content',
+    reply: [
+      {
+        id: '9',
+        host: false,
+        profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
+        name: 'Guest5',
+        date: new Date().toDateString(),
+        content: 'Fourth Guest ChatCard Content',
+        reply: [],
+      },
+    ],
+  },
+  {
+    id: '10',
+    host: false,
+    profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
+    name: 'Guest6',
+    date: new Date().toDateString(),
+    content: 'Fifth Guest ChatCard Content',
+    reply: [
+      {
+        id: '11',
+        host: true,
+        profile_img: 'https://ui-avatars.com/api/?name=Host.png',
+        name: 'Host',
+        date: new Date().toDateString(),
+        content: 'Fifth Host ChatCard Content',
+        reply: [],
+      },
+    ],
+  },
+  {
+    id: '12',
+    host: true,
+    profile_img: 'https://ui-avatars.com/api/?name=Host.png',
+    name: 'Host',
+    date: new Date().toDateString(),
+    content: 'Sixth Host ChatCard Content',
+    reply: [],
+  },
+  {
+    id: '13',
+    host: false,
+    profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
+    name: 'Guest7',
+    date: new Date().toDateString(),
+    content: 'Sixth Guest ChatCard Content',
+    reply: [],
+  },
+];
