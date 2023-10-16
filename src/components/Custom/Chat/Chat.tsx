@@ -7,6 +7,7 @@ import { ChevronUp, MessageSquarePlusIcon } from 'lucide-react';
 import { cn } from 'lib/twUtils';
 import { Badge } from 'components/Base/Badge/Badge';
 import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
+import ChatTextField from './ChatTextField';
 
 const Chat = AccordionPrimitive.Root;
 
@@ -75,7 +76,7 @@ const ChatContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'h-full overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
+      'flex h-full flex-col overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
       className
     )}
     {...props}
@@ -83,6 +84,9 @@ const ChatContent = React.forwardRef<
     <ScrollArea className="h-full" type="scroll">
       {children}
     </ScrollArea>
+    <div className="flex w-full">
+      <ChatTextField />
+    </div>
   </AccordionPrimitive.Content>
 ));
 ChatContent.displayName = AccordionPrimitive.Content.displayName;

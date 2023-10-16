@@ -9,6 +9,7 @@ import {
 } from './Chat';
 
 import { ChatCard, ChatCardHeader, ChatCardContent } from './ChatCard';
+import ChatTextField from './ChatTextField';
 
 const meta = {
   title: 'CustomComponent/Chat',
@@ -154,6 +155,20 @@ export const DefaultChatCard: StoryObj<typeof ChatCard> = {
         ))}
       </>
     );
+  },
+};
+
+export const DefaultChatTextField: StoryObj<typeof ChatTextField> = {
+  decorators: [
+    Story => (
+      <div className="m-12 w-[400px]">
+        <Story />
+      </div>
+    ),
+  ],
+
+  render: args => {
+    return <ChatTextField />;
   },
 };
 
