@@ -1,7 +1,6 @@
 import type { Preview } from '@storybook/react';
-import '../src/app/globals.css';
 
-import { withThemeByDataAttribute } from '@storybook/addon-styling';
+import '../src/globals.css';
 
 const preview: Preview = {
   parameters: {
@@ -14,16 +13,5 @@ const preview: Preview = {
     },
   },
 };
-
-export const decorators = [
-  withThemeByDataAttribute({
-    themes: {
-      light: 'light',
-      dark: 'dark',
-    },
-    defaultTheme: 'light',
-    attributeName: 'data-mode',
-  }),
-];
 
 export default preview;

@@ -11,7 +11,6 @@ import {
 } from 'components/Base/NavigationMenu/NavigationMenu';
 
 import { cn } from 'lib/twUtils';
-import Link from 'next/link';
 import { forwardRef } from 'react';
 
 const meta = {
@@ -124,11 +123,11 @@ export const WithLinkNavigationMenu: StoryObj<typeof NavigationMenu> = {
   },
   render: args => (
     <NavigationMenu {...args}>
-      <Link href="/docs" legacyBehavior passHref>
+      <a href="/docs">
         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
           Documentation
         </NavigationMenuLink>
-      </Link>
+      </a>
     </NavigationMenu>
   ),
 };
@@ -258,11 +257,11 @@ export const ExampleNavigationMenu: StoryObj<typeof NavigationMenu> = {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
+            <a href="/docs">
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Documentation
               </NavigationMenuLink>
-            </Link>
+            </a>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

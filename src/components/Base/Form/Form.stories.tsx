@@ -2,8 +2,6 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Link from 'next/link';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
@@ -314,7 +312,7 @@ export const WithSelectForm: StoryObj<typeof Form> = {
                 </Select>
                 <FormDescription>
                   You can manage email addresses in your
-                  <Link href="/examples/forms">email settings</Link>.
+                  <a href="/examples/forms">email settings</a>.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

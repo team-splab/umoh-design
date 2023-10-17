@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Image from 'next/image';
-
 import { AspectRatio } from './AspectRatio';
 
 const meta = {
@@ -59,10 +57,9 @@ export default meta;
 export const ExampleAspectRatio: StoryObj<typeof AspectRatio> = {
   render: args => (
     <AspectRatio {...args}>
-      <Image
+      <img
         src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
-        alt="Photo by Drew Beamer"
-        fill
+        alt=""
         className="rounded-md object-cover"
       />
     </AspectRatio>

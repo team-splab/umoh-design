@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Link from 'next/link';
 
 import { ChevronRight, Loader2, Mail } from 'lucide-react';
 
@@ -239,7 +238,7 @@ export const AsChildButton: StoryObj<typeof Button> = {
   },
   render: args => (
     <Button asChild {...args}>
-      <Link href="/login">Login</Link>
+      <a href="/login">Login</a>
     </Button>
   ),
 };

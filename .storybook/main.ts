@@ -1,45 +1,45 @@
-import type { StorybookConfig } from '@storybook/nextjs';
-import { RuleSetRule } from 'webpack';
+import type { StorybookConfig } from '@storybook/react-webpack5';
+import path from 'path';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
 const config: StorybookConfig = {
-  stories: [
-    '../src/(stories|components)/**/*.mdx',
-    '../src/(stories|components)/**/*.stories.@(js|jsx|ts|tsx)',
-    '../src/(stories|foundation)/**/*.stories.@(mdx|js|jsx|ts|tsx)',
-  ],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
+    '@storybook/preset-create-react-app',
     '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
-    {
-      name: '@storybook/addon-styling',
-      options: {
-        postCss: {
-          implementation: require.resolve('postcss'),
-        },
-      },
-    },
   ],
   framework: {
-    name: '@storybook/nextjs',
+    name: '@storybook/react-webpack5',
     options: {},
   },
   docs: {
     autodocs: 'tag',
   },
+  staticDirs: ['../public'],
   webpackFinal: async config => {
-    const rules = config?.module?.rules as RuleSetRule[];
-    const imageRule = rules.find(
-      rule => rule?.test instanceof RegExp && rule.test.test('.svg')
-    );
-    if (imageRule) {
-      imageRule.exclude = /\.svg$/;
-    }
-    rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
+    config.module.rules.push({
+      test: /\.css$/,
+      use: [
+        {
+          loader: 'postcss-loader',
+          options: {
+            postcssOptions: {
+              plugins: [require('tailwindcss'), require('autoprefixer')],
+            },
+          },
+        },
+      ],
+      include: path.resolve(__dirname, '../'),
     });
+    config.resolve.plugins = [
+      ...(config.resolve.plugins || []),
+      new TsconfigPathsPlugin({
+        extensions: config.resolve.extensions,
+      }),
+    ];
     return config;
   },
 };
