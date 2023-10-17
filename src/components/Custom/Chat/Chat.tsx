@@ -17,7 +17,7 @@ const ChatContainer = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn('flex flex-col shadow-lg', className)}
+    className={cn('flex flex-col bg-white shadow-lg', className)}
     {...props}
   />
 ));
