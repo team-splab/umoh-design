@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
-  Chat,
-  ChatContainer,
-  ChatTrigger,
-  ChatPreview,
-  ChatContent,
-} from './Chat';
+  Post,
+  PostContainer,
+  PostTrigger,
+  PostPreview,
+  PostContent,
+} from './Post';
 
-import { ChatCard, ChatCardHeader, ChatCardContent } from './ChatCard';
-import ChatTextField from './ChatTextField';
+import { PostCard, PostCardHeader, PostCardContent } from './PostCard';
+import PostTextField from './PostTextField';
 
 const meta = {
-  title: 'CustomComponent/Chat',
-  component: Chat,
+  title: 'CustomComponent/Post',
+  component: Post,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
@@ -21,7 +21,7 @@ const meta = {
       appDirectory: true,
     },
     componentSubtitle:
-      'Chat은 AccordionPrimitive를 사용하여 구현된 커스텀 컴포넌트입니다.',
+      'Post은 PostPrimitive를 사용하여 구현된 커스텀 컴포넌트입니다.',
     docs: {
       description: {
         component: `
@@ -39,9 +39,9 @@ const meta = {
   },
   argTypes: {
     type: {
-      description: 'Accordion의 Type을 설정합니다.',
+      description: 'Post의 Type을 설정합니다.',
       table: {
-        type: { summary: 'AccordionType' },
+        type: { summary: 'PostType' },
         defaultValue: { summary: 'single' },
       },
       options: ['single', 'multiple'],
@@ -51,7 +51,7 @@ const meta = {
       required: true,
     },
     collapsible: {
-      description: 'Accordion의 Collapsible 여부를 설정합니다.',
+      description: 'Post의 Collapsible 여부를 설정합니다.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -61,7 +61,7 @@ const meta = {
       },
     },
     disabled: {
-      description: 'Accordion의 disabled 여부를 설정합니다.',
+      description: 'Post의 disabled 여부를 설정합니다.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -71,9 +71,9 @@ const meta = {
       },
     },
     dir: {
-      description: 'Accordion의 방향을 설정합니다.',
+      description: 'Post의 방향을 설정합니다.',
       table: {
-        type: { summary: 'AccordionDir' },
+        type: { summary: 'PostDir' },
         defaultValue: { summary: 'ltr' },
       },
       options: ['ltr', 'rtl'],
@@ -82,9 +82,9 @@ const meta = {
       },
     },
     orientation: {
-      description: 'Accordion의 방향을 설정합니다.',
+      description: 'Post의 방향을 설정합니다.',
       table: {
-        type: { summary: 'AccordionOrientation' },
+        type: { summary: 'PostOrientation' },
         defaultValue: { summary: 'vertical' },
       },
       options: ['vertical', 'horizontal'],
@@ -100,38 +100,38 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof Chat>;
+} satisfies Meta<typeof Post>;
 
 export default meta;
 
-export const DefaultChat: StoryObj<typeof Chat> = {
+export const DefaultPost: StoryObj<typeof Post> = {
   render: args => (
-    <Chat className="fixed bottom-0 right-0 w-full max-w-[344px]" {...args}>
-      <ChatContainer value="chat">
-        <ChatTrigger />
-        <ChatPreview>
+    <Post className="fixed bottom-0 right-0 w-full max-w-[344px]" {...args}>
+      <PostContainer value="post">
+        <PostTrigger />
+        <PostPreview>
           안녕하세요 여러분🚀 운영팀입니다, 곧 이벤트가 시작될 예정입니다. 다들
           오시는 길 이실텐데, 도착하시면 “B1” 입구로 입장 부탁드립니다. 앞에 ...
-        </ChatPreview>
-        <ChatContent>
+        </PostPreview>
+        <PostContent>
           {cardData.map(item => (
-            <ChatCard id={item.id} key={item.id}>
-              <ChatCardHeader
+            <PostCard id={item.id} key={item.id}>
+              <PostCardHeader
                 host={item.host}
                 profile_img={item.profile_img}
                 name={item.name}
                 date={item.date}
               />
-              <ChatCardContent content={item.content} reply={item.reply} />
-            </ChatCard>
+              <PostCardContent content={item.content} reply={item.reply} />
+            </PostCard>
           ))}
-        </ChatContent>
-      </ChatContainer>
-    </Chat>
+        </PostContent>
+      </PostContainer>
+    </Post>
   ),
 };
 
-export const DefaultChatCard: StoryObj<typeof ChatCard> = {
+export const DefaultPostCard: StoryObj<typeof PostCard> = {
   decorators: [
     Story => (
       <div className="m-12 w-[400px]">
@@ -143,22 +143,22 @@ export const DefaultChatCard: StoryObj<typeof ChatCard> = {
     return (
       <>
         {cardData.map(item => (
-          <ChatCard id={item.id} key={item.id} {...args}>
-            <ChatCardHeader
+          <PostCard id={item.id} key={item.id} {...args}>
+            <PostCardHeader
               host={item.host}
               profile_img={item.profile_img}
               name={item.name}
               date={item.date}
             />
-            <ChatCardContent content={item.content} reply={item.reply} />
-          </ChatCard>
+            <PostCardContent content={item.content} reply={item.reply} />
+          </PostCard>
         ))}
       </>
     );
   },
 };
 
-export const DefaultChatTextField: StoryObj<typeof ChatTextField> = {
+export const DefaultPostTextField: StoryObj<typeof PostTextField> = {
   decorators: [
     Story => (
       <div className="m-12 w-[400px]">
@@ -168,7 +168,7 @@ export const DefaultChatTextField: StoryObj<typeof ChatTextField> = {
   ],
 
   render: args => {
-    return <ChatTextField />;
+    return <PostTextField />;
   },
 };
 
@@ -179,7 +179,7 @@ const cardData = [
     profile_img: 'https://ui-avatars.com/api/?name=Host.png',
     name: 'Host',
     date: new Date().toDateString(),
-    content: 'First Host ChatCard Content',
+    content: 'First Host PostCard Content',
     reply: [
       {
         id: '2',
@@ -187,7 +187,7 @@ const cardData = [
         profile_img: 'https://ui-avatars.com/api/?name=Host.png',
         name: 'Host',
         date: new Date().toDateString(),
-        content: 'Second Host ChatCard Content',
+        content: 'Second Host PostCard Content',
         reply: [
           {
             id: '7',
@@ -195,7 +195,7 @@ const cardData = [
             profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
             name: 'Guest',
             date: new Date().toDateString(),
-            content: 'Second Guest ChatCard Content',
+            content: 'Second Guest PostCard Content',
             reply: [],
           },
         ],
@@ -206,7 +206,7 @@ const cardData = [
         profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
         name: 'Guest2',
         date: new Date().toDateString(),
-        content: 'Third Guest ChatCard Content',
+        content: 'Third Guest PostCard Content',
         reply: [],
       },
     ],
@@ -217,7 +217,7 @@ const cardData = [
     profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
     name: 'Guest',
     date: new Date().toDateString(),
-    content: 'ChatCard Content',
+    content: 'PostCard Content',
     reply: [
       {
         id: '5',
@@ -225,7 +225,7 @@ const cardData = [
         profile_img: 'https://ui-avatars.com/api/?name=Host.png',
         name: 'Host',
         date: new Date().toDateString(),
-        content: 'ChatCard Content',
+        content: 'PostCard Content',
         reply: [],
       },
     ],
@@ -236,7 +236,7 @@ const cardData = [
     profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
     name: 'Guest4',
     date: new Date().toDateString(),
-    content: 'ChatCard Content',
+    content: 'PostCard Content',
     reply: [],
   },
   {
@@ -245,7 +245,7 @@ const cardData = [
     profile_img: 'https://ui-avatars.com/api/?name=Host.png',
     name: 'Host',
     date: new Date().toDateString(),
-    content: 'Fourth Host ChatCard Content',
+    content: 'Fourth Host PostCard Content',
     reply: [
       {
         id: '9',
@@ -253,7 +253,7 @@ const cardData = [
         profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
         name: 'Guest5',
         date: new Date().toDateString(),
-        content: 'Fourth Guest ChatCard Content',
+        content: 'Fourth Guest PostCard Content',
         reply: [],
       },
     ],
@@ -264,7 +264,7 @@ const cardData = [
     profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
     name: 'Guest6',
     date: new Date().toDateString(),
-    content: 'Fifth Guest ChatCard Content',
+    content: 'Fifth Guest PostCard Content',
     reply: [
       {
         id: '11',
@@ -272,7 +272,7 @@ const cardData = [
         profile_img: 'https://ui-avatars.com/api/?name=Host.png',
         name: 'Host',
         date: new Date().toDateString(),
-        content: 'Fifth Host ChatCard Content',
+        content: 'Fifth Host PostCard Content',
         reply: [],
       },
     ],
@@ -283,7 +283,7 @@ const cardData = [
     profile_img: 'https://ui-avatars.com/api/?name=Host.png',
     name: 'Host',
     date: new Date().toDateString(),
-    content: 'Sixth Host ChatCard Content',
+    content: 'Sixth Host PostCard Content',
     reply: [],
   },
   {
@@ -292,7 +292,7 @@ const cardData = [
     profile_img: 'https://ui-avatars.com/api/?name=Guest.png',
     name: 'Guest7',
     date: new Date().toDateString(),
-    content: 'Sixth Guest ChatCard Content',
+    content: 'Sixth Guest PostCard Content',
     reply: [],
   },
 ];

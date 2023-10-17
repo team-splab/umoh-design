@@ -2,11 +2,11 @@ import { Button } from 'components/Base/Button/Button';
 import { Input } from 'components/Base/Input/Input';
 import React, { useState } from 'react';
 
-interface ChatTextFieldProps {
+interface PostTextFieldProps {
   onSend: (message: string) => void;
 }
 
-const ChatTextField = () => {
+const PostTextField = () => {
   const [message, setMessage] = useState('');
 
   // const handleSend = () => {
@@ -39,4 +39,4 @@ const ChatTextField = () => {
   );
 };
 
-export default ChatTextField;
+export default PostTextField;

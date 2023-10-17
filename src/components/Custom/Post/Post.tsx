@@ -7,11 +7,11 @@ import { ChevronUp, MessageSquarePlusIcon } from 'lucide-react';
 import { cn } from 'lib/twUtils';
 import { Badge } from 'components/Base/Badge/Badge';
 import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
-import ChatTextField from './ChatTextField';
+import PostTextField from './PostTextField';
 
-const Chat = AccordionPrimitive.Root;
+const Post = AccordionPrimitive.Root;
 
-const ChatContainer = React.forwardRef<
+const PostContainer = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
@@ -21,9 +21,9 @@ const ChatContainer = React.forwardRef<
     {...props}
   />
 ));
-ChatContainer.displayName = 'AccordionItem';
+PostContainer.displayName = 'AccordionItem';
 
-const ChatTrigger = React.forwardRef<
+const PostTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => (
@@ -44,9 +44,9 @@ const ChatTrigger = React.forwardRef<
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
-ChatTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+PostTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
-const ChatPreview = React.forwardRef<
+const PostPreview = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Header>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Header>
 >(({ className, children, ...props }, ref) => (
@@ -64,9 +64,9 @@ const ChatPreview = React.forwardRef<
     {children}
   </AccordionPrimitive.Header>
 ));
-ChatPreview.displayName = AccordionPrimitive.Header.displayName;
+PostPreview.displayName = AccordionPrimitive.Header.displayName;
 
-const ChatContent = React.forwardRef<
+const PostContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
@@ -82,10 +82,10 @@ const ChatContent = React.forwardRef<
       <ScrollArea className="flex h-full" type="scroll">
         {children}
       </ScrollArea>
-      <ChatTextField />
+      <PostTextField />
     </div>
   </AccordionPrimitive.Content>
 ));
-ChatContent.displayName = AccordionPrimitive.Content.displayName;
+PostContent.displayName = AccordionPrimitive.Content.displayName;
 
-export { Chat, ChatContainer, ChatTrigger, ChatPreview, ChatContent };
+export { Post, PostContainer, PostTrigger, PostPreview, PostContent };

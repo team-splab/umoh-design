@@ -12,7 +12,7 @@ import {
 } from 'components/Base/Avatar/Avatar';
 import { Badge } from 'components/Base/Badge/Badge';
 
-interface ChatData {
+interface PostData {
   id: string;
   host: boolean;
   profile_img: string;
@@ -26,11 +26,11 @@ interface ChatData {
     name: string;
     date: string;
     content: string;
-    reply: ChatData['reply'];
+    reply: PostData['reply'];
   }[];
 }
 
-const ChatCard = React.forwardRef<
+const PostCard = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -40,13 +40,13 @@ const ChatCard = React.forwardRef<
     {...props}
   />
 ));
-ChatCard.displayName = 'ChatCard';
+PostCard.displayName = 'PostCard';
 
-interface ChatCardHeaderProps
+interface PostCardHeaderProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    Pick<ChatData, 'host' | 'profile_img' | 'name' | 'date'> {}
+    Pick<PostData, 'host' | 'profile_img' | 'name' | 'date'> {}
 
-const ChatCardHeader = React.forwardRef<HTMLDivElement, ChatCardHeaderProps>(
+const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
   (
     {
       className,
@@ -77,14 +77,14 @@ const ChatCardHeader = React.forwardRef<HTMLDivElement, ChatCardHeaderProps>(
     </div>
   )
 );
-ChatCardHeader.displayName = 'ChatCardHeader';
+PostCardHeader.displayName = 'PostCardHeader';
 
-interface ChatCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
+interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
   content: string;
-  reply: ChatData['reply'];
+  reply: PostData['reply'];
 }
 
-const ChatCardContent = React.forwardRef<HTMLDivElement, ChatCardContentProps>(
+const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
   ({ className, content, reply, ...props }, ref) => (
     <div
       ref={ref}
@@ -101,15 +101,15 @@ const ChatCardContent = React.forwardRef<HTMLDivElement, ChatCardContentProps>(
             </AccordionPrimitive.Trigger>
             <AccordionPrimitive.AccordionContent>
               {reply.map(item => (
-                <ChatCard id={item.id} key={item.id} className="border-l-2">
-                  <ChatCardHeader
+                <PostCard id={item.id} key={item.id} className="border-l-2">
+                  <PostCardHeader
                     host={item.host}
                     profile_img={item.profile_img}
                     name={item.name}
                     date={item.date}
                   />
-                  <ChatCardContent content={item.content} reply={item.reply} />
-                </ChatCard>
+                  <PostCardContent content={item.content} reply={item.reply} />
+                </PostCard>
               ))}
             </AccordionPrimitive.AccordionContent>
           </AccordionPrimitive.Item>
@@ -118,8 +118,8 @@ const ChatCardContent = React.forwardRef<HTMLDivElement, ChatCardContentProps>(
     </div>
   )
 );
-ChatCardContent.displayName = 'ChatCardContent';
+PostCardContent.displayName = 'PostCardContent';
 
-export type { ChatData, ChatCardHeaderProps, ChatCardContentProps };
+export type { PostData, PostCardHeaderProps, PostCardContentProps };
 
-export { ChatCard, ChatCardHeader, ChatCardContent };
+export { PostCard, PostCardHeader, PostCardContent };
