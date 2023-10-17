@@ -7,6 +7,7 @@ import { ChevronUp, MessageSquarePlusIcon } from 'lucide-react';
 import { cn } from 'lib/twUtils';
 import { Badge } from 'components/Base/Badge/Badge';
 import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
+import ChatTextField from './ChatTextField';
 
 const Chat = AccordionPrimitive.Root;
 
@@ -16,10 +17,7 @@ const ChatContainer = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn(
-      'flex flex-col shadow-lg data-[state=closed]:h-full data-[state=open]:h-screen',
-      className
-    )}
+    className={cn('flex flex-col shadow-lg', className)}
     {...props}
   />
 ));
@@ -75,14 +73,17 @@ const ChatContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'h-full overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
+      'relative flex-col overflow-hidden text-sm transition-all data-[state=closed]:h-full data-[state=open]:h-[calc(100vh-4rem)] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
       className
     )}
     {...props}
   >
-    <ScrollArea className="h-full" type="scroll">
-      {children}
-    </ScrollArea>
+    <div className="flex h-full flex-col">
+      <ScrollArea className="flex h-full" type="scroll">
+        {children}
+      </ScrollArea>
+      <ChatTextField />
+    </div>
   </AccordionPrimitive.Content>
 ));
 ChatContent.displayName = AccordionPrimitive.Content.displayName;
