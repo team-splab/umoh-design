@@ -45,8 +45,9 @@ const config = [
     external: ['react', 'react-dom'],
     onwarn(warning, warn) {
       if (
-        warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
-        warning.message.includes(`"use client"`)
+        (warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
+          warning.message.includes(`"use client"`)) ||
+        warning.code === 'MIXED_EXPORTS'
       ) {
         return;
       }
