@@ -5,22 +5,23 @@ import dts from 'rollup-plugin-dts';
 import { terser } from 'rollup-plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
-
-const packageJson = require('./package.json');
+import preserveDirectives from 'rollup-plugin-preserve-directives';
 
 const config = [
   {
     input: 'src/index.ts',
     output: [
       {
-        file: packageJson.main,
+        dir: 'dist/cjs',
         format: 'cjs',
         sourcemap: true,
+        preserveModules: true,
       },
       {
-        file: packageJson.module,
+        dir: 'dist/esm',
         format: 'esm',
         sourcemap: true,
+        preserveModules: true,
       },
     ],
     plugins: [
@@ -39,8 +40,18 @@ const config = [
           insertAt: 'top',
         },
       }),
+      preserveDirectives.default(),
     ],
     external: ['react', 'react-dom'],
+    onwarn(warning, warn) {
+      if (
+        warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
+        warning.message.includes(`"use client"`)
+      ) {
+        return;
+      }
+      warn(warning);
+    },
   },
   {
     input: 'src/index.ts',

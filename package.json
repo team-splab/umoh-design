@@ -80,6 +80,7 @@
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-preserve-directives": "^0.2.0",
     "rollup-plugin-terser": "^7.0.2",
     "storybook": "^7.4.6",
     "style-loader": "^3.3.3",
@@ -107,5 +108,6 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "repository": "https://github.com/team-splab/umoh-design.git"
+  "repository": "https://github.com/team-splab/umoh-design.git",
+  "license": "UNLICENSED"
 }
