@@ -1,7 +1,6 @@
 {
-  "name": "umoh-design",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@team-splab/umoh-design",
+  "version": "0.1.2",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -104,5 +103,9 @@
     "@types/react-dom": {
       "optional": true
     }
-  }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "https://github.com/team-splab/umoh-design.git"
 }
