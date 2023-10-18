@@ -5,7 +5,6 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { ChevronUp, MessageSquarePlusIcon } from 'lucide-react';
 
 import { cn } from 'lib/twUtils';
-import { Badge } from 'components/Base/Badge/Badge';
 import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
 import PostTextField from './PostTextField';
 
@@ -58,9 +57,6 @@ const PostPreview = React.forwardRef<
     )}
     {...props}
   >
-    <div className="flex items-center gap-1">
-      📩 Min <Badge>Host</Badge>
-    </div>
     {children}
   </AccordionPrimitive.Header>
 ));
