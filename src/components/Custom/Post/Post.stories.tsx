@@ -30,10 +30,7 @@ const meta = {
     docs: {
       description: {
         component: `
-- collapsible값으로 true | false 중 하나를 선택할 수 있습니다.\n
 - disabled값으로 true | false 중 하나를 선택할 수 있습니다.\n
-- dir값으로 "ltr" | "rtl" 중 하나를 선택할 수 있습니다.\n
-- orientation값으로 "vertical" | "horizontal" 중 하나를 선택할 수 있습니다.
 `,
       },
     },
@@ -83,7 +80,7 @@ export const DefaultPost: StoryObj<typeof Post> = {
     };
 
     return (
-      <Post className="fixed bottom-0 right-0 w-full max-w-[344px]" {...args}>
+      <Post className="fixed bottom-0 right-0" {...args}>
         <PostContainer value="post">
           <PostTrigger />
           <PostPreview>
@@ -217,7 +214,8 @@ const MockPreviewResponse = {
     name: 'Host',
     createdAt: new Date().toISOString(), // ISO표준
     updatedAt: new Date().toISOString(), // ISO표준
-    content: '공지입니다.',
+    content:
+      '공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다.공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다',
     replyCount: 5,
   },
 };
