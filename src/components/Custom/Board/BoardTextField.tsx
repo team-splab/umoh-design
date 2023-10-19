@@ -2,26 +2,11 @@ import { Button } from 'components/Base/Button/Button';
 import { Input } from 'components/Base/Input/Input';
 import React, { useState } from 'react';
 
-interface PostTextFieldProps {
+interface BoardTextFieldProps {
   onSend: (message: string) => void;
 }
 
-const PostTextField = () => {
-  const [message, setMessage] = useState('');
-
-  // const handleSend = () => {
-  //   if (message.trim() !== '') {
-  //     onSend(message);
-  //     setMessage('');
-  //   }
-  // };
-
-  // const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-  //   if (event.key === 'Enter') {
-  //     handleSend();
-  //   }
-  // };
-
+const BoardTextField = () => {
   return (
     <div className="flex w-full items-center">
       <Input
@@ -39,4 +24,4 @@ const PostTextField = () => {
   );
 };
 
-export default PostTextField;
+export default BoardTextField;

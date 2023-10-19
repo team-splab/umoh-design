@@ -1,10 +1,10 @@
 import {
-  Post,
-  PostPreview,
-  PostContainer,
-  PostHeader,
-  PostContent,
-} from './Post';
+  Board,
+  BoardPreview,
+  BoardContainer,
+  BoardHeader,
+  BoardContent,
+} from './Board';
 
 import {
   PreviewCard,
@@ -14,14 +14,14 @@ import {
   ReplyHeader,
 } from './PostCard';
 
-import PostTextField from './PostTextField';
+import PostTextField from './BoardTextField';
 
 export {
-  Post,
-  PostPreview,
-  PostContainer,
-  PostHeader,
-  PostContent,
+  Board,
+  BoardPreview,
+  BoardContainer,
+  BoardHeader,
+  BoardContent,
   PreviewCard,
   PostCard,
   PostCardHeader,

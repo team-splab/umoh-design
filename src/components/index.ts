@@ -1,1 +1,1 @@
-export * from './Custom/Post';
+export * from './Custom/Board';

@@ -3,22 +3,22 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import {
-  Post,
-  PostPreview,
-  PostContainer,
-  PostContent,
+  Board,
+  BoardPreview,
+  BoardContainer,
+  BoardContent,
   PostCard,
   PostCardHeader,
   PostCardContent,
   PostTextField,
   PreviewCard,
   ReplyHeader,
-  PostHeader,
+  BoardHeader,
 } from '.';
 
 const meta = {
-  title: 'CustomComponent/Post',
-  component: Post,
+  title: 'CustomComponent/Board',
+  component: Board,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
@@ -26,7 +26,7 @@ const meta = {
       appDirectory: true,
     },
     componentSubtitle:
-      'Post은 PostPrimitive를 사용하여 구현된 커스텀 컴포넌트입니다.',
+      'Board은 PostPrimitive를 사용하여 구현된 커스텀 컴포넌트입니다.',
     docs: {
       description: {
         component: `
@@ -58,11 +58,11 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof Post>;
+} satisfies Meta<typeof Board>;
 
 export default meta;
 
-export const DefaultPost: StoryObj<typeof Post> = {
+export const DefaultPost: StoryObj<typeof Board> = {
   render: args => {
     const [replyOpen, setReplyOpen] = useState(false);
 
@@ -84,17 +84,17 @@ export const DefaultPost: StoryObj<typeof Post> = {
     };
 
     return (
-      <Post className="fixed bottom-0 right-0" {...args}>
-        <PostContainer value="post">
-          <PostHeader onRefreshClick={handleRefreshClick} />
-          <PostPreview>
+      <Board className="fixed bottom-0 right-0" {...args}>
+        <BoardContainer value="post">
+          <BoardHeader onRefreshClick={handleRefreshClick} />
+          <BoardPreview>
             <PreviewCard
               host={MockPreviewData.host}
               name={MockPreviewData.name}
               content={MockPreviewData.content}
             />
-          </PostPreview>
-          <PostContent>
+          </BoardPreview>
+          <BoardContent>
             {replyOpen ? (
               <>
                 <ReplyHeader onBackClick={handleBackClick} />
@@ -148,9 +148,9 @@ export const DefaultPost: StoryObj<typeof Post> = {
                 </PostCard>
               ))
             )}
-          </PostContent>
-        </PostContainer>
-      </Post>
+          </BoardContent>
+        </BoardContainer>
+      </Board>
     );
   },
 };

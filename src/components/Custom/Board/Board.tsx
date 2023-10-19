@@ -6,11 +6,11 @@ import { ChevronUp, MessageSquarePlusIcon, RefreshCwIcon } from 'lucide-react';
 
 import { cn } from 'lib/twUtils';
 import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
-import PostTextField from './PostTextField';
+import BoardTextField from './BoardTextField';
 
-const Post = AccordionPrimitive.Root;
+const Board = AccordionPrimitive.Root;
 
-const PostContainer = React.forwardRef<
+const BoardContainer = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
@@ -23,9 +23,9 @@ const PostContainer = React.forwardRef<
     {...props}
   />
 ));
-PostContainer.displayName = 'AccordionItem';
+BoardContainer.displayName = 'BoardContainer';
 
-const PostHeader = React.forwardRef<
+const BoardHeader = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
     onRefreshClick: () => void;
@@ -74,7 +74,7 @@ const PostHeader = React.forwardRef<
   );
 });
 
-const PostPreview = React.forwardRef<
+const BoardPreview = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Header>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Header>
 >(({ className, children, ...props }, ref) => (
@@ -89,9 +89,9 @@ const PostPreview = React.forwardRef<
     {children}
   </AccordionPrimitive.Header>
 ));
-PostPreview.displayName = AccordionPrimitive.Header.displayName;
+BoardPreview.displayName = 'BoardPreview';
 
-const PostContent = React.forwardRef<
+const BoardContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
@@ -107,10 +107,10 @@ const PostContent = React.forwardRef<
       <ScrollArea className="flex h-full" type="scroll">
         {children}
       </ScrollArea>
-      <PostTextField />
+      <BoardTextField />
     </div>
   </AccordionPrimitive.Content>
 ));
-PostContent.displayName = AccordionPrimitive.Content.displayName;
+BoardContent.displayName = 'BoardContent';
 
-export { Post, PostContainer, PostHeader, PostPreview, PostContent };
+export { Board, BoardContainer, BoardHeader, BoardPreview, BoardContent };
