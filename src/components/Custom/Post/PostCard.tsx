@@ -11,9 +11,11 @@ import {
 } from 'components/Base/Avatar/Avatar';
 import { Badge } from 'components/Base/Badge/Badge';
 
-interface PreviewCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface PreviewCardProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
   host: boolean;
   name: string;
+  content: string;
 }
 
 const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
