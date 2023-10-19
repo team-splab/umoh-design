@@ -4,6 +4,9 @@
   "main": "dist/cjs/src/index.js",
   "module": "dist/esm/src/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
     "storybook": "storybook dev -p 6006",
