@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { ChevronUp, MessageSquarePlusIcon } from 'lucide-react';
+import { ChevronUp, MessageSquarePlusIcon, RefreshCwIcon } from 'lucide-react';
 
 import { cn } from 'lib/twUtils';
 import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
@@ -25,28 +25,54 @@ const PostContainer = React.forwardRef<
 ));
 PostContainer.displayName = 'AccordionItem';
 
-const PostTrigger = React.forwardRef<
+const PostHeader = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
+    refreshClick: () => void;
+  }
+>(({ className, refreshClick, children, ...props }, ref) => {
+  const [effect, setEffect] = React.useState(false);
+
+  return (
     <AccordionPrimitive.Trigger
-      ref={ref}
       className={cn(
-        'flex flex-1 items-center justify-between border-b-2 p-2 font-medium text-primary-500 transition-all md:p-4 [&[data-state=open]>svg]:rotate-180',
+        'flex items-center justify-between border-b-2 font-medium text-primary-500 transition-all hover:bg-slate-100 [&[data-state=open]>svg]:rotate-180',
         className
       )}
       {...props}
     >
-      <div className="flex items-center gap-1 text-sm md:text-base">
+      <div className="flex items-center gap-1 p-2 text-sm md:p-4 md:text-base">
         <MessageSquarePlusIcon />
         Community Board
       </div>
-      <ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200" />
+      <div className="flex gap-1">
+        <AccordionPrimitive.Header className="flex data-[state=closed]:hidden">
+          <button
+            className="rounded-full p-2 hover:bg-slate-300"
+            onClick={e => {
+              e.stopPropagation();
+              refreshClick();
+              setEffect(true);
+            }}
+            onAnimationEnd={() => setEffect(false)}
+          >
+            <RefreshCwIcon
+              className={`h-4 w-4 shrink-0 delay-75 ${
+                effect && 'animate-[spin_1s]'
+              }`}
+            />
+          </button>
+        </AccordionPrimitive.Header>
+        <AccordionPrimitive.Trigger
+          ref={ref}
+          className="rounded-full p-2 hover:bg-slate-300 [&[data-state=open]>svg]:rotate-180"
+        >
+          <ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200" />
+        </AccordionPrimitive.Trigger>
+      </div>
     </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-));
-PostTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+  );
+});
 
 const PostPreview = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Header>,
@@ -87,4 +113,4 @@ const PostContent = React.forwardRef<
 ));
 PostContent.displayName = AccordionPrimitive.Content.displayName;
 
-export { Post, PostContainer, PostTrigger, PostPreview, PostContent };
+export { Post, PostContainer, PostHeader, PostPreview, PostContent };

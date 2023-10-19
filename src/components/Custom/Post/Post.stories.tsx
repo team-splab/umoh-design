@@ -6,7 +6,6 @@ import {
   Post,
   PostPreview,
   PostContainer,
-  PostTrigger,
   PostContent,
   PostCard,
   PostCardHeader,
@@ -14,6 +13,7 @@ import {
   PostTextField,
   PreviewCard,
   ReplyHeader,
+  PostHeader,
 } from '.';
 
 const meta = {
@@ -79,10 +79,14 @@ export const DefaultPost: StoryObj<typeof Post> = {
       setReplyOpen(false);
     };
 
+    const handleRefreshClick = () => {
+      console.log('refresh click');
+    };
+
     return (
       <Post className="fixed bottom-0 right-0" {...args}>
         <PostContainer value="post">
-          <PostTrigger />
+          <PostHeader refreshClick={handleRefreshClick} />
           <PostPreview>
             <PreviewCard
               host={MockPreviewData.host}

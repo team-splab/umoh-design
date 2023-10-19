@@ -2,7 +2,7 @@ import {
   Post,
   PostPreview,
   PostContainer,
-  PostTrigger,
+  PostHeader,
   PostContent,
 } from './Post';
 
@@ -20,7 +20,7 @@ export {
   Post,
   PostPreview,
   PostContainer,
-  PostTrigger,
+  PostHeader,
   PostContent,
   PreviewCard,
   PostCard,
