@@ -28,9 +28,9 @@ PostContainer.displayName = 'AccordionItem';
 const PostHeader = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
-    refreshClick: () => void;
+    onRefreshClick: () => void;
   }
->(({ className, refreshClick, children, ...props }, ref) => {
+>(({ className, onRefreshClick, children, ...props }, ref) => {
   const [effect, setEffect] = React.useState(false);
 
   return (
@@ -51,7 +51,7 @@ const PostHeader = React.forwardRef<
             className="rounded-full p-2 hover:bg-slate-300"
             onClick={e => {
               e.stopPropagation();
-              refreshClick();
+              onRefreshClick();
               setEffect(true);
             }}
             onAnimationEnd={() => setEffect(false)}

@@ -94,11 +94,11 @@ PostCardHeader.displayName = 'PostCardHeader';
 interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
   content: string;
   replyCount?: number;
-  replyClick?: () => void;
+  onReplyClick?: () => void;
 }
 
 const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
-  ({ className, content, replyCount, replyClick, ...props }, ref) => (
+  ({ className, content, replyCount, onReplyClick, ...props }, ref) => (
     <div
       ref={ref}
       className={cn('flex flex-col gap-2 text-sm', className)}
@@ -108,7 +108,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
       {replyCount ? (
         <button
           className="flex items-center gap-2 text-gray-600"
-          onClick={replyClick}
+          onClick={onReplyClick}
         >
           <MessageSquareIcon />
           Reply ({replyCount})
@@ -120,13 +120,13 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
 PostCardContent.displayName = 'PostCardContent';
 
 interface ReplyHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  backClick?: () => void;
+  onBackClick?: () => void;
 }
 
 const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
-  ({ className, backClick, ...props }, ref) => (
+  ({ className, onBackClick, ...props }, ref) => (
     <div ref={ref} className={cn('', className)} {...props}>
-      <button onClick={backClick} className="flex items-center border-b p-2">
+      <button onClick={onBackClick} className="flex items-center border-b p-2">
         <ChevronLeftIcon className="h-6 w-6" />
         Back
       </button>

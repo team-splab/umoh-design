@@ -86,7 +86,7 @@ export const DefaultPost: StoryObj<typeof Post> = {
     return (
       <Post className="fixed bottom-0 right-0" {...args}>
         <PostContainer value="post">
-          <PostHeader refreshClick={handleRefreshClick} />
+          <PostHeader onRefreshClick={handleRefreshClick} />
           <PostPreview>
             <PreviewCard
               host={MockPreviewData.host}
@@ -97,7 +97,7 @@ export const DefaultPost: StoryObj<typeof Post> = {
           <PostContent>
             {replyOpen ? (
               <>
-                <ReplyHeader backClick={handleBackClick} />
+                <ReplyHeader onBackClick={handleBackClick} />
                 {
                   <PostCard
                     id={MockReplyPostData.id}
@@ -143,7 +143,7 @@ export const DefaultPost: StoryObj<typeof Post> = {
                   <PostCardContent
                     content={item.content}
                     replyCount={item.replyCount}
-                    replyClick={handleReplyClick}
+                    onReplyClick={handleReplyClick}
                   />
                 </PostCard>
               ))
@@ -183,7 +183,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
             <PostCardContent
               content={item.content}
               replyCount={item.replyCount}
-              replyClick={handleReplyClick}
+              onReplyClick={handleReplyClick}
             />
           </PostCard>
         ))}
