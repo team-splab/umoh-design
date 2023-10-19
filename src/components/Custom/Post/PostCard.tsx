@@ -20,9 +20,12 @@ const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
   ({ className, host, name, content, ...props }, ref) => (
     <div ref={ref} className="flex flex-col items-start gap-1" {...props}>
       <div className="flex items-center gap-1 text-sm">
-        📩 {name} {host ? <Badge className="font-medium">Host</Badge> : null}
+        📩 {name}
+        {host ? (
+          <Badge className="py-0.5 text-xs font-medium">Host</Badge>
+        ) : null}
       </div>
-      <div>{content}</div>
+      <div className="line-clamp-1 text-sm md:line-clamp-3">{content}</div>
     </div>
   )
 );

@@ -23,14 +23,14 @@ const PostTextField = () => {
   // };
 
   return (
-    <div className="flex w-full max-w-sm items-center space-x-2">
+    <div className="flex w-full items-center">
       <Input
         className="rounded-none border-none px-4 py-2 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
         placeholder="Post your opinion"
       />
       <Button
         type="button"
-        className="bg-primary-500 hover:bg-primary-600"
+        className="mr-2 h-8 bg-primary-500 hover:bg-primary-600"
         onClick={() => {}}
       >
         Post
