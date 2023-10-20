@@ -93,8 +93,10 @@ BoardPreview.displayName = 'BoardPreview';
 
 const BoardContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
->(({ className, children, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> & {
+    onSend: (content: string) => void;
+  }
+>(({ className, children, onSend, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
@@ -107,7 +109,7 @@ const BoardContent = React.forwardRef<
       <ScrollArea className="flex h-full" type="scroll">
         {children}
       </ScrollArea>
-      <BoardTextField />
+      <BoardTextField onSend={onSend} />
     </div>
   </AccordionPrimitive.Content>
 ));

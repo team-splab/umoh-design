@@ -83,6 +83,10 @@ export const DefaultPost: StoryObj<typeof Board> = {
       console.log('refresh click');
     };
 
+    const handleSend = (content: string) => {
+      console.log(content);
+    };
+
     return (
       <Board className="fixed bottom-0 right-0" {...args}>
         <BoardContainer value="post">
@@ -94,7 +98,7 @@ export const DefaultPost: StoryObj<typeof Board> = {
               content={MockPreviewData.content}
             />
           </BoardPreview>
-          <BoardContent>
+          <BoardContent onSend={handleSend}>
             {replyOpen ? (
               <>
                 <ReplyHeader onBackClick={handleBackClick} />
@@ -119,7 +123,7 @@ export const DefaultPost: StoryObj<typeof Board> = {
                     />
                   </PostCard>
                 }
-                {MockReplyData.map((item, index) => (
+                {MockReplyData.map((item) => (
                   <PostCard id={item.id} key={item.id} host={item.host}>
                     <PostCardHeader
                       host={item.host}
@@ -202,7 +206,10 @@ export const DefaultPostTextField: StoryObj<typeof PostTextField> = {
   ],
 
   render: args => {
-    return <PostTextField />;
+    const handleSend = () => {
+      console.log('send click');
+    };
+    return <PostTextField onSend={handleSend} />;
   },
 };
 
