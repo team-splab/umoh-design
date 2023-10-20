@@ -168,8 +168,11 @@ interface ReplyHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
   ({ className, onBackClick, ...props }, ref) => (
     <div ref={ref} className={cn('', className)} {...props}>
-      <button onClick={onBackClick} className="flex items-center border-b p-2">
-        <ChevronLeftIcon className="h-6 w-6" />
+      <button
+        onClick={onBackClick}
+        className="group flex items-center border-b p-2 hover:underline"
+      >
+        <ChevronLeftIcon className="tra h-6 w-6 duration-200 group-hover:translate-x-[-4px]" />
         Back
       </button>
     </div>
