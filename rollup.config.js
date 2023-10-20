@@ -1,9 +1,9 @@
+import autoExternal from 'rollup-plugin-auto-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
 import { terser } from 'rollup-plugin-terser';
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import preserveDirectives from 'rollup-plugin-preserve-directives';
 
@@ -25,7 +25,7 @@ const config = [
       },
     ],
     plugins: [
-      peerDepsExternal(),
+      autoExternal(),
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
@@ -42,7 +42,6 @@ const config = [
       }),
       preserveDirectives.default(),
     ],
-    external: ['react', 'react-dom'],
     onwarn(warning, warn) {
       if (
         (warning.code === 'MODULE_LEVEL_DIRECTIVE' &&
