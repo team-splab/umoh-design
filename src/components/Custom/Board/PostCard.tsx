@@ -172,7 +172,7 @@ const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
         onClick={onBackClick}
         className="group flex items-center border-b p-2 hover:underline"
       >
-        <ChevronLeftIcon className="tra h-6 w-6 duration-200 group-hover:translate-x-[-4px]" />
+        <ChevronLeftIcon className="h-6 w-6 duration-300 ease-out group-hover:translate-x-[-4px]" />
         Back
       </button>
     </div>
