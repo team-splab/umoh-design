@@ -47,10 +47,6 @@ const meta = {
       },
     },
   },
-  args: {
-    type: 'single',
-    collapsible: true,
-  },
   argTypes: {
     disabled: {
       description: 'Post의 disabled 여부를 설정합니다.',
@@ -75,7 +71,7 @@ const meta = {
 export default meta;
 
 export const DefaultBoard: StoryObj<typeof Board> = {
-  render: args => {
+  render: () => {
     const [replyOpen, setReplyOpen] = useState(false);
 
     const MockPreviewData = MockPreviewResponse.result;
@@ -108,7 +104,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
     });
 
     return (
-      <Board className="fixed bottom-0 right-0" {...args}>
+      <Board className="fixed bottom-0 right-0" collapsible type="single">
         <BoardContainer value="post">
           <BoardHeader onRefreshClick={handleRefreshClick} />
           <BoardPreview>
@@ -265,7 +261,7 @@ const MockPreviewResponse = {
     host: true,
     spaceProfileId: '1',
     profileImg: 'https://ui-avatars.com/api/?name=Host.png' || null,
-    name: 'Host',
+    name: 'HostHostHostHostHostHostHostHostHostHostHostHostHostHostHostHostHostHostHostHost',
     createdAt: new Date().toISOString(), // ISO표준
     updatedAt: new Date().toISOString(), // ISO표준
     content:
