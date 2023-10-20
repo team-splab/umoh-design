@@ -1,8 +1,8 @@
 {
   "name": "@team-splab/umoh-design",
-  "version": "0.1.15",
-  "main": "dist/cjs/src/index.js",
-  "module": "dist/esm/src/index.js",
+  "version": "0.1.17",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -51,6 +51,7 @@
     "react-day-picker": "^8.9.0",
     "react-hook-form": "^7.47.0",
     "react-scripts": "5.0.1",
+    "style-inject": "^0.3.0",
     "tailwind-merge": "^1.14.0",
     "zod": "^3.22.4"
   },
@@ -69,8 +70,8 @@
     "@storybook/react-webpack5": "^7.4.6",
     "@storybook/testing-library": "^0.2.2",
     "@types/node": "^16.7.13",
-    "@types/react": "^18.2.28",
-    "@types/react-dom": "^18.2.13",
+    "@types/react": "^17.0.44",
+    "@types/react-dom": "^17.0.8",
     "autoprefixer": "^10.4.16",
     "babel-plugin-named-exports-order": "^0.0.2",
     "css-loader": "^6.8.1",
@@ -83,8 +84,8 @@
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "rollup": "^4.1.4",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-dts": "^6.1.0",
@@ -104,7 +105,6 @@
     "@types/react-dom": "*",
     "react": "^17.0 || ^18.0",
     "react-dom": "^17.0 || ^18.0",
-    "style-inject": "^0.3.0",
     "tslib": "^2.3.1"
   },
   "peerDependenciesMeta": {
