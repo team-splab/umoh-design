@@ -1,6 +1,7 @@
 import React from 'react';
 import { Label } from 'components/Base/Label/Label';
 import { cn } from 'lib/twUtils';
+import { useId } from 'lib/useId';
 import {
   Controller,
   ControllerProps,
@@ -74,7 +75,7 @@ const FormItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const id = React.useId();
+  const id = useId();
 
   return (
     <FormItemContext.Provider value={{ id }}>
