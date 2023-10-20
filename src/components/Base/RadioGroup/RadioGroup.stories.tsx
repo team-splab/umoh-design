@@ -1,3 +1,4 @@
+import React from 'react';
 import { Label } from 'components/Base/Label/Label';
 
 import type { Meta, StoryObj } from '@storybook/react';

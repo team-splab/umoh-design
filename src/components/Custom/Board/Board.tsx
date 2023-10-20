@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import { Button } from 'components/Base/Button/Button';
 import { Input } from 'components/Base/Input/Input';
 import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Label } from 'components/Base/Label/Label';
 import { cn } from 'lib/twUtils';
 import {

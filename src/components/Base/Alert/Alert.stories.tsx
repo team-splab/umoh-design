@@ -1,3 +1,4 @@
+import React from 'react';
 import { Terminal } from 'lucide-react';
 
 import type { Meta, StoryObj } from '@storybook/react';
