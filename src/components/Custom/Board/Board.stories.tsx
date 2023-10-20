@@ -25,6 +25,7 @@ import {
   PostCardHeader,
   PreviewCard,
   ReplyHeader,
+  ReplySeparator,
 } from '.';
 
 const meta = {
@@ -121,27 +122,26 @@ export const DefaultBoard: StoryObj<typeof Board> = {
             {replyOpen ? (
               <>
                 <ReplyHeader onBackClick={handleBackClick} />
-                {
-                  <PostCard
-                    id={MockReplyPostData.id}
-                    key={MockReplyPostData.id}
+                <PostCard
+                  id={MockReplyPostData.id}
+                  key={MockReplyPostData.id}
+                  host={MockReplyPostData.host}
+                  className={'border bg-slate-200 hover:bg-slate-200'}
+                >
+                  <PostCardHeader
                     host={MockReplyPostData.host}
-                    className={'border bg-slate-200 hover:bg-slate-200'}
-                  >
-                    <PostCardHeader
-                      host={MockReplyPostData.host}
-                      profileImg={MockReplyPostData.profileImg}
-                      name={MockReplyPostData.name}
-                      createdAt={new Date(
-                        MockReplyPostData.createdAt
-                      ).toLocaleString()}
-                    />
-                    <PostCardContent
-                      content={MockReplyPostData.content}
-                      replyCount={MockReplyPostData.replyCount}
-                    />
-                  </PostCard>
-                }
+                    profileImg={MockReplyPostData.profileImg}
+                    name={MockReplyPostData.name}
+                    createdAt={new Date(
+                      MockReplyPostData.createdAt
+                    ).toLocaleString()}
+                  />
+                  <PostCardContent
+                    content={MockReplyPostData.content}
+                    replyCount={MockReplyPostData.replyCount}
+                  />
+                </PostCard>
+                <ReplySeparator replyCount={MockReplyPostData.replyCount} />
                 {MockReplyData.map(item => (
                   <PostCard id={item.id} key={item.id} host={item.host}>
                     <PostCardHeader
@@ -299,7 +299,7 @@ const MockPostResponse = {
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
         content: '새로운 글입니다.',
-        replyCount: 0,
+        replyCount: 1,
       },
       {
         id: '3',

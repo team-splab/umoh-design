@@ -14,6 +14,7 @@ import {
   PostCardHeader,
   PreviewCard,
   ReplyHeader,
+  ReplySeparator,
 } from './PostCard';
 
 export {
@@ -30,4 +31,5 @@ export {
   PostCardHeader,
   PreviewCard,
   ReplyHeader,
+  ReplySeparator,
 };

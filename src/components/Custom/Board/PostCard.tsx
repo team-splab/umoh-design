@@ -5,6 +5,8 @@ import {
   AvatarImage,
 } from 'components/Base/Avatar/Avatar';
 import { Badge } from 'components/Base/Badge/Badge';
+import { Button } from 'components/Base/Button/Button';
+import { Separator } from 'components/Base/Separator/Separator';
 import { cn } from 'lib/twUtils';
 import { ChevronLeftIcon, MessageSquareIcon } from 'lucide-react';
 
@@ -104,14 +106,15 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
       {...props}
     >
       {content}
-      {replyCount ? (
-        <button
-          className="flex items-center gap-2 text-gray-600"
+      {replyCount && onReplyClick ? (
+        <Button
+          variant="ghost"
           onClick={onReplyClick}
+          className="inline-flex items-center justify-start gap-2 p-0 text-primary-500 hover:bg-neutral-400/40 hover:text-primary-400 hover:underline"
         >
           <MessageSquareIcon />
           Reply ({replyCount})
-        </button>
+        </Button>
       ) : null}
     </div>
   )
@@ -136,11 +139,34 @@ const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
   )
 );
 
+interface ReplySeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
+  replyCount: number;
+}
+
+const ReplySeparator = React.forwardRef<HTMLDivElement, ReplySeparatorProps>(
+  ({ className, replyCount, ...props }, ref) => (
+    <div ref={ref} className={cn('flex p-2', className)} {...props}>
+      <Badge className="mr-2 shrink-0 bg-primary-500 hover:bg-primary-500">
+        {replyCount.toString().concat(' reply')}
+      </Badge>
+      <Separator className="my-2 bg-primary-500 pr-2" />
+    </div>
+  )
+);
+
 export type {
   PostCardContentProps,
   PostCardHeaderProps,
   PreviewCardProps,
   ReplyHeaderProps,
+  ReplySeparatorProps,
 };
 
-export { PostCard, PostCardContent, PostCardHeader, PreviewCard, ReplyHeader };
+export {
+  PostCard,
+  PostCardContent,
+  PostCardHeader,
+  PreviewCard,
+  ReplyHeader,
+  ReplySeparator,
+};
