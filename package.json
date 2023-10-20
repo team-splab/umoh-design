@@ -10,7 +10,9 @@
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx . --ignore-pattern dist/",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
@@ -72,6 +74,7 @@
     "autoprefixer": "^10.4.16",
     "babel-plugin-named-exports-order": "^0.0.2",
     "css-loader": "^6.8.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-storybook": "^0.6.15",
     "postcss": "^8.4.31",
     "postcss-loader": "^7.3.3",
