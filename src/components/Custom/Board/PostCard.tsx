@@ -1,19 +1,20 @@
-import * as React from 'react';
-
-import { cn } from 'lib/twUtils';
-
-import { ChevronLeftIcon, MessageSquareIcon } from 'lucide-react';
-
+import React from 'react';
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from 'components/Base/Avatar/Avatar';
 import { Badge } from 'components/Base/Badge/Badge';
+import { Button } from 'components/Base/Button/Button';
+import { Separator } from 'components/Base/Separator/Separator';
+import { cn } from 'lib/twUtils';
+import { ChevronLeftIcon, MessageSquareIcon } from 'lucide-react';
 
-interface PreviewCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface PreviewCardProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
   host: boolean;
   name: string;
+  content: string;
 }
 
 const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
@@ -94,25 +95,26 @@ PostCardHeader.displayName = 'PostCardHeader';
 interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
   content: string;
   replyCount?: number;
-  replyClick?: () => void;
+  onReplyClick?: () => void;
 }
 
 const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
-  ({ className, content, replyCount, replyClick, ...props }, ref) => (
+  ({ className, content, replyCount, onReplyClick, ...props }, ref) => (
     <div
       ref={ref}
       className={cn('flex flex-col gap-2 text-sm', className)}
       {...props}
     >
       {content}
-      {replyCount ? (
-        <button
-          className="flex items-center gap-2 text-gray-600"
-          onClick={replyClick}
+      {replyCount && onReplyClick ? (
+        <Button
+          variant="ghost"
+          onClick={onReplyClick}
+          className="inline-flex items-center justify-start gap-2 p-0 text-primary-500 hover:bg-neutral-400/40 hover:text-primary-400 hover:underline"
         >
           <MessageSquareIcon />
           Reply ({replyCount})
-        </button>
+        </Button>
       ) : null}
     </div>
   )
@@ -120,13 +122,16 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
 PostCardContent.displayName = 'PostCardContent';
 
 interface ReplyHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  backClick?: () => void;
+  /**
+   * @description 뒤로가기 버튼 클릭 시 호출되는 콜백 함수
+   */
+  onBackClick?: () => void;
 }
 
 const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
-  ({ className, backClick, ...props }, ref) => (
+  ({ className, onBackClick, ...props }, ref) => (
     <div ref={ref} className={cn('', className)} {...props}>
-      <button onClick={backClick} className="flex items-center border-b p-2">
+      <button onClick={onBackClick} className="flex items-center border-b p-2">
         <ChevronLeftIcon className="h-6 w-6" />
         Back
       </button>
@@ -134,11 +139,34 @@ const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
   )
 );
 
+interface ReplySeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
+  replyCount: number;
+}
+
+const ReplySeparator = React.forwardRef<HTMLDivElement, ReplySeparatorProps>(
+  ({ className, replyCount, ...props }, ref) => (
+    <div ref={ref} className={cn('flex p-2', className)} {...props}>
+      <Badge className="mr-2 shrink-0 bg-primary-500 hover:bg-primary-500">
+        {replyCount.toString().concat(' reply')}
+      </Badge>
+      <Separator className="my-2 bg-primary-500 pr-2" />
+    </div>
+  )
+);
+
 export type {
-  PreviewCardProps,
-  PostCardHeaderProps,
   PostCardContentProps,
+  PostCardHeaderProps,
+  PreviewCardProps,
   ReplyHeaderProps,
+  ReplySeparatorProps,
 };
 
-export { PreviewCard, PostCard, PostCardHeader, PostCardContent, ReplyHeader };
+export {
+  PostCard,
+  PostCardContent,
+  PostCardHeader,
+  PreviewCard,
+  ReplyHeader,
+  ReplySeparator,
+};

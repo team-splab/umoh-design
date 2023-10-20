@@ -1,24 +1,36 @@
+import React, { useState } from 'react';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+} from 'components/Base/Form/Form';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { useState } from 'react';
-
 import {
-  Post,
-  PostPreview,
-  PostContainer,
-  PostContent,
+  Board,
+  BoardContainer,
+  BoardContent,
+  BoardHeader,
+  BoardPostButton,
+  BoardPreview,
+  BoardSendContainer,
+  BoardTextField,
   PostCard,
-  PostCardHeader,
   PostCardContent,
-  PostTextField,
+  PostCardHeader,
   PreviewCard,
   ReplyHeader,
-  PostHeader,
+  ReplySeparator,
 } from '.';
 
 const meta = {
-  title: 'CustomComponent/Post',
-  component: Post,
+  title: 'CustomComponent/Board',
+  component: Board,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
@@ -26,7 +38,7 @@ const meta = {
       appDirectory: true,
     },
     componentSubtitle:
-      'Post은 PostPrimitive를 사용하여 구현된 커스텀 컴포넌트입니다.',
+      'Board은 PostPrimitive를 사용하여 구현된 커스텀 컴포넌트입니다.',
     docs: {
       description: {
         component: `
@@ -58,11 +70,11 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof Post>;
+} satisfies Meta<typeof Board>;
 
 export default meta;
 
-export const DefaultPost: StoryObj<typeof Post> = {
+export const DefaultBoard: StoryObj<typeof Board> = {
   render: args => {
     const [replyOpen, setReplyOpen] = useState(false);
 
@@ -83,43 +95,54 @@ export const DefaultPost: StoryObj<typeof Post> = {
       console.log('refresh click');
     };
 
+    const handleSend = (data: z.infer<typeof FormSchema>) => {
+      console.log(data);
+    };
+
+    const FormSchema = z.object({
+      content: z.string().min(1),
+    });
+
+    const form = useForm<z.infer<typeof FormSchema>>({
+      resolver: zodResolver(FormSchema),
+    });
+
     return (
-      <Post className="fixed bottom-0 right-0" {...args}>
-        <PostContainer value="post">
-          <PostHeader refreshClick={handleRefreshClick} />
-          <PostPreview>
+      <Board className="fixed bottom-0 right-0" {...args}>
+        <BoardContainer value="post">
+          <BoardHeader onRefreshClick={handleRefreshClick} />
+          <BoardPreview>
             <PreviewCard
               host={MockPreviewData.host}
               name={MockPreviewData.name}
               content={MockPreviewData.content}
             />
-          </PostPreview>
-          <PostContent>
+          </BoardPreview>
+          <BoardContent>
             {replyOpen ? (
               <>
-                <ReplyHeader backClick={handleBackClick} />
-                {
-                  <PostCard
-                    id={MockReplyPostData.id}
-                    key={MockReplyPostData.id}
+                <ReplyHeader onBackClick={handleBackClick} />
+                <PostCard
+                  id={MockReplyPostData.id}
+                  key={MockReplyPostData.id}
+                  host={MockReplyPostData.host}
+                  className={'border bg-slate-200 hover:bg-slate-200'}
+                >
+                  <PostCardHeader
                     host={MockReplyPostData.host}
-                    className={'border bg-slate-200 hover:bg-slate-200'}
-                  >
-                    <PostCardHeader
-                      host={MockReplyPostData.host}
-                      profileImg={MockReplyPostData.profileImg}
-                      name={MockReplyPostData.name}
-                      createdAt={new Date(
-                        MockReplyPostData.createdAt
-                      ).toLocaleString()}
-                    />
-                    <PostCardContent
-                      content={MockReplyPostData.content}
-                      replyCount={MockReplyPostData.replyCount}
-                    />
-                  </PostCard>
-                }
-                {MockReplyData.map((item, index) => (
+                    profileImg={MockReplyPostData.profileImg}
+                    name={MockReplyPostData.name}
+                    createdAt={new Date(
+                      MockReplyPostData.createdAt
+                    ).toLocaleString()}
+                  />
+                  <PostCardContent
+                    content={MockReplyPostData.content}
+                    replyCount={MockReplyPostData.replyCount}
+                  />
+                </PostCard>
+                <ReplySeparator replyCount={MockReplyPostData.replyCount} />
+                {MockReplyData.map(item => (
                   <PostCard id={item.id} key={item.id} host={item.host}>
                     <PostCardHeader
                       host={item.host}
@@ -143,14 +166,38 @@ export const DefaultPost: StoryObj<typeof Post> = {
                   <PostCardContent
                     content={item.content}
                     replyCount={item.replyCount}
-                    replyClick={handleReplyClick}
+                    onReplyClick={handleReplyClick}
                   />
                 </PostCard>
               ))
             )}
-          </PostContent>
-        </PostContainer>
-      </Post>
+          </BoardContent>
+          <BoardSendContainer>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(handleSend)}
+                className="flex w-full items-center"
+              >
+                <FormField
+                  control={form.control}
+                  name="content"
+                  render={({ field }) => (
+                    <FormItem className="flex-grow">
+                      <FormControl>
+                        <BoardTextField
+                          placeholder="Post your comment"
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <BoardPostButton />
+              </form>
+            </Form>
+          </BoardSendContainer>
+        </BoardContainer>
+      </Board>
     );
   },
 };
@@ -183,7 +230,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
             <PostCardContent
               content={item.content}
               replyCount={item.replyCount}
-              replyClick={handleReplyClick}
+              onReplyClick={handleReplyClick}
             />
           </PostCard>
         ))}
@@ -192,7 +239,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
   },
 };
 
-export const DefaultPostTextField: StoryObj<typeof PostTextField> = {
+export const DefaultPostTextField: StoryObj<typeof BoardTextField> = {
   decorators: [
     Story => (
       <div className="m-12 w-[400px]">
@@ -202,7 +249,7 @@ export const DefaultPostTextField: StoryObj<typeof PostTextField> = {
   ],
 
   render: args => {
-    return <PostTextField />;
+    return <BoardTextField />;
   },
 };
 
@@ -252,7 +299,7 @@ const MockPostResponse = {
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
         content: '새로운 글입니다.',
-        replyCount: 0,
+        replyCount: 1,
       },
       {
         id: '3',

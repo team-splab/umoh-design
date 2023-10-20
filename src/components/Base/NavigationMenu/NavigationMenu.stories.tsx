@@ -1,5 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
+import React, { forwardRef } from 'react';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,9 +8,9 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from 'components/Base/NavigationMenu/NavigationMenu';
-
 import { cn } from 'lib/twUtils';
-import { forwardRef } from 'react';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Components/NavigationMenu',

@@ -1,19 +1,18 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from 'components/Base/HoverCard/HoverCard';
-
-import { Button } from 'components/Base/Button/Button';
+import React from 'react';
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from 'components/Base/Avatar/Avatar';
-
+import { Button } from 'components/Base/Button/Button';
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from 'components/Base/HoverCard/HoverCard';
 import { CalendarDays } from 'lucide-react';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Components/HoverCard',

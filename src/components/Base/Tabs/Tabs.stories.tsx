@@ -1,11 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from 'components/Base/Tabs/Tabs';
+import React from 'react';
+import { Button } from 'components/Base/Button/Button';
 import {
   Card,
   CardContent,
@@ -16,7 +10,14 @@ import {
 } from 'components/Base/Card/Card';
 import { Input } from 'components/Base/Input/Input';
 import { Label } from 'components/Base/Label/Label';
-import { Button } from 'components/Base/Button/Button';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from 'components/Base/Tabs/Tabs';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Components/Tabs',

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
-import { useEffect, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Skeleton } from './Skeleton';
 

@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
-import * as DialogPrimitive from '@radix-ui/react-dialog';
+import React from 'react';
+import { cn } from 'lib/twUtils';
 import { X } from 'lucide-react';
 
-import { cn } from 'lib/twUtils';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
 
 const Dialog = DialogPrimitive.Root;
 
@@ -108,12 +108,12 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
   Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogTrigger,
   DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
 };
