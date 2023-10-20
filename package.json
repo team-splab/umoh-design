@@ -1,6 +1,6 @@
 {
   "name": "@team-splab/umoh-design",
-  "version": "0.1.13",
+  "version": "0.1.15",
   "main": "dist/cjs/src/index.js",
   "module": "dist/esm/src/index.js",
   "types": "dist/index.d.ts",
@@ -103,7 +103,9 @@
     "@types/react": "*",
     "@types/react-dom": "*",
     "react": "^17.0 || ^18.0",
-    "react-dom": "^17.0 || ^18.0"
+    "react-dom": "^17.0 || ^18.0",
+    "style-inject": "^0.3.0",
+    "tslib": "^2.3.1"
   },
   "peerDependenciesMeta": {
     "@types/react": {

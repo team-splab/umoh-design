@@ -1,3 +1,4 @@
+import React from 'react';
 import { ChevronRight, Loader2, Mail } from 'lucide-react';
 
 import type { Meta, StoryObj } from '@storybook/react';

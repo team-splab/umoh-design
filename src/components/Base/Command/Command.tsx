@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import { Command as CommandPrimitive } from 'cmdk';
 import { Dialog, DialogContent } from 'components/Base/Dialog/Dialog';
 import { cn } from 'lib/twUtils';

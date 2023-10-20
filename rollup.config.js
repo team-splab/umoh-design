@@ -40,8 +40,8 @@ const config = [
         },
         extensions: ['.css'],
         minimize: true,
-        inject: {
-          insertAt: 'top',
+        inject(cssVariableName) {
+          return `import styleInject from 'style-inject';\nstyleInject(${cssVariableName});`;
         },
       }),
       preserveDirectives.default(),

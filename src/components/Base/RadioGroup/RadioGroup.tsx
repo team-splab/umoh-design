@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import { cn } from 'lib/twUtils';
 import { Circle } from 'lucide-react';
 
