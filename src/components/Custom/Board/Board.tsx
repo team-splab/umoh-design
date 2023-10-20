@@ -150,7 +150,7 @@ const BoardPostButton = React.forwardRef<
   React.HTMLAttributes<HTMLButtonElement>
 >(({ className, ...props }, ref) => (
   <Button
-    type="button"
+    type="submit"
     className={cn('mr-2 h-8 bg-primary-500 hover:bg-primary-600', className)}
     ref={ref}
     {...props}
