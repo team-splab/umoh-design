@@ -6,7 +6,8 @@ import { ChevronUp, MessageSquarePlusIcon, RefreshCwIcon } from 'lucide-react';
 
 import { cn } from 'lib/twUtils';
 import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
-import BoardTextField from './BoardTextField';
+import { Input } from 'components/Base/Input/Input';
+import { Button } from 'components/Base/Button/Button';
 
 const Board = AccordionPrimitive.Root;
 
@@ -28,6 +29,9 @@ BoardContainer.displayName = 'BoardContainer';
 const BoardHeader = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
+    /**
+     * @description 새로고침 버튼 클릭 시 호출되는 콜백 함수
+     */
     onRefreshClick: () => void;
   }
 >(({ className, onRefreshClick, children, ...props }, ref) => {
@@ -93,26 +97,77 @@ BoardPreview.displayName = 'BoardPreview';
 
 const BoardContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content> & {
-    onSend: (content: string) => void;
-  }
->(({ className, children, onSend, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'relative flex-col overflow-hidden text-sm transition-all data-[state=closed]:h-full data-[state=open]:h-[calc(100vh-3rem)] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down md:data-[state=open]:h-[calc(100vh-4rem)]',
+      'relative overflow-hidden text-sm transition-all data-[state=closed]:h-full data-[state=open]:h-[calc(100vh-5rem)] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down md:data-[state=open]:h-[calc(100vh-6rem)]',
       className
     )}
     {...props}
   >
-    <div className="flex h-full flex-col">
-      <ScrollArea className="flex h-full" type="scroll">
-        {children}
-      </ScrollArea>
-      <BoardTextField onSend={onSend} />
-    </div>
+    <ScrollArea className="flex h-full" type="scroll">
+      {children}
+    </ScrollArea>
   </AccordionPrimitive.Content>
 ));
 BoardContent.displayName = 'BoardContent';
 
-export { Board, BoardContainer, BoardHeader, BoardPreview, BoardContent };
+const BoardSendContainer = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Content
+    ref={ref}
+    className={cn('flex w-full items-center', className)}
+    {...props}
+  >
+    {children}
+  </AccordionPrimitive.Content>
+));
+BoardSendContainer.displayName = 'BoardSendContainer';
+
+const BoardTextField = React.forwardRef<
+  HTMLInputElement,
+  React.HTMLAttributes<HTMLInputElement>
+>(({ className, ...props }, ref) => (
+  <Input
+    className={cn(
+      'rounded-none border-none px-4 py-2 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
+      className
+    )}
+    ref={ref}
+    autoComplete="off"
+    {...props}
+  />
+));
+
+BoardTextField.displayName = 'BoardTextField';
+
+const BoardPostButton = React.forwardRef<
+  HTMLButtonElement,
+  React.HTMLAttributes<HTMLButtonElement>
+>(({ className, ...props }, ref) => (
+  <Button
+    type="button"
+    className={cn('mr-2 h-8 bg-primary-500 hover:bg-primary-600', className)}
+    ref={ref}
+    {...props}
+  >
+    Post
+  </Button>
+));
+
+BoardPostButton.displayName = 'BoardPostButton';
+
+export {
+  Board,
+  BoardContainer,
+  BoardHeader,
+  BoardPreview,
+  BoardContent,
+  BoardSendContainer,
+  BoardTextField,
+  BoardPostButton,
+};

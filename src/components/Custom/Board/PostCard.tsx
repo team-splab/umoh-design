@@ -122,6 +122,9 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
 PostCardContent.displayName = 'PostCardContent';
 
 interface ReplyHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @description 뒤로가기 버튼 클릭 시 호출되는 콜백 함수
+   */
   onBackClick?: () => void;
 }
 

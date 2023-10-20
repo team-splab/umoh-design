@@ -7,13 +7,15 @@ import {
   BoardPreview,
   BoardContainer,
   BoardContent,
+  BoardTextField,
   PostCard,
   PostCardHeader,
   PostCardContent,
-  PostTextField,
   PreviewCard,
   ReplyHeader,
   BoardHeader,
+  BoardSendContainer,
+  BoardPostButton,
 } from '.';
 
 const meta = {
@@ -62,7 +64,7 @@ const meta = {
 
 export default meta;
 
-export const DefaultPost: StoryObj<typeof Board> = {
+export const DefaultBoard: StoryObj<typeof Board> = {
   render: args => {
     const [replyOpen, setReplyOpen] = useState(false);
 
@@ -98,7 +100,7 @@ export const DefaultPost: StoryObj<typeof Board> = {
               content={MockPreviewData.content}
             />
           </BoardPreview>
-          <BoardContent onSend={handleSend}>
+          <BoardContent>
             {replyOpen ? (
               <>
                 <ReplyHeader onBackClick={handleBackClick} />
@@ -123,7 +125,7 @@ export const DefaultPost: StoryObj<typeof Board> = {
                     />
                   </PostCard>
                 }
-                {MockReplyData.map((item) => (
+                {MockReplyData.map(item => (
                   <PostCard id={item.id} key={item.id} host={item.host}>
                     <PostCardHeader
                       host={item.host}
@@ -153,6 +155,10 @@ export const DefaultPost: StoryObj<typeof Board> = {
               ))
             )}
           </BoardContent>
+          <BoardSendContainer>
+            <BoardTextField placeholder="Post your comment" />
+            <BoardPostButton />
+          </BoardSendContainer>
         </BoardContainer>
       </Board>
     );
@@ -196,7 +202,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
   },
 };
 
-export const DefaultPostTextField: StoryObj<typeof PostTextField> = {
+export const DefaultPostTextField: StoryObj<typeof BoardTextField> = {
   decorators: [
     Story => (
       <div className="m-12 w-[400px]">
@@ -206,10 +212,7 @@ export const DefaultPostTextField: StoryObj<typeof PostTextField> = {
   ],
 
   render: args => {
-    const handleSend = () => {
-      console.log('send click');
-    };
-    return <PostTextField onSend={handleSend} />;
+    return <BoardTextField />;
   },
 };
 

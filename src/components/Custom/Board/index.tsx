@@ -4,6 +4,9 @@ import {
   BoardContainer,
   BoardHeader,
   BoardContent,
+  BoardSendContainer,
+  BoardTextField,
+  BoardPostButton,
 } from './Board';
 
 import {
@@ -14,18 +17,18 @@ import {
   ReplyHeader,
 } from './PostCard';
 
-import PostTextField from './BoardTextField';
-
 export {
   Board,
   BoardPreview,
   BoardContainer,
   BoardHeader,
   BoardContent,
+  BoardSendContainer,
+  BoardTextField,
+  BoardPostButton,
   PreviewCard,
   PostCard,
   PostCardHeader,
   PostCardContent,
   ReplyHeader,
-  PostTextField,
 };
