@@ -103,7 +103,9 @@
     "@types/react": "*",
     "@types/react-dom": "*",
     "react": "^17.0 || ^18.0",
-    "react-dom": "^17.0 || ^18.0"
+    "react-dom": "^17.0 || ^18.0",
+    "style-inject": "^0.3.0",
+    "tslib": "^2.3.1"
   },
   "peerDependenciesMeta": {
     "@types/react": {
