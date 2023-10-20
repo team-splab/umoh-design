@@ -1,34 +1,33 @@
 import {
   Board,
-  BoardPreview,
   BoardContainer,
-  BoardHeader,
   BoardContent,
+  BoardHeader,
+  BoardPostButton,
+  BoardPreview,
   BoardSendContainer,
   BoardTextField,
-  BoardPostButton,
 } from './Board';
-
 import {
-  PreviewCard,
   PostCard,
-  PostCardHeader,
   PostCardContent,
+  PostCardHeader,
+  PreviewCard,
   ReplyHeader,
 } from './PostCard';
 
 export {
   Board,
-  BoardPreview,
   BoardContainer,
-  BoardHeader,
   BoardContent,
+  BoardHeader,
+  BoardPostButton,
+  BoardPreview,
   BoardSendContainer,
   BoardTextField,
-  BoardPostButton,
-  PreviewCard,
   PostCard,
-  PostCardHeader,
   PostCardContent,
+  PostCardHeader,
+  PreviewCard,
   ReplyHeader,
 };

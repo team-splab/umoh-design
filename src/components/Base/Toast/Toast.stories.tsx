@@ -1,10 +1,10 @@
+import { Button } from 'components/Base/Button/Button';
+import { useToast } from 'lib/useToast';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Toast, ToastAction } from './Toast';
 import { Toaster } from './Toaster';
-import { useToast } from 'lib/useToast';
-
-import { Button } from 'components/Base/Button/Button';
 
 const meta = {
   title: 'Components/Toast',

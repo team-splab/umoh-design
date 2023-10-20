@@ -1,13 +1,13 @@
 'use client';
 
 import * as React from 'react';
-import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import { Button } from 'components/Base/Button/Button';
+import { Input } from 'components/Base/Input/Input';
+import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
+import { cn } from 'lib/twUtils';
 import { ChevronUp, MessageSquarePlusIcon, RefreshCwIcon } from 'lucide-react';
 
-import { cn } from 'lib/twUtils';
-import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
-import { Input } from 'components/Base/Input/Input';
-import { Button } from 'components/Base/Button/Button';
+import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
 const Board = AccordionPrimitive.Root;
 
@@ -164,10 +164,10 @@ BoardPostButton.displayName = 'BoardPostButton';
 export {
   Board,
   BoardContainer,
-  BoardHeader,
-  BoardPreview,
   BoardContent,
+  BoardHeader,
+  BoardPostButton,
+  BoardPreview,
   BoardSendContainer,
   BoardTextField,
-  BoardPostButton,
 };

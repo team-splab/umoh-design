@@ -1,15 +1,12 @@
 import * as React from 'react';
-
-import { cn } from 'lib/twUtils';
-
-import { ChevronLeftIcon, MessageSquareIcon } from 'lucide-react';
-
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from 'components/Base/Avatar/Avatar';
 import { Badge } from 'components/Base/Badge/Badge';
+import { cn } from 'lib/twUtils';
+import { ChevronLeftIcon, MessageSquareIcon } from 'lucide-react';
 
 interface PreviewCardProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
@@ -140,10 +137,10 @@ const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
 );
 
 export type {
-  PreviewCardProps,
-  PostCardHeaderProps,
   PostCardContentProps,
+  PostCardHeaderProps,
+  PreviewCardProps,
   ReplyHeaderProps,
 };
 
-export { PreviewCard, PostCard, PostCardHeader, PostCardContent, ReplyHeader };
+export { PostCard, PostCardContent, PostCardHeader, PreviewCard, ReplyHeader };
