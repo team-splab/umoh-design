@@ -1,7 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+} from 'components/Base/Form/Form';
 import {
   Board,
   BoardPreview,
@@ -85,9 +94,17 @@ export const DefaultBoard: StoryObj<typeof Board> = {
       console.log('refresh click');
     };
 
-    const handleSend = (content: string) => {
-      console.log(content);
+    const handleSend = (data: z.infer<typeof FormSchema>) => {
+      console.log(data);
     };
+
+    const FormSchema = z.object({
+      content: z.string().min(1),
+    });
+
+    const form = useForm<z.infer<typeof FormSchema>>({
+      resolver: zodResolver(FormSchema),
+    });
 
     return (
       <Board className="fixed bottom-0 right-0" {...args}>
@@ -156,8 +173,28 @@ export const DefaultBoard: StoryObj<typeof Board> = {
             )}
           </BoardContent>
           <BoardSendContainer>
-            <BoardTextField placeholder="Post your comment" />
-            <BoardPostButton />
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(handleSend)}
+                className="flex w-full items-center"
+              >
+                <FormField
+                  control={form.control}
+                  name="content"
+                  render={({ field }) => (
+                    <FormItem className="flex-grow">
+                      <FormControl>
+                        <BoardTextField
+                          placeholder="Post your comment"
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <BoardPostButton />
+              </form>
+            </Form>
           </BoardSendContainer>
         </BoardContainer>
       </Board>
