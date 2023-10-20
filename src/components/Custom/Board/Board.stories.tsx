@@ -248,7 +248,7 @@ export const DefaultPostTextField: StoryObj<typeof BoardTextField> = {
   ],
 
   render: args => {
-    return <BoardTextField />;
+    return <BoardTextField {...args} />;
   },
 };
 
@@ -260,12 +260,12 @@ const MockPreviewResponse = {
     id: '1',
     host: true,
     spaceProfileId: '1',
-    profileImg: 'https://ui-avatars.com/api/?name=Host.png' || null,
-    name: 'HostHostHostHostHostHostHostHostHostHostHostHostHostHostHostHostHostHostHostHost',
+    profileImg: 'https://ui-avatars.com/api/?name=Host.png',
+    name: 'Min',
     createdAt: new Date().toISOString(), // ISO표준
     updatedAt: new Date().toISOString(), // ISO표준
     content:
-      '공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다.공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다',
+      '안녕하세요 여러분🚀 운영팀입니다, 곧 이벤트가 시작될 예정입니다. 다들 오시는 길 이실텐데, 도착하시면 “B1” 입구로 입장 부탁드립니다. 앞에있는 데스크에서',
     replyCount: 5,
   },
 };

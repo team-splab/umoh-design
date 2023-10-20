@@ -19,11 +19,19 @@ interface PreviewCardProps
 
 const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
   ({ className, host, name, content, ...props }, ref) => (
-    <div ref={ref} className="flex flex-col items-start gap-1" {...props}>
-      <div className="flex items-center gap-1 text-sm">
-        📩 {name}
+    <div
+      ref={ref}
+      className={cn('flex w-full flex-col items-start gap-1', className)}
+      {...props}
+    >
+      <div className="flex w-full items-center gap-1">
+        <span className="overflow-hidden text-ellipsis text-sm font-bold">
+          {`📩 ${name}`}
+        </span>
         {host ? (
-          <Badge className="py-0.5 text-xs font-medium">Host</Badge>
+          <Badge className="bg-primary-500 py-0.5 text-xs font-medium hover:bg-primary-500">
+            Host
+          </Badge>
         ) : null}
       </div>
       <div className="line-clamp-1 text-sm md:line-clamp-3">{content}</div>
@@ -83,7 +91,14 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
       <div className="flex flex-col items-start gap-1">
         <p className="flex items-center gap-1 text-sm font-semibold">
           {name}
-          {host && <Badge variant="default">host</Badge>}
+          {host && (
+            <Badge
+              variant="default"
+              className="bg-primary-500 hover:bg-primary-500"
+            >
+              host
+            </Badge>
+          )}
         </p>
         <p className="text-xs text-gray-500 dark:text-gray-400">{createdAt}</p>
       </div>
@@ -150,7 +165,7 @@ const ReplySeparator = React.forwardRef<HTMLDivElement, ReplySeparatorProps>(
   ({ className, replyCount, ...props }, ref) => (
     <div ref={ref} className={cn('flex p-2', className)} {...props}>
       <Badge className="mr-2 shrink-0 bg-primary-500 hover:bg-primary-500">
-        {replyCount.toString().concat(' reply')}
+        {`${replyCount} reply`}
       </Badge>
       <Separator className="my-2 bg-primary-500 pr-2" />
     </div>
