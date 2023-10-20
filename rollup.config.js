@@ -1,11 +1,12 @@
 import autoExternal from 'rollup-plugin-auto-external';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
-import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import preserveDirectives from 'rollup-plugin-preserve-directives';
+import { terser } from 'rollup-plugin-terser';
+
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
 
 const config = [
   {
@@ -28,7 +29,10 @@ const config = [
       autoExternal(),
       resolve(),
       commonjs(),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({
+        tsconfig: './tsconfig.json',
+        exclude: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx'],
+      }),
       terser(),
       postcss({
         config: {
