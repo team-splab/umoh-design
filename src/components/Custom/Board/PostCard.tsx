@@ -50,11 +50,11 @@ const PostCard = React.forwardRef<HTMLDivElement, PostCardProps>(
     <div
       ref={ref}
       className={cn(
-        `flex flex-col gap-2  ${
+        `flex flex-col gap-2 px-6 py-2 ${
           host
             ? 'bg-amber-100/50 hover:bg-amber-100/80'
             : 'bg-white hover:bg-slate-100/50'
-        } px-6 py-2 `,
+        }`,
         className
       )}
       {...props}
@@ -68,16 +68,30 @@ interface PostCardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   profileImg: string | null;
   name: string;
   createdAt: string;
+  onImgClick?: () => void;
+  onNameClick?: () => void;
 }
 
 const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
-  ({ className, host, profileImg, name, createdAt, ...props }, ref) => (
+  (
+    {
+      className,
+      host,
+      profileImg,
+      name,
+      createdAt,
+      onImgClick,
+      onNameClick,
+      ...props
+    },
+    ref
+  ) => (
     <div
       ref={ref}
       className={cn('flex items-center gap-4', className)}
       {...props}
     >
-      <Avatar className="rounded-lg">
+      <Avatar className="rounded-lg" onClick={onImgClick}>
         <AvatarImage
           className="object-cover"
           src={
@@ -88,9 +102,14 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
         />
         <AvatarFallback>profileImg</AvatarFallback>
       </Avatar>
-      <div className="flex flex-col items-start gap-1">
-        <p className="flex items-center gap-1 text-sm font-semibold">
-          {name}
+      <div className="flex w-56 flex-col items-start gap-1">
+        <p
+          className="flex w-full items-center gap-1 text-sm font-semibold"
+          onClick={onNameClick}
+        >
+          <span className="overflow-hidden text-ellipsis text-sm font-bold">
+            {name}
+          </span>
           {host && (
             <Badge
               variant="default"
@@ -167,7 +186,7 @@ const ReplySeparator = React.forwardRef<HTMLDivElement, ReplySeparatorProps>(
       <Badge className="mr-2 shrink-0 bg-primary-500 hover:bg-primary-500">
         {`${replyCount} reply`}
       </Badge>
-      <Separator className="my-2 bg-primary-500 pr-2" />
+      <Separator className="my-2 bg-primary-500" />
     </div>
   )
 );
