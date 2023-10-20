@@ -137,6 +137,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     ).toLocaleString()}
                   />
                   <PostCardContent
+                    host={MockReplyPostData.host}
                     content={MockReplyPostData.content}
                     replyCount={MockReplyPostData.replyCount}
                   />
@@ -150,7 +151,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                       name={item.name}
                       createdAt={new Date(item.createdAt).toLocaleString()}
                     />
-                    <PostCardContent content={item.content} />
+                    <PostCardContent host={item.host} content={item.content} />
                   </PostCard>
                 ))}
               </>
@@ -164,6 +165,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     createdAt={new Date(item.createdAt).toLocaleString()}
                   />
                   <PostCardContent
+                    host={item.host}
                     content={item.content}
                     replyCount={item.replyCount}
                     onReplyClick={handleReplyClick}
@@ -228,6 +230,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
               createdAt={item.createdAt}
             />
             <PostCardContent
+              host={item.host}
               content={item.content}
               replyCount={item.replyCount}
               onReplyClick={handleReplyClick}

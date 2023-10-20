@@ -93,16 +93,17 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
 PostCardHeader.displayName = 'PostCardHeader';
 
 interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  host: boolean;
   content: string;
   replyCount?: number;
   onReplyClick?: () => void;
 }
 
 const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
-  ({ className, content, replyCount, onReplyClick, ...props }, ref) => (
+  ({ className, host, content, replyCount, onReplyClick, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('flex flex-col gap-2 text-sm', className)}
+      className={cn('flex flex-col gap-2 text-sm text-black', className)}
       {...props}
     >
       {content}
@@ -110,7 +111,9 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
         <Button
           variant="ghost"
           onClick={onReplyClick}
-          className="inline-flex items-center justify-start gap-2 p-0 text-primary-500 hover:bg-neutral-400/40 hover:text-primary-400 hover:underline"
+          className={`inline-flex items-center justify-start gap-2 p-0 text-primary-500 hover:text-primary-500 hover:underline ${
+            host ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
+          }`}
         >
           <MessageSquareIcon />
           Reply ({replyCount})
