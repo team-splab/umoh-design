@@ -119,7 +119,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
             </Badge>
           )}
         </p>
-        <p className="text-xs text-gray-500 dark:text-gray-400">{createdAt}</p>
+        <p className="text-xs text-gray-500">{createdAt}</p>
       </div>
     </div>
   )
