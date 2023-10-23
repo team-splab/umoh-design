@@ -12,13 +12,13 @@ import { ChevronLeftIcon, MessageSquareIcon } from 'lucide-react';
 
 interface PreviewCardProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
-  host: boolean;
+  isHost: boolean;
   name: string;
   content: string;
 }
 
 const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
-  ({ className, host, name, content, ...props }, ref) => (
+  ({ className, isHost, name, content, ...props }, ref) => (
     <div
       ref={ref}
       className={cn('flex w-full flex-col items-start gap-1', className)}
@@ -28,9 +28,9 @@ const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
         <span className="overflow-hidden text-ellipsis text-sm font-bold">
           {`📩 ${name}`}
         </span>
-        {host ? (
+        {isHost ? (
           <Badge className="bg-primary-500 py-0.5 text-xs font-medium hover:bg-primary-500">
-            Host
+            IsHost
           </Badge>
         ) : null}
       </div>
@@ -42,16 +42,16 @@ const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
 PreviewCard.displayName = 'PreviewCard';
 
 interface PostCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  host: boolean;
+  isHost: boolean;
 }
 
 const PostCard = React.forwardRef<HTMLDivElement, PostCardProps>(
-  ({ className, host, ...props }, ref) => (
+  ({ className, isHost, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
         `flex flex-col gap-2 px-6 py-2 ${
-          host
+          isHost
             ? 'bg-amber-100/50 hover:bg-amber-100/80'
             : 'bg-white hover:bg-slate-100/50'
         }`,
@@ -64,7 +64,7 @@ const PostCard = React.forwardRef<HTMLDivElement, PostCardProps>(
 PostCard.displayName = 'PostCard';
 
 interface PostCardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  host: boolean;
+  isHost: boolean;
   profileImg: string | null;
   name: string;
   createdAt: string;
@@ -76,7 +76,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
   (
     {
       className,
-      host,
+      isHost,
       profileImg,
       name,
       createdAt,
@@ -110,12 +110,12 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
           <span className="overflow-hidden text-ellipsis text-sm font-bold">
             {name}
           </span>
-          {host && (
+          {isHost && (
             <Badge
               variant="default"
               className="bg-primary-500 hover:bg-primary-500"
             >
-              host
+              isHost
             </Badge>
           )}
         </p>
@@ -127,14 +127,14 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
 PostCardHeader.displayName = 'PostCardHeader';
 
 interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  host: boolean;
+  isHost: boolean;
   content: string;
   replyCount?: number;
   onReplyClick?: () => void;
 }
 
 const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
-  ({ className, host, content, replyCount, onReplyClick, ...props }, ref) => (
+  ({ className, isHost, content, replyCount, onReplyClick, ...props }, ref) => (
     <div
       ref={ref}
       className={cn('flex flex-col gap-2 text-sm text-black', className)}
@@ -146,7 +146,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
           variant="ghost"
           onClick={onReplyClick}
           className={`inline-flex items-center justify-start gap-2 p-0 text-primary-500 hover:text-primary-500 hover:underline ${
-            host ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
+            isHost ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
           }`}
         >
           <MessageSquareIcon />
