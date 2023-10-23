@@ -48,7 +48,33 @@ const config = [
   },
   {
     input: 'src/index.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'es' }],
+    output: { file: 'dist/index.d.ts', format: 'es' },
+    plugins: [dts.default()],
+  },
+  {
+    input: 'src/lib/plugin.ts',
+    output: {
+      file: 'plugin/index.js',
+      format: 'cjs',
+      sourcemap: true,
+    },
+    plugins: [
+      autoExternal(),
+      resolve(),
+      commonjs(),
+      typescript({
+        tsconfig: './tsconfig.json',
+        exclude: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx'],
+      }),
+      terser(),
+    ],
+  },
+  {
+    input: 'src/lib/plugin.ts',
+    output: {
+      file: 'plugin/index.d.ts',
+      format: 'es',
+    },
     plugins: [dts.default()],
   },
 ];
