@@ -1,7 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
-import { useEffect, useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import {
   Calculator,
   Calendar,
@@ -10,6 +7,8 @@ import {
   Smile,
   User,
 } from 'lucide-react';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   Command,

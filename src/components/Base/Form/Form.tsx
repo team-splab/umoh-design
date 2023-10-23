@@ -1,6 +1,7 @@
-import * as React from 'react';
-import * as LabelPrimitive from '@radix-ui/react-label';
-import { Slot } from '@radix-ui/react-slot';
+import React from 'react';
+import { Label } from 'components/Base/Label/Label';
+import { cn } from 'lib/twUtils';
+import { useId } from 'lib/useId';
 import {
   Controller,
   ControllerProps,
@@ -10,8 +11,8 @@ import {
   useFormContext,
 } from 'react-hook-form';
 
-import { cn } from 'lib/twUtils';
-import { Label } from 'components/Base/Label/Label';
+import * as LabelPrimitive from '@radix-ui/react-label';
+import { Slot } from '@radix-ui/react-slot';
 
 const Form = FormProvider;
 
@@ -74,7 +75,7 @@ const FormItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const id = React.useId();
+  const id = useId();
 
   return (
     <FormItemContext.Provider value={{ id }}>
@@ -169,12 +170,12 @@ const FormMessage = React.forwardRef<
 FormMessage.displayName = 'FormMessage';
 
 export {
-  useFormField,
   Form,
-  FormItem,
-  FormLabel,
   FormControl,
   FormDescription,
-  FormMessage,
   FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  useFormField,
 };

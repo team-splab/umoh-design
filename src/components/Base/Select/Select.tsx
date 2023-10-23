@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
-import * as SelectPrimitive from '@radix-ui/react-select';
+import React from 'react';
+import { cn } from 'lib/twUtils';
 import { Check, ChevronDown } from 'lucide-react';
 
-import { cn } from 'lib/twUtils';
+import * as SelectPrimitive from '@radix-ui/react-select';
 
 const Select = SelectPrimitive.Root;
 
@@ -111,11 +111,11 @@ SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
 export {
   Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
   SelectContent,
-  SelectLabel,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectSeparator,
+  SelectTrigger,
+  SelectValue,
 };

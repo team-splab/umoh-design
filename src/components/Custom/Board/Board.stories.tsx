@@ -1,24 +1,36 @@
+import React, { useState } from 'react';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+} from 'components/Base/Form/Form';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { useState } from 'react';
-
 import {
-  Post,
-  PostPreview,
-  PostContainer,
-  PostContent,
+  Board,
+  BoardContainer,
+  BoardContent,
+  BoardHeader,
+  BoardPostButton,
+  BoardPreview,
+  BoardSendContainer,
+  BoardTextField,
   PostCard,
-  PostCardHeader,
   PostCardContent,
-  PostTextField,
+  PostCardHeader,
   PreviewCard,
   ReplyHeader,
-  PostHeader,
+  ReplySeparator,
 } from '.';
 
 const meta = {
-  title: 'CustomComponent/Post',
-  component: Post,
+  title: 'CustomComponent/Board',
+  component: Board,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
@@ -26,7 +38,7 @@ const meta = {
       appDirectory: true,
     },
     componentSubtitle:
-      'Post은 PostPrimitive를 사용하여 구현된 커스텀 컴포넌트입니다.',
+      'Board은 PostPrimitive를 사용하여 구현된 커스텀 컴포넌트입니다.',
     docs: {
       description: {
         component: `
@@ -34,10 +46,6 @@ const meta = {
 `,
       },
     },
-  },
-  args: {
-    type: 'single',
-    collapsible: true,
   },
   argTypes: {
     disabled: {
@@ -58,12 +66,12 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof Post>;
+} satisfies Meta<typeof Board>;
 
 export default meta;
 
-export const DefaultPost: StoryObj<typeof Post> = {
-  render: args => {
+export const DefaultBoard: StoryObj<typeof Board> = {
+  render: () => {
     const [replyOpen, setReplyOpen] = useState(false);
 
     const MockPreviewData = MockPreviewResponse.result;
@@ -83,74 +91,114 @@ export const DefaultPost: StoryObj<typeof Post> = {
       console.log('refresh click');
     };
 
+    const handleSend = (data: z.infer<typeof FormSchema>) => {
+      console.log(data);
+    };
+
+    const FormSchema = z.object({
+      content: z.string().min(1),
+    });
+
+    const form = useForm<z.infer<typeof FormSchema>>({
+      resolver: zodResolver(FormSchema),
+    });
+
     return (
-      <Post className="fixed bottom-0 right-0" {...args}>
-        <PostContainer value="post">
-          <PostHeader refreshClick={handleRefreshClick} />
-          <PostPreview>
+      <Board className="fixed bottom-0 right-0" collapsible type="single">
+        <BoardContainer value="post">
+          <BoardHeader onRefreshClick={handleRefreshClick} />
+          <BoardPreview>
             <PreviewCard
-              host={MockPreviewData.host}
+              isHost={MockPreviewData.isHost}
               name={MockPreviewData.name}
               content={MockPreviewData.content}
             />
-          </PostPreview>
-          <PostContent>
+          </BoardPreview>
+          <BoardContent>
             {replyOpen ? (
               <>
-                <ReplyHeader backClick={handleBackClick} />
-                {
-                  <PostCard
-                    id={MockReplyPostData.id}
-                    key={MockReplyPostData.id}
-                    host={MockReplyPostData.host}
-                    className={'border bg-slate-200 hover:bg-slate-200'}
-                  >
+                <ReplyHeader onBackClick={handleBackClick} />
+                <PostCard
+                  id={MockReplyPostData.id}
+                  key={MockReplyPostData.id}
+                  isHost={MockReplyPostData.isHost}
+                  className={'border bg-slate-200 hover:bg-slate-200'}
+                >
+                  <PostCardHeader
+                    isHost={MockReplyPostData.isHost}
+                    profileImg={MockReplyPostData.profileImg}
+                    name={MockReplyPostData.name}
+                    createdAt={new Date(
+                      MockReplyPostData.createdAt
+                    ).toLocaleString()}
+                  />
+                  <PostCardContent
+                    isHost={MockReplyPostData.isHost}
+                    content={MockReplyPostData.content}
+                    replyCount={MockReplyPostData.replyCount}
+                  />
+                </PostCard>
+                <ReplySeparator replyCount={MockReplyPostData.replyCount} />
+                {MockReplyData.map(item => (
+                  <PostCard id={item.id} key={item.id} isHost={item.isHost}>
                     <PostCardHeader
-                      host={MockReplyPostData.host}
-                      profileImg={MockReplyPostData.profileImg}
-                      name={MockReplyPostData.name}
-                      createdAt={new Date(
-                        MockReplyPostData.createdAt
-                      ).toLocaleString()}
-                    />
-                    <PostCardContent
-                      content={MockReplyPostData.content}
-                      replyCount={MockReplyPostData.replyCount}
-                    />
-                  </PostCard>
-                }
-                {MockReplyData.map((item, index) => (
-                  <PostCard id={item.id} key={item.id} host={item.host}>
-                    <PostCardHeader
-                      host={item.host}
+                      isHost={item.isHost}
                       profileImg={item.profileImg}
                       name={item.name}
                       createdAt={new Date(item.createdAt).toLocaleString()}
                     />
-                    <PostCardContent content={item.content} />
+                    <PostCardContent
+                      isHost={item.isHost}
+                      content={item.content}
+                    />
                   </PostCard>
                 ))}
               </>
             ) : (
               MockPostData.map(item => (
-                <PostCard id={item.id} key={item.id} host={item.host}>
+                <PostCard id={item.id} key={item.id} isHost={item.isHost}>
                   <PostCardHeader
-                    host={item.host}
+                    isHost={item.isHost}
                     profileImg={item.profileImg}
                     name={item.name}
                     createdAt={new Date(item.createdAt).toLocaleString()}
                   />
                   <PostCardContent
+                    isHost={item.isHost}
                     content={item.content}
                     replyCount={item.replyCount}
-                    replyClick={handleReplyClick}
+                    onReplyClick={handleReplyClick}
                   />
                 </PostCard>
               ))
             )}
-          </PostContent>
-        </PostContainer>
-      </Post>
+          </BoardContent>
+          <BoardSendContainer>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(handleSend)}
+                className="flex w-full items-center"
+              >
+                <FormField
+                  control={form.control}
+                  name="content"
+                  render={({ field }) => (
+                    <FormItem className="flex-grow">
+                      <FormControl>
+                        <BoardTextField
+                          placeholder="Post your comment"
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <BoardPostButton />
+              </form>
+            </Form>
+          </BoardSendContainer>
+        </BoardContainer>
+      </Board>
     );
   },
 };
@@ -175,15 +223,16 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
         {MockPostData.map(item => (
           <PostCard id={item.id} key={item.id} {...args}>
             <PostCardHeader
-              host={item.host}
+              isHost={item.isHost}
               profileImg={item.profileImg}
               name={item.name}
               createdAt={item.createdAt}
             />
             <PostCardContent
+              isHost={item.isHost}
               content={item.content}
               replyCount={item.replyCount}
-              replyClick={handleReplyClick}
+              onReplyClick={handleReplyClick}
             />
           </PostCard>
         ))}
@@ -192,7 +241,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
   },
 };
 
-export const DefaultPostTextField: StoryObj<typeof PostTextField> = {
+export const DefaultPostTextField: StoryObj<typeof BoardTextField> = {
   decorators: [
     Story => (
       <div className="m-12 w-[400px]">
@@ -202,7 +251,7 @@ export const DefaultPostTextField: StoryObj<typeof PostTextField> = {
   ],
 
   render: args => {
-    return <PostTextField />;
+    return <BoardTextField {...args} />;
   },
 };
 
@@ -212,14 +261,14 @@ const MockPreviewResponse = {
   message: '',
   result: {
     id: '1',
-    host: true,
+    isHost: true,
     spaceProfileId: '1',
-    profileImg: 'https://ui-avatars.com/api/?name=Host.png' || null,
-    name: 'Host',
+    profileImg: 'https://ui-avatars.com/api/?name=isHost.png',
+    name: 'Min',
     createdAt: new Date().toISOString(), // ISO표준
     updatedAt: new Date().toISOString(), // ISO표준
     content:
-      '공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다.공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다공지입니다',
+      '안녕하세요 여러분🚀 운영팀입니다, 곧 이벤트가 시작될 예정입니다. 다들 오시는 길 이실텐데, 도착하시면 “B1” 입구로 입장 부탁드립니다. 앞에있는 데스크에서',
     replyCount: 5,
   },
 };
@@ -232,7 +281,7 @@ const MockPostResponse = {
     posts: [
       {
         id: '1',
-        host: true,
+        isHost: true,
         spaceProfileId: '1',
         profileImg:
           'https://storage.sendtime.app/space/2023-09-26T02:16:23.391350Zd6f2a820-6312-422c-a70b-d67ed9ef51e0-taekang.jpg',
@@ -244,7 +293,7 @@ const MockPostResponse = {
       },
       {
         id: '2',
-        host: false,
+        isHost: false,
         spaceProfileId: '2',
         profileImg:
           'https://storage.sendtime.app/space/2023-08-11T07:26:39.783401Z69526a6a-77b1-44c4-a585-65fe72a6e82d-%EB%AF%BC%EC%8A%B9%ED%98%84-%EC%A0%95%EB%B0%A9%ED%98%95(%EC%8B%9C%ED%98%84%ED%95%98%EB%8B%A4).jpg',
@@ -252,11 +301,11 @@ const MockPostResponse = {
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
         content: '새로운 글입니다.',
-        replyCount: 0,
+        replyCount: 1,
       },
       {
         id: '3',
-        host: false,
+        isHost: false,
         spaceProfileId: '3',
         profileImg:
           'https://storage.sendtime.app/space/2023-08-25T13:10:00.287554Zeaa746bd-1a4c-4121-8ff0-dc3ca4da6d93-IMG_2798.jpg',
@@ -268,7 +317,7 @@ const MockPostResponse = {
       },
       {
         id: '4',
-        host: true,
+        isHost: true,
         spaceProfileId: '4',
         profileImg:
           'https://storage.sendtime.app/space/2023-08-24T05:50:25.568248Z2f7267fd-ce1f-4dff-abc7-35f3be4b8ef5-Min.png',
@@ -280,7 +329,7 @@ const MockPostResponse = {
       },
       {
         id: '5',
-        host: true,
+        isHost: true,
         spaceProfileId: '5',
         profileImg:
           'https://storage.sendtime.app/space/2023-08-11T06:46:27.546074Zcfe0e2c6-745c-4c9c-b499-3f664186cedc-KakaoTalk_20230616_095206278.jpg',
@@ -292,7 +341,7 @@ const MockPostResponse = {
       },
       {
         id: '6',
-        host: false,
+        isHost: false,
         spaceProfileId: '6',
         profileImg:
           'https://storage.sendtime.app/space/2023-10-05T01:13:44.421301Z9b0cf6d6-a36e-4921-b2eb-3a7b764cacf2-IMG_1227.jpg',
@@ -304,7 +353,7 @@ const MockPostResponse = {
       },
       {
         id: '7',
-        host: false,
+        isHost: false,
         spaceProfileId: '7',
         profileImg:
           'https://storage.sendtime.app/space/2023-09-26T02:06:07.170158Z6215cf2e-dfee-4a75-bcd4-2e8adefe66d5-%EC%9A%B0%EB%AA%A8-%ED%94%84%EB%A1%9C%ED%95%84-%EC%B9%B4%EB%93%9C-%EC%82%AC%EC%A7%84.jpg',
@@ -316,7 +365,7 @@ const MockPostResponse = {
       },
       {
         id: '8',
-        host: false,
+        isHost: false,
         spaceProfileId: '8',
         profileImg:
           'https://storage.sendtime.app/space/2023-08-28T11:17:58.513542Z239c6f18-6a1f-4c4e-a6a7-01567061330a-%ED%99%8D%EC%86%94%EC%9D%981.jpg',
@@ -328,7 +377,7 @@ const MockPostResponse = {
       },
       {
         id: '9',
-        host: false,
+        isHost: false,
         spaceProfileId: '9',
         profileImg: null,
         name: 'User',
@@ -339,7 +388,7 @@ const MockPostResponse = {
       },
       {
         id: '10',
-        host: false,
+        isHost: false,
         spaceProfileId: '10',
         profileImg: null,
         name: 'User',
@@ -358,7 +407,7 @@ const MockReplyResponse = {
   result: {
     post: {
       id: '1',
-      host: true,
+      isHost: true,
       spaceProfileId: '1',
       profileImg:
         'https://storage.sendtime.app/space/2023-09-26T02:16:23.391350Zd6f2a820-6312-422c-a70b-d67ed9ef51e0-taekang.jpg',
@@ -371,7 +420,7 @@ const MockReplyResponse = {
     replies: [
       {
         id: '2',
-        host: false,
+        isHost: false,
         spaceProfileId: '2',
         profileImg: null,
         name: 'User',
@@ -381,7 +430,7 @@ const MockReplyResponse = {
       },
       {
         id: '2',
-        host: false,
+        isHost: false,
         spaceProfileId: '2',
         profileImg: null,
         name: 'User',
@@ -391,7 +440,7 @@ const MockReplyResponse = {
       },
       {
         id: '2',
-        host: false,
+        isHost: false,
         spaceProfileId: '2',
         profileImg: null,
         name: 'User',

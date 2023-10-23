@@ -1,10 +1,18 @@
 {
-  "name": "umoh-design",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@team-splab/umoh-design",
+  "version": "0.1.17",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx . --ignore-pattern dist/",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
@@ -35,17 +43,22 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@tanstack/react-table": "^8.10.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
     "date-fns": "^2.30.0",
     "lucide-react": "^0.287.0",
-    "react": "^18.2.0",
     "react-day-picker": "^8.9.0",
-    "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
     "react-scripts": "5.0.1",
+    "style-inject": "^0.3.0",
+    "tailwind-merge": "^1.14.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
     "@storybook/addon-essentials": "^7.4.6",
     "@storybook/addon-interactions": "^7.4.6",
     "@storybook/addon-links": "^7.4.6",
@@ -57,26 +70,54 @@
     "@storybook/react-webpack5": "^7.4.6",
     "@storybook/testing-library": "^0.2.2",
     "@types/node": "^16.7.13",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^17.0.44",
+    "@types/react-dom": "^17.0.8",
     "autoprefixer": "^10.4.16",
     "babel-plugin-named-exports-order": "^0.0.2",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0",
     "css-loader": "^6.8.1",
+    "eslint": "^8.51.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-storybook": "^0.6.15",
+    "eslint-plugin-unused-imports": "^3.0.0",
     "postcss": "^8.4.31",
     "postcss-loader": "^7.3.3",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
     "prop-types": "^15.8.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rollup": "^4.1.4",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-preserve-directives": "^0.2.0",
+    "rollup-plugin-terser": "^7.0.2",
     "storybook": "^7.4.6",
     "style-loader": "^3.3.3",
-    "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.3.3",
     "tailwindcss-animate": "^1.0.7",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.2.2",
     "webpack": "^5.89.0"
-  }
+  },
+  "peerDependencies": {
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "react": "^17.0 || ^18.0",
+    "react-dom": "^17.0 || ^18.0",
+    "tslib": "^2.3.1"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "@types/react-dom": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "https://github.com/team-splab/umoh-design.git",
+  "license": "UNLICENSED"
 }

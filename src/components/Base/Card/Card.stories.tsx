@@ -1,3 +1,7 @@
+import React from 'react';
+import { Button } from 'components/Base/Button/Button';
+import { Input } from 'components/Base/Input/Input';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
@@ -8,8 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from './Card';
-import { Button } from 'components/Base/Button/Button';
-import { Input } from 'components/Base/Input/Input';
 
 const meta = {
   title: 'Components/Card',

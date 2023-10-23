@@ -14,8 +14,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "./src"
+    "jsx": "react",
+    "baseUrl": "./src",
+    "sourceMap": true
   },
-  "include": ["src"]
+  "include": ["src", "tailwind.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }

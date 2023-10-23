@@ -1,16 +1,17 @@
 'use client';
 
-import * as React from 'react';
-import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import React from 'react';
+import { Button } from 'components/Base/Button/Button';
+import { Input } from 'components/Base/Input/Input';
+import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
+import { cn } from 'lib/twUtils';
 import { ChevronUp, MessageSquarePlusIcon, RefreshCwIcon } from 'lucide-react';
 
-import { cn } from 'lib/twUtils';
-import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
-import PostTextField from './PostTextField';
+import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
-const Post = AccordionPrimitive.Root;
+const Board = AccordionPrimitive.Root;
 
-const PostContainer = React.forwardRef<
+const BoardContainer = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
@@ -23,14 +24,17 @@ const PostContainer = React.forwardRef<
     {...props}
   />
 ));
-PostContainer.displayName = 'AccordionItem';
+BoardContainer.displayName = 'BoardContainer';
 
-const PostHeader = React.forwardRef<
+const BoardHeader = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
-    refreshClick: () => void;
+    /**
+     * @description 새로고침 버튼 클릭 시 호출되는 콜백 함수
+     */
+    onRefreshClick: () => void;
   }
->(({ className, refreshClick, children, ...props }, ref) => {
+>(({ className, onRefreshClick, ...props }, ref) => {
   const [effect, setEffect] = React.useState(false);
 
   return (
@@ -51,7 +55,7 @@ const PostHeader = React.forwardRef<
             className="rounded-full p-2 hover:bg-slate-300"
             onClick={e => {
               e.stopPropagation();
-              refreshClick();
+              onRefreshClick();
               setEffect(true);
             }}
             onAnimationEnd={() => setEffect(false)}
@@ -74,7 +78,7 @@ const PostHeader = React.forwardRef<
   );
 });
 
-const PostPreview = React.forwardRef<
+const BoardPreview = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Header>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Header>
 >(({ className, children, ...props }, ref) => (
@@ -89,28 +93,81 @@ const PostPreview = React.forwardRef<
     {children}
   </AccordionPrimitive.Header>
 ));
-PostPreview.displayName = AccordionPrimitive.Header.displayName;
+BoardPreview.displayName = 'BoardPreview';
 
-const PostContent = React.forwardRef<
+const BoardContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'relative flex-col overflow-hidden text-sm transition-all data-[state=closed]:h-full data-[state=open]:h-[calc(100vh-3rem)] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down md:data-[state=open]:h-[calc(100vh-4rem)]',
+      'relative overflow-hidden text-sm transition-all data-[state=closed]:h-full data-[state=open]:h-[calc(100vh-5rem)] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down md:data-[state=open]:h-[calc(100vh-6rem)]',
       className
     )}
     {...props}
   >
-    <div className="flex h-full flex-col">
-      <ScrollArea className="flex h-full" type="scroll">
-        {children}
-      </ScrollArea>
-      <PostTextField />
-    </div>
+    <ScrollArea className="flex h-full" type="scroll">
+      {children}
+    </ScrollArea>
   </AccordionPrimitive.Content>
 ));
-PostContent.displayName = AccordionPrimitive.Content.displayName;
+BoardContent.displayName = 'BoardContent';
 
-export { Post, PostContainer, PostHeader, PostPreview, PostContent };
+const BoardSendContainer = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Content
+    ref={ref}
+    className={cn('flex w-full items-center', className)}
+    {...props}
+  >
+    {children}
+  </AccordionPrimitive.Content>
+));
+BoardSendContainer.displayName = 'BoardSendContainer';
+
+const BoardTextField = React.forwardRef<
+  HTMLInputElement,
+  React.HTMLAttributes<HTMLInputElement>
+>(({ className, ...props }, ref) => (
+  <Input
+    className={cn(
+      'rounded-none border-none px-4 py-2 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
+      className
+    )}
+    ref={ref}
+    autoComplete="off"
+    {...props}
+  />
+));
+
+BoardTextField.displayName = 'BoardTextField';
+
+const BoardPostButton = React.forwardRef<
+  HTMLButtonElement,
+  React.HTMLAttributes<HTMLButtonElement>
+>(({ className, ...props }, ref) => (
+  <Button
+    type="submit"
+    className={cn('mr-2 h-8 bg-primary-500 hover:bg-primary-600', className)}
+    ref={ref}
+    {...props}
+  >
+    Post
+  </Button>
+));
+
+BoardPostButton.displayName = 'BoardPostButton';
+
+export {
+  Board,
+  BoardContainer,
+  BoardContent,
+  BoardHeader,
+  BoardPostButton,
+  BoardPreview,
+  BoardSendContainer,
+  BoardTextField,
+};

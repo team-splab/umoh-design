@@ -1,7 +1,9 @@
+import React from 'react';
+import { Label } from 'components/Base/Label/Label';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Switch } from './Switch';
-import { Label } from 'components/Base/Label/Label';
 
 const meta = {
   title: 'Components/Switch',

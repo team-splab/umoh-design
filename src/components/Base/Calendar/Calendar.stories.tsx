@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
-import { useState } from 'react';
-
-import { Calendar } from './Calendar';
+import React, { useState } from 'react';
 import { addDays } from 'date-fns';
 import { DateRange, DayClickEventHandler } from 'react-day-picker';
+
+import type { Meta, StoryObj } from '@storybook/react';
+
+import { Calendar } from './Calendar';
 
 const meta = {
   title: 'Components/Calendar',

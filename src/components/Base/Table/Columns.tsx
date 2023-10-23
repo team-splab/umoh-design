@@ -1,8 +1,6 @@
 'use client';
 
-import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
-
+import React from 'react';
 import { Button } from 'components/Base/Button/Button';
 import { Checkbox } from 'components/Base/Checkbox/Checkbox';
 import {
@@ -13,6 +11,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from 'components/Base/DropdownMenu/DropdownMenu';
+import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
+
+import { ColumnDef } from '@tanstack/react-table';
 
 export type Payment = {
   id: string;
