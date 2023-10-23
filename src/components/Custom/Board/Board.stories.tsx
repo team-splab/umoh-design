@@ -19,6 +19,7 @@ import {
   BoardPostButton,
   BoardPreview,
   BoardSendContainer,
+  BoardSkeleton,
   BoardTextField,
   PostCard,
   PostCardContent,
@@ -38,7 +39,7 @@ const meta = {
       appDirectory: true,
     },
     componentSubtitle:
-      'Board은 PostPrimitive를 사용하여 구현된 커스텀 컴포넌트입니다.',
+      'Board은 AccordionPrimitive를 사용하여 구현된 커스텀 컴포넌트입니다.',
     docs: {
       description: {
         component: `
@@ -241,7 +242,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
   },
 };
 
-export const DefaultPostTextField: StoryObj<typeof BoardTextField> = {
+export const DefaultBoardTextField: StoryObj<typeof BoardTextField> = {
   decorators: [
     Story => (
       <div className="m-12 w-[400px]">
@@ -252,6 +253,87 @@ export const DefaultPostTextField: StoryObj<typeof BoardTextField> = {
 
   render: args => {
     return <BoardTextField {...args} />;
+  },
+};
+
+export const DefaultBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
+  decorators: [
+    Story => (
+      <div className="m-12 w-[400px]">
+        <Story />
+      </div>
+    ),
+  ],
+
+  render: args => {
+    return <BoardSkeleton {...args} />;
+  },
+};
+
+export const ExampleBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
+  render: () => {
+    const MockPreviewData = MockPreviewResponse.result;
+
+    const handleRefreshClick = () => {
+      console.log('refresh click');
+    };
+
+    const handleSend = (data: z.infer<typeof FormSchema>) => {
+      console.log(data);
+    };
+
+    const FormSchema = z.object({
+      content: z.string().min(1),
+    });
+
+    const form = useForm<z.infer<typeof FormSchema>>({
+      resolver: zodResolver(FormSchema),
+    });
+
+    return (
+      <Board className="fixed bottom-0 right-0" collapsible type="single">
+        <BoardContainer value="post">
+          <BoardHeader onRefreshClick={handleRefreshClick} />
+          <BoardPreview>
+            <PreviewCard
+              isHost={MockPreviewData.isHost}
+              name={MockPreviewData.name}
+              content={MockPreviewData.content}
+            />
+          </BoardPreview>
+          <BoardContent>
+            <BoardSkeleton />
+            <BoardSkeleton />
+            <BoardSkeleton />
+            <BoardSkeleton />
+          </BoardContent>
+          <BoardSendContainer>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(handleSend)}
+                className="flex w-full items-center"
+              >
+                <FormField
+                  control={form.control}
+                  name="content"
+                  render={({ field }) => (
+                    <FormItem className="flex-grow">
+                      <FormControl>
+                        <BoardTextField
+                          placeholder="Post your comment"
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <BoardPostButton />
+              </form>
+            </Form>
+          </BoardSendContainer>
+        </BoardContainer>
+      </Board>
+    );
   },
 };
 
