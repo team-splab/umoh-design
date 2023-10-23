@@ -12,18 +12,26 @@ import { ChevronLeftIcon, MessageSquareIcon } from 'lucide-react';
 
 interface PreviewCardProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
-  host: boolean;
+  isHost: boolean;
   name: string;
   content: string;
 }
 
 const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
-  ({ className, host, name, content, ...props }, ref) => (
-    <div ref={ref} className="flex flex-col items-start gap-1" {...props}>
-      <div className="flex items-center gap-1 text-sm">
-        📩 {name}
-        {host ? (
-          <Badge className="py-0.5 text-xs font-medium">Host</Badge>
+  ({ className, isHost, name, content, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn('flex w-full flex-col items-start gap-1', className)}
+      {...props}
+    >
+      <div className="flex w-full items-center gap-1">
+        <span className="overflow-hidden text-ellipsis text-sm font-bold">
+          {`📩 ${name}`}
+        </span>
+        {isHost ? (
+          <Badge className="bg-primary-500 py-0.5 text-xs font-medium hover:bg-primary-500">
+            IsHost
+          </Badge>
         ) : null}
       </div>
       <div className="line-clamp-1 text-sm md:line-clamp-3">{content}</div>
@@ -34,19 +42,19 @@ const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
 PreviewCard.displayName = 'PreviewCard';
 
 interface PostCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  host: boolean;
+  isHost: boolean;
 }
 
 const PostCard = React.forwardRef<HTMLDivElement, PostCardProps>(
-  ({ className, host, ...props }, ref) => (
+  ({ className, isHost, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
-        `flex flex-col gap-2  ${
-          host
+        `flex flex-col gap-2 px-6 py-2 ${
+          isHost
             ? 'bg-amber-100/50 hover:bg-amber-100/80'
             : 'bg-white hover:bg-slate-100/50'
-        } px-6 py-2 `,
+        }`,
         className
       )}
       {...props}
@@ -56,20 +64,34 @@ const PostCard = React.forwardRef<HTMLDivElement, PostCardProps>(
 PostCard.displayName = 'PostCard';
 
 interface PostCardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  host: boolean;
+  isHost: boolean;
   profileImg: string | null;
   name: string;
   createdAt: string;
+  onImgClick?: () => void;
+  onNameClick?: () => void;
 }
 
 const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
-  ({ className, host, profileImg, name, createdAt, ...props }, ref) => (
+  (
+    {
+      className,
+      isHost,
+      profileImg,
+      name,
+      createdAt,
+      onImgClick,
+      onNameClick,
+      ...props
+    },
+    ref
+  ) => (
     <div
       ref={ref}
       className={cn('flex items-center gap-4', className)}
       {...props}
     >
-      <Avatar className="rounded-lg">
+      <Avatar className="rounded-lg" onClick={onImgClick}>
         <AvatarImage
           className="object-cover"
           src={
@@ -80,10 +102,22 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
         />
         <AvatarFallback>profileImg</AvatarFallback>
       </Avatar>
-      <div className="flex flex-col items-start gap-1">
-        <p className="flex items-center gap-1 text-sm font-semibold">
-          {name}
-          {host && <Badge variant="default">host</Badge>}
+      <div className="flex w-56 flex-col items-start gap-1">
+        <p
+          className="flex w-full items-center gap-1 text-sm font-semibold"
+          onClick={onNameClick}
+        >
+          <span className="overflow-hidden text-ellipsis text-sm font-bold">
+            {name}
+          </span>
+          {isHost && (
+            <Badge
+              variant="default"
+              className="bg-primary-500 hover:bg-primary-500"
+            >
+              isHost
+            </Badge>
+          )}
         </p>
         <p className="text-xs text-gray-500 dark:text-gray-400">{createdAt}</p>
       </div>
@@ -93,16 +127,17 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
 PostCardHeader.displayName = 'PostCardHeader';
 
 interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  isHost: boolean;
   content: string;
   replyCount?: number;
   onReplyClick?: () => void;
 }
 
 const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
-  ({ className, content, replyCount, onReplyClick, ...props }, ref) => (
+  ({ className, isHost, content, replyCount, onReplyClick, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('flex flex-col gap-2 text-sm', className)}
+      className={cn('flex flex-col gap-2 text-sm text-black', className)}
       {...props}
     >
       {content}
@@ -110,7 +145,9 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
         <Button
           variant="ghost"
           onClick={onReplyClick}
-          className="inline-flex items-center justify-start gap-2 p-0 text-primary-500 hover:bg-neutral-400/40 hover:text-primary-400 hover:underline"
+          className={`inline-flex items-center justify-start gap-2 p-0 text-primary-500 hover:text-primary-500 hover:underline ${
+            isHost ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
+          }`}
         >
           <MessageSquareIcon />
           Reply ({replyCount})
@@ -131,8 +168,11 @@ interface ReplyHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
   ({ className, onBackClick, ...props }, ref) => (
     <div ref={ref} className={cn('', className)} {...props}>
-      <button onClick={onBackClick} className="flex items-center border-b p-2">
-        <ChevronLeftIcon className="h-6 w-6" />
+      <button
+        onClick={onBackClick}
+        className="group flex items-center border-b p-2 hover:underline"
+      >
+        <ChevronLeftIcon className="h-6 w-6 duration-300 ease-out group-hover:translate-x-[-4px]" />
         Back
       </button>
     </div>
@@ -147,9 +187,9 @@ const ReplySeparator = React.forwardRef<HTMLDivElement, ReplySeparatorProps>(
   ({ className, replyCount, ...props }, ref) => (
     <div ref={ref} className={cn('flex p-2', className)} {...props}>
       <Badge className="mr-2 shrink-0 bg-primary-500 hover:bg-primary-500">
-        {replyCount.toString().concat(' reply')}
+        {`${replyCount} reply`}
       </Badge>
-      <Separator className="my-2 bg-primary-500 pr-2" />
+      <Separator className="my-2 bg-primary-500" />
     </div>
   )
 );

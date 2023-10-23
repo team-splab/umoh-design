@@ -34,7 +34,7 @@ const BoardHeader = React.forwardRef<
      */
     onRefreshClick: () => void;
   }
->(({ className, onRefreshClick, children, ...props }, ref) => {
+>(({ className, onRefreshClick, ...props }, ref) => {
   const [effect, setEffect] = React.useState(false);
 
   return (
