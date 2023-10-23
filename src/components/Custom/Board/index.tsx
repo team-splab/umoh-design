@@ -6,6 +6,7 @@ import {
   BoardPostButton,
   BoardPreview,
   BoardSendContainer,
+  BoardSkeleton,
   BoardTextField,
 } from './Board';
 import {
@@ -25,6 +26,7 @@ export {
   BoardPostButton,
   BoardPreview,
   BoardSendContainer,
+  BoardSkeleton,
   BoardTextField,
   PostCard,
   PostCardContent,
