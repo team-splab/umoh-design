@@ -1,12 +1,12 @@
 {
   "name": "@team-splab/umoh-design",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "plugins"
+    "plugin"
   ],
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
