@@ -4,6 +4,7 @@ import React from 'react';
 import { Button } from 'components/Base/Button/Button';
 import { Input } from 'components/Base/Input/Input';
 import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
+import { Skeleton } from 'components/Base/Skeleton/Skeleton';
 import { cn } from 'lib/twUtils';
 import { ChevronUp, MessageSquarePlusIcon, RefreshCwIcon } from 'lucide-react';
 
@@ -161,6 +162,30 @@ const BoardPostButton = React.forwardRef<
 
 BoardPostButton.displayName = 'BoardPostButton';
 
+const BoardSkeleton = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn('flex flex-col gap-2 px-6 py-2', className)}
+    {...props}
+  >
+    <div className="flex items-center gap-4">
+      <Skeleton className="h-10 w-10 rounded-lg" />
+      <div className="flex w-56 flex-col items-start gap-2">
+        <Skeleton className="flex h-3 w-12" />
+        <Skeleton className="flex h-3 w-24" />
+      </div>
+    </div>
+    <div className="flex flex-col gap-2 ">
+      <Skeleton className="flex h-4 w-[250px]" />
+      <Skeleton className="flex h-4 w-[200px]" />
+    </div>
+  </div>
+));
+BoardSkeleton.displayName = 'BoardSkeleton';
+
 export {
   Board,
   BoardContainer,
@@ -169,5 +194,6 @@ export {
   BoardPostButton,
   BoardPreview,
   BoardSendContainer,
+  BoardSkeleton,
   BoardTextField,
 };
