@@ -1,6 +1,5 @@
 import autoExternal from 'rollup-plugin-auto-external';
 import dts from 'rollup-plugin-dts';
-import postcss from 'rollup-plugin-postcss';
 import preserveDirectives from 'rollup-plugin-preserve-directives';
 import { terser } from 'rollup-plugin-terser';
 
@@ -34,16 +33,6 @@ const config = [
         exclude: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx'],
       }),
       terser(),
-      postcss({
-        config: {
-          path: './postcss.config.js',
-        },
-        extensions: ['.css'],
-        minimize: true,
-        inject(cssVariableName) {
-          return `import styleInject from 'style-inject';\nstyleInject(${cssVariableName});`;
-        },
-      }),
       preserveDirectives.default(),
     ],
     onwarn(warning, warn) {
@@ -59,8 +48,33 @@ const config = [
   },
   {
     input: 'src/index.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'es' }],
-    external: [/\.css$/],
+    output: { file: 'dist/index.d.ts', format: 'es' },
+    plugins: [dts.default()],
+  },
+  {
+    input: 'src/lib/plugin.ts',
+    output: {
+      file: 'plugin/index.js',
+      format: 'cjs',
+      sourcemap: true,
+    },
+    plugins: [
+      autoExternal(),
+      resolve(),
+      commonjs(),
+      typescript({
+        tsconfig: './tsconfig.json',
+        exclude: ['**/*.test.ts', '**/*.test.tsx', '**/*.stories.tsx'],
+      }),
+      terser(),
+    ],
+  },
+  {
+    input: 'src/lib/plugin.ts',
+    output: {
+      file: 'plugin/index.d.ts',
+      format: 'es',
+    },
     plugins: [dts.default()],
   },
 ];
