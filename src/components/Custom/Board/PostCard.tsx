@@ -30,7 +30,7 @@ const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
         </span>
         {isHost ? (
           <Badge className="bg-primary-500 py-0.5 text-xs font-medium hover:bg-primary-500">
-            IsHost
+            host
           </Badge>
         ) : null}
       </div>
@@ -115,7 +115,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
               variant="default"
               className="bg-primary-500 hover:bg-primary-500"
             >
-              isHost
+              host
             </Badge>
           )}
         </p>
