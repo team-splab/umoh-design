@@ -2,7 +2,7 @@
 import plugin from 'tailwindcss/plugin';
 
 const config = {
-  darkMode: ['class', '[data-mode="dark"]'],
+  darkMode: false,
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
