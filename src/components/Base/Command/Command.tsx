@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Command as CommandPrimitive } from 'cmdk';
-import { Dialog, DialogContent } from 'components/Base/Dialog/Dialog';
+import { Dialog, DialogContent } from 'components';
 import { cn } from 'lib/twUtils';
 import { Search } from 'lucide-react';
 

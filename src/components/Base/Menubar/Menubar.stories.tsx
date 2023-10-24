@@ -13,7 +13,7 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-} from 'components/Base/Menubar/Menubar';
+} from 'components';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

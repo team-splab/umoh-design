@@ -1,11 +1,14 @@
 import React from 'react';
-import { Button } from 'components/Base/Button/Button';
-import { Input } from 'components/Base/Input/Input';
-import { Label } from 'components/Base/Label/Label';
+import {
+  Button,
+  Input,
+  Label,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from 'components';
 
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { Popover, PopoverContent, PopoverTrigger } from './Popover';
 
 const meta = {
   title: 'Components/Popover',

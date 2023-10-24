@@ -1,8 +1,7 @@
 import React from 'react';
+import { Slider } from 'components';
 
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { Slider } from './Slider';
 
 const meta = {
   title: 'Components/Slider',

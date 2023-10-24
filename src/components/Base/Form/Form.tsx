@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label } from 'components/Base/Label/Label';
+import { Label } from 'components';
 import { cn } from 'lib/twUtils';
 import { useId } from 'lib/useId';
 import {

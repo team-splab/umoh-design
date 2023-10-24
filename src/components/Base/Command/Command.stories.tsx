@@ -1,16 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Calculator,
-  Calendar,
-  CreditCard,
-  Settings,
-  Smile,
-  User,
-} from 'lucide-react';
-
-import type { Meta, StoryObj } from '@storybook/react';
-
-import {
   Command,
   CommandDialog,
   CommandEmpty,
@@ -20,7 +9,17 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from './Command';
+} from 'components';
+import {
+  Calculator,
+  Calendar,
+  CreditCard,
+  Settings,
+  Smile,
+  User,
+} from 'lucide-react';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Components/Command',

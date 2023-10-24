@@ -1,29 +1,32 @@
 'use client';
 
 import React from 'react';
-import { Button } from 'components/Base/Button/Button';
-import { Calendar } from 'components/Base/Calendar/Calendar';
-import { Checkbox } from 'components/Base/Checkbox/Checkbox';
-import { Input } from 'components/Base/Input/Input';
 import {
+  Button,
+  Calendar,
+  Checkbox,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Input,
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from 'components/Base/Popover/Popover';
-import {
   RadioGroup,
   RadioGroupItem,
-} from 'components/Base/RadioGroup/RadioGroup';
-import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from 'components/Base/Select/Select';
-import { Switch } from 'components/Base/Switch/Switch';
-import { Textarea } from 'components/Base/Textarea/Textarea';
-import { Toaster } from 'components/Base/Toast/Toaster';
+  Switch,
+  Textarea,
+  Toaster,
+} from 'components';
 import { format } from 'date-fns';
 import { cn } from 'lib/twUtils';
 import { toast } from 'lib/useToast';
@@ -33,16 +36,6 @@ import * as z from 'zod';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from './Form';
 
 const meta = {
   title: 'Components/Form',
@@ -563,7 +556,7 @@ export const WithSwitchForm: StoryObj<typeof Form> = {
       },
     },
   },
-  render: args => {
+  render: () => {
     const FormSchema = z.object({
       marketing_emails: z.boolean().default(false).optional(),
       security_emails: z.boolean(),

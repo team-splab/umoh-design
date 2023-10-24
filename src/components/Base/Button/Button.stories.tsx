@@ -1,9 +1,8 @@
 import React from 'react';
+import { Button } from 'components';
 import { ChevronRight, Loader2, Mail } from 'lucide-react';
 
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { Button } from './Button';
 
 const meta = {
   title: 'Components/Button',

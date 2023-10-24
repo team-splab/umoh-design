@@ -1,17 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-} from 'components/Base/Form/Form';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import type { Meta, StoryObj } from '@storybook/react';
-
-import {
   Board,
   BoardContainer,
   BoardContent,
@@ -21,13 +9,22 @@ import {
   BoardSendContainer,
   BoardSkeleton,
   BoardTextField,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
   PostCard,
   PostCardContent,
   PostCardHeader,
   PreviewCard,
   ReplyHeader,
   ReplySeparator,
-} from '.';
+} from 'components';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'CustomComponent/Board',

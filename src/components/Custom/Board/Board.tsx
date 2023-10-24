@@ -1,10 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button } from 'components/Base/Button/Button';
-import { Input } from 'components/Base/Input/Input';
-import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
-import { Skeleton } from 'components/Base/Skeleton/Skeleton';
+import { Button, Input, ScrollArea, Skeleton } from 'components';
 import { cn } from 'lib/twUtils';
 import { ChevronUp, MessageSquarePlusIcon, RefreshCwIcon } from 'lucide-react';
 

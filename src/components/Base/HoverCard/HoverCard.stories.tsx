@@ -3,13 +3,11 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from 'components/Base/Avatar/Avatar';
-import { Button } from 'components/Base/Button/Button';
-import {
+  Button,
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from 'components/Base/HoverCard/HoverCard';
+} from 'components';
 import { CalendarDays } from 'lucide-react';
 
 import type { Meta, StoryObj } from '@storybook/react';
