@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button, Input, ScrollArea, Skeleton } from 'components';
+import { Button, Input, Skeleton } from 'components';
 import { cn } from 'lib/twUtils';
 import { ChevronUp, MessageSquarePlusIcon, RefreshCwIcon } from 'lucide-react';
 
@@ -105,9 +105,7 @@ const BoardContent = React.forwardRef<
     )}
     {...props}
   >
-    <ScrollArea className="flex h-full" type="scroll">
-      {children}
-    </ScrollArea>
+    {children}
   </AccordionPrimitive.Content>
 ));
 BoardContent.displayName = 'BoardContent';
