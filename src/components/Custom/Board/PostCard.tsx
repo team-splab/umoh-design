@@ -141,7 +141,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
       {...props}
     >
       {content}
-      {replyCount && onReplyClick ? (
+      {onReplyClick ? (
         <Button
           variant="ghost"
           onClick={onReplyClick}
