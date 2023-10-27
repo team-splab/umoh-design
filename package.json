@@ -1,6 +1,6 @@
 {
   "name": "@team-splab/umoh-design",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -46,7 +46,6 @@
     "@tanstack/react-table": "^8.10.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "cmdk": "^0.2.0",
     "date-fns": "^2.30.0",
     "lucide-react": "^0.287.0",
     "react-day-picker": "^8.9.0",

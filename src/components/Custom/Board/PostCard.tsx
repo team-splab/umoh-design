@@ -185,11 +185,11 @@ interface ReplySeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const ReplySeparator = React.forwardRef<HTMLDivElement, ReplySeparatorProps>(
   ({ className, replyCount, ...props }, ref) => (
-    <div ref={ref} className={cn('flex p-2', className)} {...props}>
+    <div ref={ref} className={cn('flex w-full p-2', className)} {...props}>
       <Badge className="mr-2 shrink-0 bg-primary-500 hover:bg-primary-500">
         {`${replyCount} reply`}
       </Badge>
-      <Separator className="my-2 bg-primary-500" />
+      <Separator className="my-2 shrink bg-primary-500" />
     </div>
   )
 );

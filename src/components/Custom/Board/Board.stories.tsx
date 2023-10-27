@@ -114,7 +114,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
           </BoardPreview>
           <BoardContent>
             {replyOpen ? (
-              <>
+              <div className="flex h-full w-full flex-col overflow-auto">
                 <ReplyHeader onBackClick={handleBackClick} />
                 <PostCard
                   id={MockReplyPostData.id}
@@ -151,24 +151,26 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     />
                   </PostCard>
                 ))}
-              </>
+              </div>
             ) : (
-              MockPostData.map(item => (
-                <PostCard id={item.id} key={item.id} isHost={item.isHost}>
-                  <PostCardHeader
-                    isHost={item.isHost}
-                    profileImg={item.profileImg}
-                    name={item.name}
-                    createdAt={new Date(item.createdAt).toLocaleString()}
-                  />
-                  <PostCardContent
-                    isHost={item.isHost}
-                    content={item.content}
-                    replyCount={item.replyCount}
-                    onReplyClick={handleReplyClick}
-                  />
-                </PostCard>
-              ))
+              <div className="h-full w-full overflow-auto">
+                {MockPostData.map(item => (
+                  <PostCard id={item.id} key={item.id} isHost={item.isHost}>
+                    <PostCardHeader
+                      isHost={item.isHost}
+                      profileImg={item.profileImg}
+                      name={item.name}
+                      createdAt={new Date(item.createdAt).toLocaleString()}
+                    />
+                    <PostCardContent
+                      isHost={item.isHost}
+                      content={item.content}
+                      replyCount={item.replyCount}
+                      onReplyClick={handleReplyClick}
+                    />
+                  </PostCard>
+                ))}
+              </div>
             )}
           </BoardContent>
           <BoardSendContainer>
