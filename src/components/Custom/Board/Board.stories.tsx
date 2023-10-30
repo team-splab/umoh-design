@@ -129,6 +129,9 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     createdAt={new Date(
                       MockReplyPostData.createdAt
                     ).toLocaleString()}
+                    fullTime={new Date(
+                      MockReplyPostData.createdAt
+                    ).toLocaleString()}
                   />
                   <PostCardContent
                     isHost={MockReplyPostData.isHost}
@@ -144,6 +147,9 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                       profileImg={item.profileImg}
                       name={item.name}
                       createdAt={new Date(item.createdAt).toLocaleString()}
+                      fullTime={new Date(
+                        MockReplyPostData.createdAt
+                      ).toLocaleString()}
                     />
                     <PostCardContent
                       isHost={item.isHost}
@@ -161,6 +167,9 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                       profileImg={item.profileImg}
                       name={item.name}
                       createdAt={new Date(item.createdAt).toLocaleString()}
+                      fullTime={new Date(
+                        MockReplyPostData.createdAt
+                      ).toLocaleString()}
                     />
                     <PostCardContent
                       isHost={item.isHost}
@@ -227,6 +236,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
               profileImg={item.profileImg}
               name={item.name}
               createdAt={item.createdAt}
+              fullTime={new Date(item.createdAt).toLocaleString()}
             />
             <PostCardContent
               isHost={item.isHost}

@@ -6,6 +6,10 @@ import {
   Badge,
   Button,
   Separator,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
 } from 'components';
 import { cn } from 'lib/twUtils';
 import { ChevronLeftIcon, MessageSquareIcon } from 'lucide-react';
@@ -68,6 +72,7 @@ interface PostCardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   profileImg: string | null;
   name: string;
   createdAt: string;
+  fullTime: string;
   onImgClick?: () => void;
   onNameClick?: () => void;
 }
@@ -80,6 +85,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
       profileImg,
       name,
       createdAt,
+      fullTime,
       onImgClick,
       onNameClick,
       ...props
@@ -119,7 +125,16 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
             </Badge>
           )}
         </p>
-        <p className="text-xs text-gray-500">{createdAt}</p>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <p className="text-xs text-gray-500">{createdAt}</p>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{fullTime}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
     </div>
   )
