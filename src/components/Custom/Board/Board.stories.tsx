@@ -193,7 +193,9 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     </FormItem>
                   )}
                 />
-                <BoardPostButton />
+                <BoardPostButton>
+                  {replyOpen ? 'Reply' : 'Post'}
+                </BoardPostButton>
               </form>
             </Form>
           </BoardSendContainer>
@@ -326,7 +328,7 @@ export const ExampleBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
                     </FormItem>
                   )}
                 />
-                <BoardPostButton />
+                <BoardPostButton>Reply</BoardPostButton>
               </form>
             </Form>
           </BoardSendContainer>
