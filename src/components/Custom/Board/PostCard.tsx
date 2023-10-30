@@ -128,7 +128,9 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <p className="text-xs text-gray-500">{createdAt}</p>
+              <p className="text-xs text-gray-500 hover:underline">
+                {createdAt}
+              </p>
             </TooltipTrigger>
             <TooltipContent>
               <p>{fullTime}</p>
