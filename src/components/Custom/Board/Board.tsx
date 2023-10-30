@@ -16,7 +16,7 @@ const BoardContainer = React.forwardRef<
   <AccordionPrimitive.Item
     ref={ref}
     className={cn(
-      'board-mobile:w-80 board-mobile:data-[state=open]:w-80 flex w-56 flex-col bg-white shadow-lg data-[state=open]:w-screen',
+      'flex w-56 flex-col bg-white shadow-lg data-[state=open]:w-screen board-mobile:w-80 board-mobile:data-[state=open]:w-80',
       className
     )}
     {...props}
@@ -43,7 +43,7 @@ const BoardHeader = React.forwardRef<
       )}
       {...props}
     >
-      <div className="board-mobile:p-4 board-mobile:text-base flex items-center gap-1 p-2 text-sm">
+      <div className="flex items-center gap-1 p-2 text-sm board-mobile:p-4 board-mobile:text-base">
         <MessageSquarePlusIcon />
         Community Board
       </div>
@@ -83,7 +83,7 @@ const BoardPreview = React.forwardRef<
   <AccordionPrimitive.Header
     ref={ref}
     className={cn(
-      'board-mobile:max-h-32 board-mobile:p-4 flex max-h-16 flex-col gap-1 p-2 data-[state=open]:hidden',
+      'flex max-h-16 flex-col gap-1 p-2 data-[state=open]:hidden board-mobile:max-h-32 board-mobile:p-4',
       className
     )}
     {...props}
@@ -100,7 +100,7 @@ const BoardContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'board-mobile:data-[state=open]:h-board-content-md relative overflow-hidden text-sm transition-all data-[state=closed]:h-full data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down data-[state=open]:h-board-content',
+      'relative overflow-hidden text-sm transition-all h-board-content data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down board-mobile:data-[state=open]:h-board-content-md',
       className
     )}
     {...props}
