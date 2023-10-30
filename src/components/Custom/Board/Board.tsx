@@ -144,14 +144,14 @@ BoardTextField.displayName = 'BoardTextField';
 const BoardPostButton = React.forwardRef<
   HTMLButtonElement,
   React.HTMLAttributes<HTMLButtonElement>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <Button
     type="submit"
     className={cn('mr-2 h-8 bg-primary-500 hover:bg-primary-600', className)}
     ref={ref}
     {...props}
   >
-    Post
+    {children}
   </Button>
 ));
 
