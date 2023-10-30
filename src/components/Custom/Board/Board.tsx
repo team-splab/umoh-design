@@ -16,7 +16,7 @@ const BoardContainer = React.forwardRef<
   <AccordionPrimitive.Item
     ref={ref}
     className={cn(
-      'flex w-56 flex-col bg-white shadow-lg data-[state=open]:w-screen board-mobile:w-80 board-mobile:data-[state=open]:w-80',
+      'flex w-56 flex-col bg-white shadow-lg transition-all duration-200 ease-out data-[state=open]:w-screen board-mobile:w-80 board-mobile:data-[state=open]:w-80',
       className
     )}
     {...props}
@@ -83,7 +83,7 @@ const BoardPreview = React.forwardRef<
   <AccordionPrimitive.Header
     ref={ref}
     className={cn(
-      'flex max-h-16 flex-col gap-1 p-2 data-[state=open]:hidden board-mobile:max-h-32 board-mobile:p-4',
+      'flex max-h-16 flex-col gap-1 overflow-hidden p-2 transition-all duration-200 ease-out data-[state=open]:max-h-0 data-[state=open]:py-0 data-[state=closed]:opacity-100 data-[state=open]:opacity-0 board-mobile:max-h-32 board-mobile:p-4',
       className
     )}
     {...props}
@@ -100,7 +100,7 @@ const BoardContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'relative overflow-hidden text-sm transition-all h-board-content data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down board-mobile:data-[state=open]:h-board-content-md',
+      'relative overflow-hidden text-sm h-board-content data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down board-mobile:data-[state=open]:h-board-content-md',
       className
     )}
     {...props}
@@ -116,7 +116,10 @@ const BoardSendContainer = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className={cn('flex w-full items-center', className)}
+    className={cn(
+      'w-full items-center overflow-hidden transition-opacity duration-200 ease-out data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down data-[state=closed]:opacity-0 data-[state=open]:opacity-100',
+      className
+    )}
     {...props}
   >
     {children}
