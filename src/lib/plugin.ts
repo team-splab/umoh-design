@@ -315,6 +315,10 @@ const pluginConfig = plugin.withOptions(
             wobble: 'wobble 1s infinite',
             jello: 'jello 2s infinite',
           },
+          screens: {
+            'board-mobile': '768px',
+            'board-mobile-max': { max: '767px' },
+          },
         },
       },
     };

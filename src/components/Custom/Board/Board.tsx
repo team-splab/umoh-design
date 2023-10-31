@@ -16,7 +16,7 @@ const BoardContainer = React.forwardRef<
   <AccordionPrimitive.Item
     ref={ref}
     className={cn(
-      'flex w-56 flex-col bg-white shadow-lg data-[state=open]:w-screen md:w-80 md:data-[state=open]:w-80',
+      'flex w-56 flex-col bg-white shadow-lg transition-all duration-200 ease-out data-[state=open]:w-screen board-mobile:w-80 board-mobile:data-[state=open]:w-80',
       className
     )}
     {...props}
@@ -38,12 +38,12 @@ const BoardHeader = React.forwardRef<
   return (
     <AccordionPrimitive.Trigger
       className={cn(
-        'flex items-center justify-between border-b-2 font-medium text-primary-500 transition-all hover:bg-slate-100 [&[data-state=open]>svg]:rotate-180',
+        'flex items-center justify-between border-b-2 font-medium text-primary-500 hover:bg-slate-100',
         className
       )}
       {...props}
     >
-      <div className="flex items-center gap-1 p-2 text-sm md:p-4 md:text-base">
+      <div className="flex items-center gap-1 p-2 text-sm board-mobile:p-4 board-mobile:text-base">
         <MessageSquarePlusIcon />
         Community Board
       </div>
@@ -69,7 +69,7 @@ const BoardHeader = React.forwardRef<
           ref={ref}
           className="rounded-full p-2 hover:bg-slate-300 [&[data-state=open]>svg]:rotate-180"
         >
-          <ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200" />
+          <ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200 ease-out" />
         </AccordionPrimitive.Trigger>
       </div>
     </AccordionPrimitive.Trigger>
@@ -83,7 +83,7 @@ const BoardPreview = React.forwardRef<
   <AccordionPrimitive.Header
     ref={ref}
     className={cn(
-      'flex max-h-16 flex-col gap-1 p-2 data-[state=open]:hidden md:max-h-32 md:p-4',
+      'flex max-h-16 flex-col gap-1 overflow-hidden p-2 transition-all duration-200 ease-out data-[state=open]:max-h-0 data-[state=open]:py-0 data-[state=closed]:opacity-100 data-[state=open]:opacity-0 board-mobile:max-h-32 board-mobile:p-4',
       className
     )}
     {...props}
@@ -100,7 +100,7 @@ const BoardContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'data-[state=open]:h-board-content md:data-[state=open]:h-board-content-md relative overflow-hidden text-sm transition-all data-[state=closed]:h-full data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
+      'relative overflow-hidden text-sm h-board-content data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down board-mobile:h-board-content-md',
       className
     )}
     {...props}
@@ -116,7 +116,10 @@ const BoardSendContainer = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className={cn('flex w-full items-center', className)}
+    className={cn(
+      'w-full items-center overflow-hidden transition-opacity duration-200 ease-out data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down data-[state=closed]:opacity-0 data-[state=open]:opacity-100',
+      className
+    )}
     {...props}
   >
     {children}

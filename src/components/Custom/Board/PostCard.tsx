@@ -38,7 +38,9 @@ const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
           </Badge>
         ) : null}
       </div>
-      <div className="line-clamp-1 text-sm md:line-clamp-3">{content}</div>
+      <div className="board-mobile:line-clamp-3 line-clamp-1 text-sm">
+        {content}
+      </div>
     </div>
   )
 );
