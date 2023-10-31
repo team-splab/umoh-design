@@ -103,12 +103,12 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
         <AvatarImage
           className="object-cover"
           src={
-            profileImg ??
+            profileImg ||
             'https://api.dicebear.com/7.x/micah/svg?seed=Boots&backgroundColor=b6e3f4,c0aede,d1d4f9'
           }
           alt="profileImg"
         />
-        <AvatarFallback>profileImg</AvatarFallback>
+        <AvatarFallback>?</AvatarFallback>
       </Avatar>
       <div className="flex w-56 flex-col items-start gap-1">
         <p
@@ -148,12 +148,12 @@ PostCardHeader.displayName = 'PostCardHeader';
 interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
   isHost: boolean;
   content: string;
-  replyCount?: number;
+  replyLabel: string;
   onReplyClick?: () => void;
 }
 
 const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
-  ({ className, isHost, content, replyCount, onReplyClick, ...props }, ref) => (
+  ({ className, isHost, content, replyLabel, onReplyClick, ...props }, ref) => (
     <div
       ref={ref}
       className={cn('flex flex-col gap-2 text-sm text-black', className)}
@@ -168,8 +168,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
             isHost ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
           }`}
         >
-          <MessageSquareIcon />
-          Reply ({replyCount})
+          <MessageSquareIcon />({replyLabel})
         </Button>
       ) : null}
     </div>
@@ -179,34 +178,38 @@ PostCardContent.displayName = 'PostCardContent';
 
 interface ReplyHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
+   * @description 뒤로가기 버튼에 표시할 라벨
+   */
+  label: string;
+  /**
    * @description 뒤로가기 버튼 클릭 시 호출되는 콜백 함수
    */
   onBackClick?: () => void;
 }
 
 const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
-  ({ className, onBackClick, ...props }, ref) => (
+  ({ className, label, onBackClick, ...props }, ref) => (
     <div ref={ref} className={cn('', className)} {...props}>
       <button
         onClick={onBackClick}
         className="group flex items-center border-b p-2 hover:underline"
       >
         <ChevronLeftIcon className="h-6 w-6 duration-300 ease-out group-hover:translate-x-[-4px]" />
-        Back
+        {label}
       </button>
     </div>
   )
 );
 
 interface ReplySeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
-  replyCount: number;
+  replyLabel: number;
 }
 
 const ReplySeparator = React.forwardRef<HTMLDivElement, ReplySeparatorProps>(
-  ({ className, replyCount, ...props }, ref) => (
+  ({ className, replyLabel, ...props }, ref) => (
     <div ref={ref} className={cn('flex w-full p-2', className)} {...props}>
       <Badge className="mr-2 shrink-0 bg-primary-500 hover:bg-primary-500">
-        {`${replyCount} reply`}
+        {replyLabel}
       </Badge>
       <Separator className="my-2 shrink bg-primary-500" />
     </div>
