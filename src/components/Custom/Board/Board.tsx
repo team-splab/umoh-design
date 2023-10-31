@@ -38,7 +38,7 @@ const BoardHeader = React.forwardRef<
   return (
     <AccordionPrimitive.Trigger
       className={cn(
-        'flex items-center justify-between border-b-2 font-medium text-primary-500 transition-all hover:bg-slate-100 [&[data-state=open]>svg]:rotate-180',
+        'flex items-center justify-between border-b-2 font-medium text-primary-500 hover:bg-slate-100',
         className
       )}
       {...props}
@@ -69,7 +69,7 @@ const BoardHeader = React.forwardRef<
           ref={ref}
           className="rounded-full p-2 hover:bg-slate-300 [&[data-state=open]>svg]:rotate-180"
         >
-          <ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200" />
+          <ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200 ease-out" />
         </AccordionPrimitive.Trigger>
       </div>
     </AccordionPrimitive.Trigger>
