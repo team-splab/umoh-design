@@ -200,6 +200,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     <FormItem className="flex-grow">
                       <FormControl>
                         <BoardTextField
+                          onSubmit={form.handleSubmit(handleSend)}
                           placeholder="Post your comment"
                           {...field}
                         />
@@ -339,6 +340,7 @@ export const ExampleBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
                     <FormItem className="flex-grow">
                       <FormControl>
                         <BoardTextField
+                          onSubmit={form.handleSubmit(handleSend)}
                           placeholder="Post your comment"
                           {...field}
                         />
