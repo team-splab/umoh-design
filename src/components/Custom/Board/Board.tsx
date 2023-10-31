@@ -100,7 +100,7 @@ const BoardContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'relative overflow-hidden text-sm h-board-content data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down board-mobile:data-[state=open]:h-board-content-md',
+      'relative overflow-hidden text-sm h-board-content data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down board-mobile:h-board-content-md',
       className
     )}
     {...props}
