@@ -71,7 +71,7 @@ const BoardHeader = React.forwardRef<
         </AccordionPrimitive.Header>
         <AccordionPrimitive.Trigger
           ref={ref}
-          className="rounded-full p-2 hover:bg-slate-300 [&[data-state=open]>svg]:rotate-180"
+          className="pointer-events-none rounded-full p-2 [&[data-state=open]>svg]:rotate-180"
         >
           <ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200 ease-out" />
         </AccordionPrimitive.Trigger>
