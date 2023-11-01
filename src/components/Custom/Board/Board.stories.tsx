@@ -104,7 +104,10 @@ export const DefaultBoard: StoryObj<typeof Board> = {
     return (
       <Board className="fixed bottom-0 right-0" collapsible type="single">
         <BoardContainer value="post">
-          <BoardHeader onRefreshClick={handleRefreshClick} />
+          <BoardHeader
+            onRefreshClick={handleRefreshClick}
+            headerTitle="Community Forum"
+          />
           <BoardPreview>
             <PreviewCard
               isHost={MockPreviewData.isHost}
@@ -115,7 +118,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
           <BoardContent>
             {replyOpen ? (
               <div className="flex h-full w-full flex-col overflow-auto">
-                <ReplyHeader onBackClick={handleBackClick} />
+                <ReplyHeader onBackClick={handleBackClick} label="Back" />
                 <PostCard
                   id={MockReplyPostData.id}
                   key={MockReplyPostData.id}
@@ -136,10 +139,12 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                   <PostCardContent
                     isHost={MockReplyPostData.isHost}
                     content={MockReplyPostData.content}
-                    replyCount={MockReplyPostData.replyCount}
+                    replyLabel={`${MockReplyPostData.replyCount} replies`}
                   />
                 </PostCard>
-                <ReplySeparator replyCount={MockReplyPostData.replyCount} />
+                <ReplySeparator
+                  replyLabel={`${MockReplyPostData.replyCount} replies`}
+                />
                 {MockReplyData.map(item => (
                   <PostCard id={item.id} key={item.id} isHost={item.isHost}>
                     <PostCardHeader
@@ -174,7 +179,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     <PostCardContent
                       isHost={item.isHost}
                       content={item.content}
-                      replyCount={item.replyCount}
+                      replyLabel={`${item.replyCount} replies`}
                       onReplyClick={handleReplyClick}
                     />
                   </PostCard>
@@ -195,6 +200,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     <FormItem className="flex-grow">
                       <FormControl>
                         <BoardTextField
+                          onSubmit={form.handleSubmit(handleSend)}
                           placeholder="Post your comment"
                           {...field}
                         />
@@ -243,7 +249,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
             <PostCardContent
               isHost={item.isHost}
               content={item.content}
-              replyCount={item.replyCount}
+              replyLabel={`${item.replyCount} replies`}
               onReplyClick={handleReplyClick}
             />
           </PostCard>
@@ -304,7 +310,10 @@ export const ExampleBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
     return (
       <Board className="fixed bottom-0 right-0" collapsible type="single">
         <BoardContainer value="post">
-          <BoardHeader onRefreshClick={handleRefreshClick} />
+          <BoardHeader
+            onRefreshClick={handleRefreshClick}
+            headerTitle="Community Forum"
+          />
           <BoardPreview>
             <PreviewCard
               isHost={MockPreviewData.isHost}
@@ -331,6 +340,7 @@ export const ExampleBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
                     <FormItem className="flex-grow">
                       <FormControl>
                         <BoardTextField
+                          onSubmit={form.handleSubmit(handleSend)}
                           placeholder="Post your comment"
                           {...field}
                         />

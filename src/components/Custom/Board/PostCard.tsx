@@ -38,7 +38,7 @@ const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
           </Badge>
         ) : null}
       </div>
-      <div className="board-mobile:line-clamp-3 line-clamp-1 text-sm">
+      <div className="line-clamp-1 text-sm board-mobile:line-clamp-3">
         {content}
       </div>
     </div>
@@ -148,7 +148,7 @@ PostCardHeader.displayName = 'PostCardHeader';
 interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
   isHost: boolean;
   content: string;
-  replyLabel: string;
+  replyLabel?: string;
   onReplyClick?: () => void;
 }
 
@@ -168,7 +168,8 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
             isHost ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
           }`}
         >
-          <MessageSquareIcon />({replyLabel})
+          <MessageSquareIcon />
+          {replyLabel}
         </Button>
       ) : null}
     </div>
@@ -202,7 +203,7 @@ const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
 );
 
 interface ReplySeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
-  replyLabel: number;
+  replyLabel?: string;
 }
 
 const ReplySeparator = React.forwardRef<HTMLDivElement, ReplySeparatorProps>(

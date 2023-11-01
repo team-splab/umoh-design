@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button, Input, Skeleton } from 'components';
+import { Button, Skeleton, Textarea } from 'components';
 import { cn } from 'lib/twUtils';
 import { ChevronUp, MessageSquarePlusIcon, RefreshCwIcon } from 'lucide-react';
 
@@ -16,7 +16,7 @@ const BoardContainer = React.forwardRef<
   <AccordionPrimitive.Item
     ref={ref}
     className={cn(
-      'board-mobile:w-80 board-mobile:data-[state=open]:w-80 flex w-56 flex-col bg-white shadow-lg transition-all duration-200 ease-out data-[state=open]:w-screen',
+      'flex w-56 flex-col bg-white shadow-lg transition-all duration-200 ease-out data-[state=open]:w-screen board-mobile:w-80 board-mobile:data-[state=open]:w-80',
       className
     )}
     {...props}
@@ -47,7 +47,7 @@ const BoardHeader = React.forwardRef<
       )}
       {...props}
     >
-      <div className="board-mobile:p-4 board-mobile:text-base flex items-center gap-1 p-2 text-sm">
+      <div className="flex items-center gap-1 p-2 text-sm board-mobile:p-4 board-mobile:text-base">
         <MessageSquarePlusIcon />
         {headerTitle}
       </div>
@@ -71,7 +71,7 @@ const BoardHeader = React.forwardRef<
         </AccordionPrimitive.Header>
         <AccordionPrimitive.Trigger
           ref={ref}
-          className="rounded-full p-2 hover:bg-slate-300 [&[data-state=open]>svg]:rotate-180"
+          className="pointer-events-none rounded-full p-2 [&[data-state=open]>svg]:rotate-180"
         >
           <ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200 ease-out" />
         </AccordionPrimitive.Trigger>
@@ -87,7 +87,7 @@ const BoardPreview = React.forwardRef<
   <AccordionPrimitive.Header
     ref={ref}
     className={cn(
-      'board-mobile:max-h-32 board-mobile:p-4 flex max-h-16 flex-col gap-1 overflow-hidden p-2 transition-all duration-200 ease-out data-[state=open]:max-h-0 data-[state=open]:py-0 data-[state=closed]:opacity-100 data-[state=open]:opacity-0',
+      'flex max-h-16 flex-col gap-1 overflow-hidden p-2 transition-all duration-200 ease-out data-[state=open]:max-h-0 data-[state=open]:py-0 data-[state=closed]:opacity-100 data-[state=open]:opacity-0 board-mobile:max-h-32 board-mobile:p-4',
       className
     )}
     {...props}
@@ -104,7 +104,7 @@ const BoardContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'board-mobile:h-board-content-md relative overflow-hidden text-sm h-board-content data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
+      'relative overflow-hidden text-sm h-board-content data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down board-mobile:h-board-content-md',
       className
     )}
     {...props}
@@ -131,17 +131,29 @@ const BoardSendContainer = React.forwardRef<
 ));
 BoardSendContainer.displayName = 'BoardSendContainer';
 
+interface BoardTextFieldProps
+  extends React.HTMLAttributes<HTMLTextAreaElement> {
+  onSubmit?: () => void;
+}
+
 const BoardTextField = React.forwardRef<
-  HTMLInputElement,
-  React.HTMLAttributes<HTMLInputElement>
+  HTMLTextAreaElement,
+  BoardTextFieldProps
 >(({ className, ...props }, ref) => (
-  <Input
+  <Textarea
     className={cn(
-      'rounded-none border-none px-4 py-2 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
+      'min-h-0 resize-none rounded-none border-none px-4 py-2 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
       className
     )}
     ref={ref}
     autoComplete="off"
+    onKeyDown={e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        props.onSubmit?.();
+      }
+    }}
+    rows={1}
     {...props}
   />
 ));
