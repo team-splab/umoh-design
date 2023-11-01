@@ -104,7 +104,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
           className="object-cover"
           src={
             profileImg ||
-            'https://api.dicebear.com/7.x/micah/svg?seed=Boots&backgroundColor=b6e3f4,c0aede,d1d4f9'
+            'https://storage.umoh.io/official/umoh_icon_purple.png'
           }
           alt="profileImg"
         />
