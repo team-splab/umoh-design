@@ -5,10 +5,10 @@ const pluginConfig = plugin.withOptions(
     return ({ addUtilities }) => {
       addUtilities({
         '.h-board-content': {
-          height: ['calc(100vh - 5rem)', 'calc(100dvh - 7rem)'],
+          height: ['calc(100vh - 7rem)', 'calc(100dvh - 7rem)'],
         },
         '.h-board-content-md': {
-          height: ['calc(100vh - 6rem)', 'calc(100dvh - 12rem)'],
+          height: ['calc(100vh - 12rem)', 'calc(100dvh - 12rem)'],
         },
         'title-lg': {
           fontFamily: 'Pretendard',
