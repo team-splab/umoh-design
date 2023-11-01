@@ -199,11 +199,14 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                   render={({ field }) => (
                     <FormItem className="flex-grow">
                       <FormControl>
-                        <BoardTextField
-                          onSubmit={form.handleSubmit(handleSend)}
-                          placeholder="Post your comment"
-                          {...field}
-                        />
+                        <div className="px-2 py-4">
+                          <BoardTextField
+                            className="rounded-md bg-slate-300"
+                            onSubmit={form.handleSubmit(handleSend)}
+                            placeholder="Post your comment"
+                            {...field}
+                          />
+                        </div>
                       </FormControl>
                     </FormItem>
                   )}
