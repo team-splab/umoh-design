@@ -20,11 +20,14 @@ import {
   ReplyHeader,
   ReplySeparator,
 } from 'components';
+import { Edit3Icon, Trash2Icon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
+
+import { PostMenu } from './PostMenu';
 
 const meta = {
   title: 'CustomComponent/Board',
@@ -123,7 +126,11 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                   id={MockReplyPostData.id}
                   key={MockReplyPostData.id}
                   isHost={MockReplyPostData.isHost}
-                  className={'border bg-slate-200 hover:bg-slate-200'}
+                  className={`${
+                    MockReplyPostData.isHost
+                      ? 'bg-amber-200/50 hover:bg-amber-200/50'
+                      : 'bg-slate-200 hover:bg-slate-200'
+                  }`}
                 >
                   <PostCardHeader
                     isHost={MockReplyPostData.isHost}
@@ -135,7 +142,12 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     fullTime={new Date(
                       MockReplyPostData.createdAt
                     ).toLocaleString()}
-                  />
+                  >
+                    <PostMenu
+                      isHost={MockReplyPostData.isHost}
+                      menuItems={MockPostMenuItems}
+                    />
+                  </PostCardHeader>
                   <PostCardContent
                     isHost={MockReplyPostData.isHost}
                     content={MockReplyPostData.content}
@@ -155,7 +167,12 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                       fullTime={new Date(
                         MockReplyPostData.createdAt
                       ).toLocaleString()}
-                    />
+                    >
+                      <PostMenu
+                        isHost={MockReplyPostData.isHost}
+                        menuItems={MockPostMenuItems}
+                      />
+                    </PostCardHeader>
                     <PostCardContent
                       isHost={item.isHost}
                       content={item.content}
@@ -175,7 +192,12 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                       fullTime={new Date(
                         MockReplyPostData.createdAt
                       ).toLocaleString()}
-                    />
+                    >
+                      <PostMenu
+                        isHost={item.isHost}
+                        menuItems={MockPostMenuItems}
+                      />
+                    </PostCardHeader>
                     <PostCardContent
                       isHost={item.isHost}
                       content={item.content}
@@ -360,6 +382,25 @@ export const ExampleBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
     );
   },
 };
+
+const MockPostMenuItems = [
+  {
+    id: '1',
+    icon: <Trash2Icon />,
+    text: 'Delete',
+    onClick: () => {
+      console.log('Delete');
+    },
+  },
+  {
+    id: '2',
+    icon: <Edit3Icon />,
+    text: 'Edit',
+    onClick: () => {
+      console.log('Edit');
+    },
+  },
+];
 
 // /v2/space/{handle}/board/preview
 const MockPreviewResponse = {

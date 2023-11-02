@@ -83,6 +83,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
   (
     {
       className,
+      children,
       isHost,
       profileImg,
       name,
@@ -110,35 +111,38 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
         />
         <AvatarFallback>?</AvatarFallback>
       </Avatar>
-      <div className="flex w-56 flex-col items-start gap-1">
-        <p
-          className="flex w-full items-center gap-1 text-sm font-semibold"
-          onClick={onNameClick}
-        >
-          <span className="overflow-hidden text-ellipsis text-sm font-bold">
-            {name}
-          </span>
-          {isHost && (
-            <Badge
-              variant="default"
-              className="bg-primary-500 hover:bg-primary-500"
-            >
-              host
-            </Badge>
-          )}
-        </p>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              <p className="text-xs text-gray-500 hover:underline">
-                {createdAt}
-              </p>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{fullTime}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+      <div className="flex w-full justify-between">
+        <div className="flex w-56 flex-col items-start gap-1">
+          <p
+            className="flex w-full items-center gap-1 text-sm font-semibold"
+            onClick={onNameClick}
+          >
+            <span className="overflow-hidden text-ellipsis text-sm font-bold">
+              {name}
+            </span>
+            {isHost && (
+              <Badge
+                variant="default"
+                className="bg-primary-500 hover:bg-primary-500"
+              >
+                host
+              </Badge>
+            )}
+          </p>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <p className="text-xs text-gray-500 hover:underline">
+                  {createdAt}
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{fullTime}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+        {children}
       </div>
     </div>
   )
