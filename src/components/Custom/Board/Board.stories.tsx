@@ -27,8 +27,6 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { PostMenu } from './PostMenu';
-
 const meta = {
   title: 'CustomComponent/Board',
   component: Board,
@@ -142,12 +140,8 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     fullTime={new Date(
                       MockReplyPostData.createdAt
                     ).toLocaleString()}
-                  >
-                    <PostMenu
-                      isHost={MockReplyPostData.isHost}
-                      menuItems={MockPostMenuItems}
-                    />
-                  </PostCardHeader>
+                    menuItems={MockPostMenuItems}
+                  />
                   <PostCardContent
                     isHost={MockReplyPostData.isHost}
                     content={MockReplyPostData.content}
@@ -167,12 +161,8 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                       fullTime={new Date(
                         MockReplyPostData.createdAt
                       ).toLocaleString()}
-                    >
-                      <PostMenu
-                        isHost={MockReplyPostData.isHost}
-                        menuItems={MockPostMenuItems}
-                      />
-                    </PostCardHeader>
+                      menuItems={MockPostMenuItems}
+                    />
                     <PostCardContent
                       isHost={item.isHost}
                       content={item.content}
@@ -192,12 +182,8 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                       fullTime={new Date(
                         MockReplyPostData.createdAt
                       ).toLocaleString()}
-                    >
-                      <PostMenu
-                        isHost={item.isHost}
-                        menuItems={MockPostMenuItems}
-                      />
-                    </PostCardHeader>
+                      menuItems={MockPostMenuItems}
+                    />
                     <PostCardContent
                       isHost={item.isHost}
                       content={item.content}
@@ -392,14 +378,16 @@ const MockPostMenuItems = [
       console.log('Delete');
     },
   },
-  {
-    id: '2',
-    icon: <Edit3Icon />,
-    text: 'Edit',
-    onClick: () => {
-      console.log('Edit');
-    },
-  },
+  true
+    ? null
+    : {
+        id: '2',
+        icon: <Edit3Icon />,
+        text: 'Edit',
+        onClick: () => {
+          console.log('Edit');
+        },
+      },
 ];
 
 // /v2/space/{handle}/board/preview

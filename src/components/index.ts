@@ -40,4 +40,3 @@ export * from './Base/Toggle/Toggle';
 export * from './Base/Tooltip/Tooltip';
 export * from './Custom/Board/Board';
 export * from './Custom/Board/PostCard';
-export * from './Custom/Board/PostMenu';
