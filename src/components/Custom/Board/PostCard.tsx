@@ -3,10 +3,14 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from 'components/Base/Avatar/Avatar';
-import { Badge } from 'components/Base/Badge/Badge';
-import { Button } from 'components/Base/Button/Button';
-import { Separator } from 'components/Base/Separator/Separator';
+  Badge,
+  Button,
+  Separator,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from 'components';
 import { cn } from 'lib/twUtils';
 import { ChevronLeftIcon, MessageSquareIcon } from 'lucide-react';
 
@@ -34,7 +38,9 @@ const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
           </Badge>
         ) : null}
       </div>
-      <div className="line-clamp-1 text-sm md:line-clamp-3">{content}</div>
+      <div className="line-clamp-1 text-sm board-mobile:line-clamp-3">
+        {content}
+      </div>
     </div>
   )
 );
@@ -68,6 +74,7 @@ interface PostCardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   profileImg: string | null;
   name: string;
   createdAt: string;
+  fullTime: string;
   onImgClick?: () => void;
   onNameClick?: () => void;
 }
@@ -80,6 +87,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
       profileImg,
       name,
       createdAt,
+      fullTime,
       onImgClick,
       onNameClick,
       ...props
@@ -95,12 +103,12 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
         <AvatarImage
           className="object-cover"
           src={
-            profileImg ??
-            'https://api.dicebear.com/7.x/micah/svg?seed=Boots&backgroundColor=b6e3f4,c0aede,d1d4f9'
+            profileImg ||
+            'https://storage.umoh.io/official/umoh_icon_purple.png'
           }
           alt="profileImg"
         />
-        <AvatarFallback>profileImg</AvatarFallback>
+        <AvatarFallback>?</AvatarFallback>
       </Avatar>
       <div className="flex w-56 flex-col items-start gap-1">
         <p
@@ -119,7 +127,18 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
             </Badge>
           )}
         </p>
-        <p className="text-xs text-gray-500 dark:text-gray-400">{createdAt}</p>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <p className="text-xs text-gray-500 hover:underline">
+                {createdAt}
+              </p>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{fullTime}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
     </div>
   )
@@ -129,19 +148,19 @@ PostCardHeader.displayName = 'PostCardHeader';
 interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
   isHost: boolean;
   content: string;
-  replyCount?: number;
+  replyLabel?: string;
   onReplyClick?: () => void;
 }
 
 const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
-  ({ className, isHost, content, replyCount, onReplyClick, ...props }, ref) => (
+  ({ className, isHost, content, replyLabel, onReplyClick, ...props }, ref) => (
     <div
       ref={ref}
       className={cn('flex flex-col gap-2 text-sm text-black', className)}
       {...props}
     >
       {content}
-      {replyCount && onReplyClick ? (
+      {onReplyClick ? (
         <Button
           variant="ghost"
           onClick={onReplyClick}
@@ -150,7 +169,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
           }`}
         >
           <MessageSquareIcon />
-          Reply ({replyCount})
+          {replyLabel}
         </Button>
       ) : null}
     </div>
@@ -160,36 +179,40 @@ PostCardContent.displayName = 'PostCardContent';
 
 interface ReplyHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
+   * @description 뒤로가기 버튼에 표시할 라벨
+   */
+  label: string;
+  /**
    * @description 뒤로가기 버튼 클릭 시 호출되는 콜백 함수
    */
   onBackClick?: () => void;
 }
 
 const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
-  ({ className, onBackClick, ...props }, ref) => (
+  ({ className, label, onBackClick, ...props }, ref) => (
     <div ref={ref} className={cn('', className)} {...props}>
       <button
         onClick={onBackClick}
         className="group flex items-center border-b p-2 hover:underline"
       >
         <ChevronLeftIcon className="h-6 w-6 duration-300 ease-out group-hover:translate-x-[-4px]" />
-        Back
+        {label}
       </button>
     </div>
   )
 );
 
 interface ReplySeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
-  replyCount: number;
+  replyLabel?: string;
 }
 
 const ReplySeparator = React.forwardRef<HTMLDivElement, ReplySeparatorProps>(
-  ({ className, replyCount, ...props }, ref) => (
-    <div ref={ref} className={cn('flex p-2', className)} {...props}>
+  ({ className, replyLabel, ...props }, ref) => (
+    <div ref={ref} className={cn('flex w-full p-2', className)} {...props}>
       <Badge className="mr-2 shrink-0 bg-primary-500 hover:bg-primary-500">
-        {`${replyCount} reply`}
+        {replyLabel}
       </Badge>
-      <Separator className="my-2 bg-primary-500" />
+      <Separator className="my-2 shrink bg-primary-500" />
     </div>
   )
 );

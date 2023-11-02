@@ -1,14 +1,20 @@
 'use client';
 
 import React from 'react';
-import { Button } from 'components/Base/Button/Button';
 import {
+  Button,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from 'components/Base/DropdownMenu/DropdownMenu';
-import { Input } from 'components/Base/Input/Input';
+  Input,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from 'components';
 
 import {
   ColumnDef,
@@ -23,14 +29,6 @@ import {
   VisibilityState,
 } from '@tanstack/react-table';
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from './Table';
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];

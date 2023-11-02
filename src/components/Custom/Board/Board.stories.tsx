@@ -1,17 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-} from 'components/Base/Form/Form';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import type { Meta, StoryObj } from '@storybook/react';
-
-import {
   Board,
   BoardContainer,
   BoardContent,
@@ -21,13 +9,22 @@ import {
   BoardSendContainer,
   BoardSkeleton,
   BoardTextField,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
   PostCard,
   PostCardContent,
   PostCardHeader,
   PreviewCard,
   ReplyHeader,
   ReplySeparator,
-} from '.';
+} from 'components';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'CustomComponent/Board',
@@ -107,7 +104,10 @@ export const DefaultBoard: StoryObj<typeof Board> = {
     return (
       <Board className="fixed bottom-0 right-0" collapsible type="single">
         <BoardContainer value="post">
-          <BoardHeader onRefreshClick={handleRefreshClick} />
+          <BoardHeader
+            onRefreshClick={handleRefreshClick}
+            headerTitle="Community Forum"
+          />
           <BoardPreview>
             <PreviewCard
               isHost={MockPreviewData.isHost}
@@ -117,8 +117,8 @@ export const DefaultBoard: StoryObj<typeof Board> = {
           </BoardPreview>
           <BoardContent>
             {replyOpen ? (
-              <>
-                <ReplyHeader onBackClick={handleBackClick} />
+              <div className="flex h-full w-full flex-col overflow-auto">
+                <ReplyHeader onBackClick={handleBackClick} label="Back" />
                 <PostCard
                   id={MockReplyPostData.id}
                   key={MockReplyPostData.id}
@@ -132,14 +132,19 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     createdAt={new Date(
                       MockReplyPostData.createdAt
                     ).toLocaleString()}
+                    fullTime={new Date(
+                      MockReplyPostData.createdAt
+                    ).toLocaleString()}
                   />
                   <PostCardContent
                     isHost={MockReplyPostData.isHost}
                     content={MockReplyPostData.content}
-                    replyCount={MockReplyPostData.replyCount}
+                    replyLabel={`${MockReplyPostData.replyCount} replies`}
                   />
                 </PostCard>
-                <ReplySeparator replyCount={MockReplyPostData.replyCount} />
+                <ReplySeparator
+                  replyLabel={`${MockReplyPostData.replyCount} replies`}
+                />
                 {MockReplyData.map(item => (
                   <PostCard id={item.id} key={item.id} isHost={item.isHost}>
                     <PostCardHeader
@@ -147,6 +152,9 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                       profileImg={item.profileImg}
                       name={item.name}
                       createdAt={new Date(item.createdAt).toLocaleString()}
+                      fullTime={new Date(
+                        MockReplyPostData.createdAt
+                      ).toLocaleString()}
                     />
                     <PostCardContent
                       isHost={item.isHost}
@@ -154,24 +162,29 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     />
                   </PostCard>
                 ))}
-              </>
+              </div>
             ) : (
-              MockPostData.map(item => (
-                <PostCard id={item.id} key={item.id} isHost={item.isHost}>
-                  <PostCardHeader
-                    isHost={item.isHost}
-                    profileImg={item.profileImg}
-                    name={item.name}
-                    createdAt={new Date(item.createdAt).toLocaleString()}
-                  />
-                  <PostCardContent
-                    isHost={item.isHost}
-                    content={item.content}
-                    replyCount={item.replyCount}
-                    onReplyClick={handleReplyClick}
-                  />
-                </PostCard>
-              ))
+              <div className="h-full w-full overflow-auto">
+                {MockPostData.map(item => (
+                  <PostCard id={item.id} key={item.id} isHost={item.isHost}>
+                    <PostCardHeader
+                      isHost={item.isHost}
+                      profileImg={item.profileImg}
+                      name={item.name}
+                      createdAt={new Date(item.createdAt).toLocaleString()}
+                      fullTime={new Date(
+                        MockReplyPostData.createdAt
+                      ).toLocaleString()}
+                    />
+                    <PostCardContent
+                      isHost={item.isHost}
+                      content={item.content}
+                      replyLabel={`${item.replyCount} replies`}
+                      onReplyClick={handleReplyClick}
+                    />
+                  </PostCard>
+                ))}
+              </div>
             )}
           </BoardContent>
           <BoardSendContainer>
@@ -186,15 +199,21 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                   render={({ field }) => (
                     <FormItem className="flex-grow">
                       <FormControl>
-                        <BoardTextField
-                          placeholder="Post your comment"
-                          {...field}
-                        />
+                        <div className="px-2 py-4">
+                          <BoardTextField
+                            className="rounded-md bg-slate-300"
+                            onSubmit={form.handleSubmit(handleSend)}
+                            placeholder="Post your comment"
+                            {...field}
+                          />
+                        </div>
                       </FormControl>
                     </FormItem>
                   )}
                 />
-                <BoardPostButton />
+                <BoardPostButton>
+                  {replyOpen ? 'Reply' : 'Post'}
+                </BoardPostButton>
               </form>
             </Form>
           </BoardSendContainer>
@@ -228,11 +247,12 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
               profileImg={item.profileImg}
               name={item.name}
               createdAt={item.createdAt}
+              fullTime={new Date(item.createdAt).toLocaleString()}
             />
             <PostCardContent
               isHost={item.isHost}
               content={item.content}
-              replyCount={item.replyCount}
+              replyLabel={`${item.replyCount} replies`}
               onReplyClick={handleReplyClick}
             />
           </PostCard>
@@ -293,7 +313,10 @@ export const ExampleBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
     return (
       <Board className="fixed bottom-0 right-0" collapsible type="single">
         <BoardContainer value="post">
-          <BoardHeader onRefreshClick={handleRefreshClick} />
+          <BoardHeader
+            onRefreshClick={handleRefreshClick}
+            headerTitle="Community Forum"
+          />
           <BoardPreview>
             <PreviewCard
               isHost={MockPreviewData.isHost}
@@ -320,6 +343,7 @@ export const ExampleBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
                     <FormItem className="flex-grow">
                       <FormControl>
                         <BoardTextField
+                          onSubmit={form.handleSubmit(handleSend)}
                           placeholder="Post your comment"
                           {...field}
                         />
@@ -327,7 +351,7 @@ export const ExampleBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
                     </FormItem>
                   )}
                 />
-                <BoardPostButton />
+                <BoardPostButton>Reply</BoardPostButton>
               </form>
             </Form>
           </BoardSendContainer>

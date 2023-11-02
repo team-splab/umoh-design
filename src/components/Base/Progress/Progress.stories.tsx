@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Progress } from 'components';
 
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { Progress } from './Progress';
 
 const meta = {
   title: 'Components/Progress',

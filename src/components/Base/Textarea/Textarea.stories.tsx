@@ -1,9 +1,7 @@
 import React from 'react';
-import { Button } from 'components/Base/Button/Button';
+import { Button, Textarea } from 'components';
 
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { Textarea } from './Textarea';
 
 const meta = {
   title: 'Components/Textarea',

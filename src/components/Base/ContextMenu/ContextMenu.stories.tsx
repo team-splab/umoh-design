@@ -13,7 +13,7 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
-} from 'components/Base/ContextMenu/ContextMenu';
+} from 'components';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

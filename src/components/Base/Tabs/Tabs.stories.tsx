@@ -1,21 +1,19 @@
 import React from 'react';
-import { Button } from 'components/Base/Button/Button';
 import {
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from 'components/Base/Card/Card';
-import { Input } from 'components/Base/Input/Input';
-import { Label } from 'components/Base/Label/Label';
-import {
+  Input,
+  Label,
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from 'components/Base/Tabs/Tabs';
+} from 'components';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

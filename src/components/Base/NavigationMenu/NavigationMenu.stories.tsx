@@ -7,7 +7,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from 'components/Base/NavigationMenu/NavigationMenu';
+} from 'components';
 import { cn } from 'lib/twUtils';
 
 import type { Meta, StoryObj } from '@storybook/react';

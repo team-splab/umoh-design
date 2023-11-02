@@ -1,16 +1,16 @@
 'use client';
 
 import React from 'react';
-import { Button } from 'components/Base/Button/Button';
-import { Checkbox } from 'components/Base/Checkbox/Checkbox';
 import {
+  Button,
+  Checkbox,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from 'components/Base/DropdownMenu/DropdownMenu';
+} from 'components';
 import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
 
 import { ColumnDef } from '@tanstack/react-table';

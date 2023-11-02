@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button } from 'components/Base/Button/Button';
-import { Input } from 'components/Base/Input/Input';
+import { Button, Input } from 'components';
 
 import type { Meta, StoryObj } from '@storybook/react';
 

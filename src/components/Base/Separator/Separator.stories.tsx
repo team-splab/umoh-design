@@ -1,8 +1,7 @@
 import React from 'react';
+import { Separator } from 'components';
 
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { Separator } from './Separator';
 
 const meta = {
   title: 'Components/Separator',
@@ -86,7 +85,7 @@ export const ExampleSeparator: StoryObj<typeof Separator> = {
       },
     },
   },
-  render: args => (
+  render: () => (
     <div>
       <div className="space-y-1">
         <h4 className="text-sm font-medium leading-none">Radix Primitives</h4>

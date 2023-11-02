@@ -1,7 +1,4 @@
 import React from 'react';
-
-import type { Meta, StoryObj } from '@storybook/react';
-
 import {
   Select,
   SelectContent,
@@ -10,7 +7,9 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from './Select';
+} from 'components';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Components/Select',

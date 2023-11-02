@@ -1,10 +1,8 @@
 import React from 'react';
-
-import type { Meta, StoryObj } from '@storybook/react';
-
-import { columns, Payment } from './Columns';
-import { DataTable } from './DataTable';
 import {
+  columns,
+  DataTable,
+  Payment,
   Table,
   TableBody,
   TableCaption,
@@ -12,7 +10,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from './Table';
+} from 'components';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 const data: Payment[] = [
   {

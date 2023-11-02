@@ -1,10 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button } from 'components/Base/Button/Button';
-import { Input } from 'components/Base/Input/Input';
-import { ScrollArea } from 'components/Base/ScrollArea/ScrollArea';
-import { Skeleton } from 'components/Base/Skeleton/Skeleton';
+import { Button, Skeleton, Textarea } from 'components';
 import { cn } from 'lib/twUtils';
 import { ChevronUp, MessageSquarePlusIcon, RefreshCwIcon } from 'lucide-react';
 
@@ -19,7 +16,7 @@ const BoardContainer = React.forwardRef<
   <AccordionPrimitive.Item
     ref={ref}
     className={cn(
-      'flex w-56 flex-col bg-white shadow-lg data-[state=open]:w-screen md:w-80 md:data-[state=open]:w-80',
+      'flex w-56 flex-col bg-white shadow-lg transition-all duration-200 ease-out data-[state=open]:w-screen board-mobile:w-96 board-mobile:data-[state=open]:w-96',
       className
     )}
     {...props}
@@ -31,24 +28,28 @@ const BoardHeader = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
     /**
+     * @description 헤더 타이틀
+     */
+    headerTitle: string;
+    /**
      * @description 새로고침 버튼 클릭 시 호출되는 콜백 함수
      */
     onRefreshClick: () => void;
   }
->(({ className, onRefreshClick, ...props }, ref) => {
+>(({ className, headerTitle, onRefreshClick, ...props }, ref) => {
   const [effect, setEffect] = React.useState(false);
 
   return (
     <AccordionPrimitive.Trigger
       className={cn(
-        'flex items-center justify-between border-b-2 font-medium text-primary-500 transition-all hover:bg-slate-100 [&[data-state=open]>svg]:rotate-180',
+        'flex items-center justify-between border-b-2 font-medium text-primary-500 hover:bg-slate-100',
         className
       )}
       {...props}
     >
-      <div className="flex items-center gap-1 p-2 text-sm md:p-4 md:text-base">
+      <div className="flex items-center gap-1 p-2 text-sm board-mobile:p-4 board-mobile:text-base">
         <MessageSquarePlusIcon />
-        Community Board
+        {headerTitle}
       </div>
       <div className="flex gap-1">
         <AccordionPrimitive.Header className="flex data-[state=closed]:hidden">
@@ -70,9 +71,9 @@ const BoardHeader = React.forwardRef<
         </AccordionPrimitive.Header>
         <AccordionPrimitive.Trigger
           ref={ref}
-          className="rounded-full p-2 hover:bg-slate-300 [&[data-state=open]>svg]:rotate-180"
+          className="pointer-events-none rounded-full p-2 [&[data-state=open]>svg]:rotate-180"
         >
-          <ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200" />
+          <ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200 ease-out" />
         </AccordionPrimitive.Trigger>
       </div>
     </AccordionPrimitive.Trigger>
@@ -86,7 +87,7 @@ const BoardPreview = React.forwardRef<
   <AccordionPrimitive.Header
     ref={ref}
     className={cn(
-      'flex max-h-16 flex-col gap-1 p-2 data-[state=open]:hidden md:max-h-32 md:p-4',
+      'flex max-h-16 flex-col gap-1 overflow-hidden p-2 transition-all duration-200 ease-out data-[state=open]:max-h-0 data-[state=open]:py-0 data-[state=closed]:opacity-100 data-[state=open]:opacity-0 board-mobile:max-h-32 board-mobile:p-4',
       className
     )}
     {...props}
@@ -103,14 +104,12 @@ const BoardContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      'relative overflow-hidden text-sm transition-all data-[state=closed]:h-full data-[state=open]:h-[calc(100vh-5rem)] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down md:data-[state=open]:h-[calc(100vh-6rem)]',
+      'relative overflow-hidden text-sm h-board-content data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down board-mobile:h-board-content-md',
       className
     )}
     {...props}
   >
-    <ScrollArea className="flex h-full" type="scroll">
-      {children}
-    </ScrollArea>
+    {children}
   </AccordionPrimitive.Content>
 ));
 BoardContent.displayName = 'BoardContent';
@@ -121,7 +120,10 @@ const BoardSendContainer = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className={cn('flex w-full items-center', className)}
+    className={cn(
+      'w-full items-center overflow-hidden transition-opacity duration-200 ease-out data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down data-[state=closed]:opacity-0 data-[state=open]:opacity-100',
+      className
+    )}
     {...props}
   >
     {children}
@@ -129,17 +131,29 @@ const BoardSendContainer = React.forwardRef<
 ));
 BoardSendContainer.displayName = 'BoardSendContainer';
 
+interface BoardTextFieldProps
+  extends React.HTMLAttributes<HTMLTextAreaElement> {
+  onSubmit?: () => void;
+}
+
 const BoardTextField = React.forwardRef<
-  HTMLInputElement,
-  React.HTMLAttributes<HTMLInputElement>
+  HTMLTextAreaElement,
+  BoardTextFieldProps
 >(({ className, ...props }, ref) => (
-  <Input
+  <Textarea
     className={cn(
-      'rounded-none border-none px-4 py-2 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
+      'min-h-0 resize-none rounded-none border-none px-4 py-2 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0',
       className
     )}
     ref={ref}
     autoComplete="off"
+    onKeyDown={e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        props.onSubmit?.();
+      }
+    }}
+    rows={1}
     {...props}
   />
 ));
@@ -149,14 +163,14 @@ BoardTextField.displayName = 'BoardTextField';
 const BoardPostButton = React.forwardRef<
   HTMLButtonElement,
   React.HTMLAttributes<HTMLButtonElement>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <Button
     type="submit"
     className={cn('mr-2 h-8 bg-primary-500 hover:bg-primary-600', className)}
     ref={ref}
     {...props}
   >
-    Post
+    {children}
   </Button>
 ));
 
