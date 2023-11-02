@@ -16,7 +16,7 @@ const BoardContainer = React.forwardRef<
   <AccordionPrimitive.Item
     ref={ref}
     className={cn(
-      'flex w-56 flex-col bg-white shadow-lg transition-all duration-200 ease-out data-[state=open]:w-screen board-mobile:w-80 board-mobile:data-[state=open]:w-80',
+      'flex w-56 flex-col bg-white shadow-lg transition-all duration-200 ease-out data-[state=open]:w-screen board-mobile:w-96 board-mobile:data-[state=open]:w-96',
       className
     )}
     {...props}
