@@ -5,6 +5,11 @@ import {
   AvatarImage,
   Badge,
   Button,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
   Separator,
   Tooltip,
   TooltipContent,
@@ -12,7 +17,13 @@ import {
   TooltipTrigger,
 } from 'components';
 import { cn } from 'lib/twUtils';
-import { ChevronLeftIcon, MessageSquareIcon } from 'lucide-react';
+import {
+  ChevronLeftIcon,
+  MessageSquareIcon,
+  MoreVerticalIcon,
+} from 'lucide-react';
+
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
 interface PreviewCardProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
@@ -69,6 +80,15 @@ const PostCard = React.forwardRef<HTMLDivElement, PostCardProps>(
 );
 PostCard.displayName = 'PostCard';
 
+interface MenuItem {
+  id: string;
+  icon?: React.ReactNode;
+  text: string;
+  separator?: boolean;
+  onClick?: () => void;
+  itemProps?: React.ComponentProps<typeof DropdownMenuPrimitive.Item>;
+}
+
 interface PostCardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   isHost: boolean;
   profileImg: string | null;
@@ -77,13 +97,20 @@ interface PostCardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   fullTime: string;
   onImgClick?: () => void;
   onNameClick?: () => void;
+  menuItems?: (MenuItem | null)[];
+  dropdownTriggerProps?: React.ComponentProps<
+    typeof DropdownMenuPrimitive.Trigger
+  >;
+  dropdownMenuProps?: React.ComponentProps<typeof DropdownMenuPrimitive.Root>;
+  dropdownContentProps?: React.ComponentProps<
+    typeof DropdownMenuPrimitive.Content
+  >;
 }
 
 const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
   (
     {
       className,
-      children,
       isHost,
       profileImg,
       name,
@@ -91,6 +118,10 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
       fullTime,
       onImgClick,
       onNameClick,
+      menuItems,
+      dropdownTriggerProps,
+      dropdownMenuProps,
+      dropdownContentProps,
       ...props
     },
     ref
@@ -142,7 +173,35 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
             </Tooltip>
           </TooltipProvider>
         </div>
-        {children}
+        <DropdownMenu {...dropdownMenuProps}>
+          <DropdownMenuTrigger {...dropdownTriggerProps}>
+            <button
+              className={`rounded-full p-2 ${
+                isHost ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
+              }`}
+            >
+              <MoreVerticalIcon className="h-4 w-4" />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent ref={ref} {...dropdownContentProps}>
+            {menuItems?.map(item => {
+              if (!item) return null;
+              return (
+                <>
+                  <DropdownMenuItem
+                    key={item.id}
+                    onClick={item.onClick}
+                    {...item.itemProps}
+                  >
+                    {item.icon}
+                    <span>{item.text}</span>
+                  </DropdownMenuItem>
+                  {item.separator ? <DropdownMenuSeparator /> : null}
+                </>
+              );
+            })}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   )
