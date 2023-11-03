@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { cn } from 'lib/twUtils';
-import { X } from 'lucide-react';
 
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 
@@ -42,10 +41,6 @@ const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-gray-100 data-[state=open]:text-gray-500">
-        <X className="h-4 w-4" />
-        <span className="sr-only">Close</span>
-      </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPortal>
 ));
@@ -71,7 +66,7 @@ const DialogFooter = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
+      'flex flex-col-reverse gap-2 sm:flex-row sm:justify-end',
       className
     )}
     {...props}
