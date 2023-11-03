@@ -16,6 +16,7 @@ import {
   PostCard,
   PostCardContent,
   PostCardHeader,
+  PostCardHeaderProps,
   PreviewCard,
   ReplyHeader,
   ReplySeparator,
@@ -161,7 +162,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                       fullTime={new Date(
                         MockReplyPostData.createdAt
                       ).toLocaleString()}
-                      menuItems={MockPostMenuItems}
+                      menuItems={MockReplyMenuItems}
                     />
                     <PostCardContent
                       isHost={item.isHost}
@@ -369,7 +370,7 @@ export const ExampleBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
   },
 };
 
-const MockPostMenuItems = [
+const MockPostMenuItems: PostCardHeaderProps['menuItems'] = [
   {
     id: '1',
     icon: <Trash2Icon />,
@@ -377,17 +378,60 @@ const MockPostMenuItems = [
     onClick: () => {
       console.log('Delete');
     },
+    dialog: true,
+    dialogTitle: 'Delete Post',
+    dialogDescription: 'Are you sure you want to delete this post?',
+    dialogConfirmText: 'Delete',
+    dialogConfirmVariant: 'destructive',
+    dialogCancelText: 'Cancel',
   },
-  true
-    ? null
-    : {
-        id: '2',
-        icon: <Edit3Icon />,
-        text: 'Edit',
-        onClick: () => {
-          console.log('Edit');
+  ...(false
+    ? [
+        {
+          id: '2',
+          icon: <Edit3Icon />,
+          text: 'Edit',
+          onClick: () => {
+            console.log('Edit');
+          },
+          dialogTitle: 'Edit Post',
+          dialogDescription: 'Are you sure you want to edit this post?',
+          dialogConfirmText: 'Edit',
+          dialogCancelText: 'Cancel',
         },
-      },
+      ]
+    : []),
+];
+
+const MockReplyMenuItems = [
+  {
+    id: '1',
+    icon: <Trash2Icon />,
+    text: 'Delete',
+    onClick: () => {
+      console.log('Delete');
+    },
+    dialogTitle: 'Delete Reply',
+    dialogDescription: 'Are you sure you want to delete this reply?',
+    dialogConfirmText: 'Delete',
+    dialogCancelText: 'Cancel',
+  },
+  ...(false
+    ? [
+        {
+          id: '2',
+          icon: <Edit3Icon />,
+          text: 'Edit',
+          onClick: () => {
+            console.log('Edit');
+          },
+          dialogTitle: 'Edit Reply',
+          dialogDescription: 'Are you sure you want to edit this reply?',
+          dialogConfirmText: 'Edit',
+          dialogCancelText: 'Cancel',
+        },
+      ]
+    : []),
 ];
 
 // /v2/space/{handle}/board/preview
