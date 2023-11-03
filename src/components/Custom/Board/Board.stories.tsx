@@ -151,6 +151,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     content={MockReplyPostData.content}
                     deletedText="This post has been deleted."
                     replyLabel={`${MockReplyPostData.replyCount} replies`}
+                    hasReply={MockReplyPostData.replyCount > 0}
                   />
                 </PostCard>
                 <ReplySeparator
@@ -179,6 +180,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                       isDeleted={item.deleted}
                       content={item.content}
                       deletedText="This post has been deleted."
+                      hasReply={MockReplyPostData.replyCount > 0}
                     />
                   </PostCard>
                 ))}
@@ -210,6 +212,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                       deletedText="This post has been deleted."
                       replyLabel={`${item.replyCount} replies`}
                       onReplyClick={handleReplyClick}
+                      hasReply={item.replyCount > 0}
                     />
                   </PostCard>
                 ))}
@@ -285,6 +288,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
               content={item.content}
               replyLabel={`${item.replyCount} replies`}
               onReplyClick={handleReplyClick}
+              hasReply={item.replyCount > 0}
             />
           </PostCard>
         ))}

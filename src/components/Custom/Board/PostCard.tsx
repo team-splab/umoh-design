@@ -296,6 +296,7 @@ interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
   content: string;
   deletedText?: string;
   replyLabel?: string;
+  hasReply: boolean;
   onReplyClick?: () => void;
 }
 
@@ -308,6 +309,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
       deletedText,
       content,
       replyLabel,
+      hasReply,
       onReplyClick,
       ...props
     },
@@ -328,7 +330,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
           {content}
         </div>
       )}
-      {onReplyClick ? (
+      {isDeleted && !hasReply ? null : onReplyClick ? (
         <Button
           variant="ghost"
           onClick={onReplyClick}
