@@ -122,6 +122,14 @@ interface PostCardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   dropdownContentProps?: React.ComponentProps<
     typeof DropdownMenuPrimitive.Content
   >;
+  dialogProps?: React.ComponentProps<typeof Dialog>;
+  dialogContentProps?: React.ComponentProps<typeof DialogContent>;
+  dialogHeaderProps?: React.ComponentProps<typeof DialogHeader>;
+  dialogTitleProps?: React.ComponentProps<typeof DialogTitle>;
+  dialogDescriptionProps?: React.ComponentProps<typeof DialogDescription>;
+  dialogFooterProps?: React.ComponentProps<typeof DialogFooter>;
+  dialogConfirmProps?: React.ComponentProps<typeof Button>;
+  dialogCancelProps?: React.ComponentProps<typeof Button>;
 }
 
 const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
@@ -140,6 +148,14 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
       dropdownTriggerProps,
       dropdownMenuProps,
       dropdownContentProps,
+      dialogProps,
+      dialogContentProps,
+      dialogHeaderProps,
+      dialogTitleProps,
+      dialogDescriptionProps,
+      dialogFooterProps,
+      dialogConfirmProps,
+      dialogCancelProps,
       ...props
     },
     ref
@@ -218,7 +234,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
                   setOpenMenu(false);
                 }}
               >
-                <Dialog open={openAlert}>
+                <Dialog open={openAlert} {...dialogProps}>
                   {menuItems?.map(item => {
                     return (
                       <>
@@ -244,20 +260,24 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
                             setOpenMenu(false);
                             setOpenAlert(false);
                           }}
+                          {...dialogContentProps}
                         >
-                          <DialogHeader>
-                            <DialogTitle>{item.dialogTitle}</DialogTitle>
-                            <DialogDescription>
+                          <DialogHeader {...dialogHeaderProps}>
+                            <DialogTitle {...dialogTitleProps}>
+                              {item.dialogTitle}
+                            </DialogTitle>
+                            <DialogDescription {...dialogDescriptionProps}>
                               {item.dialogDescription}
                             </DialogDescription>
                           </DialogHeader>
-                          <DialogFooter>
+                          <DialogFooter {...dialogFooterProps}>
                             <Button
                               variant={item.dialogCancelVariant}
                               onClick={() => {
                                 setOpenMenu(false);
                                 setOpenAlert(false);
                               }}
+                              {...dialogCancelProps}
                             >
                               {item.dialogCancelText}
                             </Button>
@@ -270,6 +290,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
                                 setOpenMenu(false);
                                 setOpenAlert(false);
                               }}
+                              {...dialogConfirmProps}
                             >
                               {item.dialogConfirmText}
                             </Button>
