@@ -221,7 +221,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
                   <Dialog open={openAlert}>
                     {menuItems?.map(item => {
                       return (
-                        <>
+                        <div>
                           <DropdownMenuItem
                             key={item.id}
                             onClick={
@@ -276,7 +276,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
                             </DialogFooter>
                           </DialogContent>
                           {item.separator ? <DropdownMenuSeparator /> : null}
-                        </>
+                        </div>
                       );
                     })}
                   </Dialog>
@@ -314,7 +314,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
     },
     ref
   ) => (
-    <>
+    <div>
       {isDeleted ? (
         <div className="flex items-center gap-2 py-2">
           <TrashIcon />
@@ -343,7 +343,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
           {replyLabel}
         </Button>
       ) : null}
-    </>
+    </div>
   )
 );
 PostCardContent.displayName = 'PostCardContent';
