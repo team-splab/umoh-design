@@ -425,7 +425,7 @@ const MockPostMenuItems: PostCardHeaderProps['menuItems'] = [
     : []),
 ];
 
-const MockReplyMenuItems = [
+const MockReplyMenuItems: PostCardHeaderProps['menuItems'] = [
   {
     id: '1',
     icon: <Trash2Icon />,
