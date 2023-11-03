@@ -1,6 +1,6 @@
 {
   "name": "@team-splab/umoh-design",
-  "version": "0.2.24",
+  "version": "0.2.25",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
