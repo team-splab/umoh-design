@@ -173,35 +173,37 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
             </Tooltip>
           </TooltipProvider>
         </div>
-        <DropdownMenu {...dropdownMenuProps}>
-          <DropdownMenuTrigger {...dropdownTriggerProps}>
-            <button
-              className={`rounded-full p-2 ${
-                isHost ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
-              }`}
-            >
-              <MoreVerticalIcon className="h-4 w-4" />
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent ref={ref} {...dropdownContentProps}>
-            {menuItems?.map(item => {
-              if (!item) return null;
-              return (
-                <>
-                  <DropdownMenuItem
-                    key={item.id}
-                    onClick={item.onClick}
-                    {...item.itemProps}
-                  >
-                    {item.icon}
-                    <span>{item.text}</span>
-                  </DropdownMenuItem>
-                  {item.separator ? <DropdownMenuSeparator /> : null}
-                </>
-              );
-            })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {menuItems?.every(item => item === null) ? null : (
+          <DropdownMenu {...dropdownMenuProps}>
+            <DropdownMenuTrigger {...dropdownTriggerProps}>
+              <button
+                className={`rounded-full p-2 ${
+                  isHost ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
+                }`}
+              >
+                <MoreVerticalIcon className="h-4 w-4" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent ref={ref} {...dropdownContentProps}>
+              {menuItems?.map(item => {
+                if (!item) return null;
+                return (
+                  <>
+                    <DropdownMenuItem
+                      key={item.id}
+                      onClick={item.onClick}
+                      {...item.itemProps}
+                    >
+                      {item.icon}
+                      <span>{item.text}</span>
+                    </DropdownMenuItem>
+                    {item.separator ? <DropdownMenuSeparator /> : null}
+                  </>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </div>
     </div>
   )
