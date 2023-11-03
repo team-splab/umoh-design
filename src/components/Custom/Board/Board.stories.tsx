@@ -125,6 +125,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                   id={MockReplyPostData.id}
                   key={MockReplyPostData.id}
                   isHost={MockReplyPostData.isHost}
+                  isDeleted={MockReplyPostData.deleted}
                   className={`${
                     MockReplyPostData.isHost
                       ? 'bg-amber-200/50 hover:bg-amber-200/50'
@@ -133,6 +134,7 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                 >
                   <PostCardHeader
                     isHost={MockReplyPostData.isHost}
+                    isDeleted={MockReplyPostData.deleted}
                     profileImg={MockReplyPostData.profileImg}
                     name={MockReplyPostData.name}
                     createdAt={new Date(
@@ -145,7 +147,9 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                   />
                   <PostCardContent
                     isHost={MockReplyPostData.isHost}
+                    isDeleted={MockReplyPostData.deleted}
                     content={MockReplyPostData.content}
+                    deletedText="This post has been deleted."
                     replyLabel={`${MockReplyPostData.replyCount} replies`}
                   />
                 </PostCard>
@@ -153,9 +157,15 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                   replyLabel={`${MockReplyPostData.replyCount} replies`}
                 />
                 {MockReplyData.map(item => (
-                  <PostCard id={item.id} key={item.id} isHost={item.isHost}>
+                  <PostCard
+                    id={item.id}
+                    key={item.id}
+                    isHost={item.isHost}
+                    isDeleted={item.deleted}
+                  >
                     <PostCardHeader
                       isHost={item.isHost}
+                      isDeleted={item.deleted}
                       profileImg={item.profileImg}
                       name={item.name}
                       createdAt={new Date(item.createdAt).toLocaleString()}
@@ -166,7 +176,9 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     />
                     <PostCardContent
                       isHost={item.isHost}
+                      isDeleted={item.deleted}
                       content={item.content}
+                      deletedText="This post has been deleted."
                     />
                   </PostCard>
                 ))}
@@ -174,9 +186,15 @@ export const DefaultBoard: StoryObj<typeof Board> = {
             ) : (
               <div className="h-full w-full overflow-auto">
                 {MockPostData.map(item => (
-                  <PostCard id={item.id} key={item.id} isHost={item.isHost}>
+                  <PostCard
+                    id={item.id}
+                    key={item.id}
+                    isHost={item.isHost}
+                    isDeleted={item.deleted}
+                  >
                     <PostCardHeader
                       isHost={item.isHost}
+                      isDeleted={item.deleted}
                       profileImg={item.profileImg}
                       name={item.name}
                       createdAt={new Date(item.createdAt).toLocaleString()}
@@ -187,7 +205,9 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     />
                     <PostCardContent
                       isHost={item.isHost}
+                      isDeleted={item.deleted}
                       content={item.content}
+                      deletedText="This post has been deleted."
                       replyLabel={`${item.replyCount} replies`}
                       onReplyClick={handleReplyClick}
                     />
@@ -253,6 +273,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
           <PostCard id={item.id} key={item.id} {...args}>
             <PostCardHeader
               isHost={item.isHost}
+              isDeleted={item.deleted}
               profileImg={item.profileImg}
               name={item.name}
               createdAt={item.createdAt}
@@ -260,6 +281,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
             />
             <PostCardContent
               isHost={item.isHost}
+              isDeleted={item.deleted}
               content={item.content}
               replyLabel={`${item.replyCount} replies`}
               onReplyClick={handleReplyClick}
@@ -442,6 +464,7 @@ const MockPreviewResponse = {
     id: '1',
     isHost: true,
     spaceProfileId: '1',
+    deleted: false,
     profileImg: 'https://ui-avatars.com/api/?name=isHost.png',
     name: 'Min',
     createdAt: new Date().toISOString(), // ISO표준
@@ -462,6 +485,7 @@ const MockPostResponse = {
         id: '1',
         isHost: true,
         spaceProfileId: '1',
+        deleted: false,
         profileImg:
           'https://storage.sendtime.app/space/2023-09-26T02:16:23.391350Zd6f2a820-6312-422c-a70b-d67ed9ef51e0-taekang.jpg',
         name: 'Kang',
@@ -474,6 +498,7 @@ const MockPostResponse = {
         id: '2',
         isHost: false,
         spaceProfileId: '2',
+        deleted: true,
         profileImg:
           'https://storage.sendtime.app/space/2023-08-11T07:26:39.783401Z69526a6a-77b1-44c4-a585-65fe72a6e82d-%EB%AF%BC%EC%8A%B9%ED%98%84-%EC%A0%95%EB%B0%A9%ED%98%95(%EC%8B%9C%ED%98%84%ED%95%98%EB%8B%A4).jpg',
         name: 'Leo',
@@ -486,6 +511,7 @@ const MockPostResponse = {
         id: '3',
         isHost: false,
         spaceProfileId: '3',
+        deleted: false,
         profileImg:
           'https://storage.sendtime.app/space/2023-08-25T13:10:00.287554Zeaa746bd-1a4c-4121-8ff0-dc3ca4da6d93-IMG_2798.jpg',
         name: 'Zin',
@@ -498,6 +524,7 @@ const MockPostResponse = {
         id: '4',
         isHost: true,
         spaceProfileId: '4',
+        deleted: true,
         profileImg:
           'https://storage.sendtime.app/space/2023-08-24T05:50:25.568248Z2f7267fd-ce1f-4dff-abc7-35f3be4b8ef5-Min.png',
         name: 'Min',
@@ -510,6 +537,7 @@ const MockPostResponse = {
         id: '5',
         isHost: true,
         spaceProfileId: '5',
+        deleted: false,
         profileImg:
           'https://storage.sendtime.app/space/2023-08-11T06:46:27.546074Zcfe0e2c6-745c-4c9c-b499-3f664186cedc-KakaoTalk_20230616_095206278.jpg',
         name: 'Changhee',
@@ -522,6 +550,7 @@ const MockPostResponse = {
         id: '6',
         isHost: false,
         spaceProfileId: '6',
+        deleted: false,
         profileImg:
           'https://storage.sendtime.app/space/2023-10-05T01:13:44.421301Z9b0cf6d6-a36e-4921-b2eb-3a7b764cacf2-IMG_1227.jpg',
         name: 'Sangmin',
@@ -534,6 +563,7 @@ const MockPostResponse = {
         id: '7',
         isHost: false,
         spaceProfileId: '7',
+        deleted: false,
         profileImg:
           'https://storage.sendtime.app/space/2023-09-26T02:06:07.170158Z6215cf2e-dfee-4a75-bcd4-2e8adefe66d5-%EC%9A%B0%EB%AA%A8-%ED%94%84%EB%A1%9C%ED%95%84-%EC%B9%B4%EB%93%9C-%EC%82%AC%EC%A7%84.jpg',
         name: 'Jihoon',
@@ -546,6 +576,7 @@ const MockPostResponse = {
         id: '8',
         isHost: false,
         spaceProfileId: '8',
+        deleted: false,
         profileImg:
           'https://storage.sendtime.app/space/2023-08-28T11:17:58.513542Z239c6f18-6a1f-4c4e-a6a7-01567061330a-%ED%99%8D%EC%86%94%EC%9D%981.jpg',
         name: 'Soleui',
@@ -558,6 +589,7 @@ const MockPostResponse = {
         id: '9',
         isHost: false,
         spaceProfileId: '9',
+        deleted: false,
         profileImg: null,
         name: 'User',
         createdAt: new Date().toISOString(),
@@ -569,6 +601,7 @@ const MockPostResponse = {
         id: '10',
         isHost: false,
         spaceProfileId: '10',
+        deleted: false,
         profileImg: null,
         name: 'User',
         createdAt: new Date().toISOString(),
@@ -588,6 +621,7 @@ const MockReplyResponse = {
       id: '1',
       isHost: true,
       spaceProfileId: '1',
+      deleted: false,
       profileImg:
         'https://storage.sendtime.app/space/2023-09-26T02:16:23.391350Zd6f2a820-6312-422c-a70b-d67ed9ef51e0-taekang.jpg',
       name: 'Kang',
@@ -601,6 +635,7 @@ const MockReplyResponse = {
         id: '2',
         isHost: false,
         spaceProfileId: '2',
+        deleted: false,
         profileImg: null,
         name: 'User',
         createdAt: new Date().toISOString(),
@@ -611,6 +646,7 @@ const MockReplyResponse = {
         id: '2',
         isHost: false,
         spaceProfileId: '2',
+        deleted: false,
         profileImg: null,
         name: 'User',
         createdAt: new Date().toISOString(),
@@ -621,6 +657,7 @@ const MockReplyResponse = {
         id: '2',
         isHost: false,
         spaceProfileId: '2',
+        deleted: false,
         profileImg: null,
         name: 'User',
         createdAt: new Date().toISOString(),

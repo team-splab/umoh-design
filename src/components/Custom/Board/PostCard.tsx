@@ -28,6 +28,7 @@ import {
   ChevronLeftIcon,
   MessageSquareIcon,
   MoreVerticalIcon,
+  TrashIcon,
 } from 'lucide-react';
 
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
@@ -67,15 +68,16 @@ PreviewCard.displayName = 'PreviewCard';
 
 interface PostCardProps extends React.HTMLAttributes<HTMLDivElement> {
   isHost: boolean;
+  isDeleted: boolean;
 }
 
 const PostCard = React.forwardRef<HTMLDivElement, PostCardProps>(
-  ({ className, isHost, ...props }, ref) => (
+  ({ className, isHost, isDeleted, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
         `flex flex-col gap-2 px-6 py-2 ${
-          isHost
+          !isDeleted && isHost
             ? 'bg-amber-100/50 hover:bg-amber-100/80'
             : 'bg-white hover:bg-slate-100/50'
         }`,
@@ -105,6 +107,7 @@ interface MenuItem {
 
 interface PostCardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   isHost: boolean;
+  isDeleted: boolean;
   profileImg: string | null;
   name: string;
   createdAt: string;
@@ -126,6 +129,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
     {
       className,
       isHost,
+      isDeleted,
       profileImg,
       name,
       createdAt,
@@ -143,143 +147,145 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
     const [openMenu, setOpenMenu] = React.useState(false);
     const [openAlert, setOpenAlert] = React.useState(false);
     return (
-      <div
-        ref={ref}
-        className={cn('flex items-center gap-4', className)}
-        {...props}
-      >
-        <Avatar className="rounded-lg" onClick={onImgClick}>
-          <AvatarImage
-            className="object-cover"
-            src={
-              profileImg ||
-              'https://storage.umoh.io/official/umoh_icon_purple.png'
-            }
-            alt="profileImg"
-          />
-          <AvatarFallback>?</AvatarFallback>
-        </Avatar>
-        <div className="flex w-full justify-between">
-          <div className="flex flex-grow flex-col items-start gap-1">
-            <p
-              className="flex w-full items-center gap-1 text-sm font-semibold"
-              onClick={onNameClick}
-            >
-              <span className="overflow-hidden text-ellipsis text-sm font-bold">
-                {name}
-              </span>
-              {isHost && (
-                <Badge
-                  variant="default"
-                  className="bg-primary-500 hover:bg-primary-500"
-                >
-                  host
-                </Badge>
-              )}
-            </p>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <p className="text-xs text-gray-500 hover:underline">
-                    {createdAt}
-                  </p>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{fullTime}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
-          {menuItems?.every(item => item === null) ? null : (
-            <DropdownMenu {...dropdownMenuProps} open={openMenu}>
-              <DropdownMenuTrigger
-                {...dropdownTriggerProps}
-                onClick={() => {
-                  setOpenMenu(true);
-                }}
+      !isDeleted && (
+        <div
+          ref={ref}
+          className={cn('flex items-center gap-4', className)}
+          {...props}
+        >
+          <Avatar className="rounded-lg" onClick={onImgClick}>
+            <AvatarImage
+              className="object-cover"
+              src={
+                profileImg ||
+                'https://storage.umoh.io/official/umoh_icon_purple.png'
+              }
+              alt="profileImg"
+            />
+            <AvatarFallback>?</AvatarFallback>
+          </Avatar>
+          <div className="flex w-full justify-between">
+            <div className="flex flex-grow flex-col items-start gap-1">
+              <p
+                className="flex w-full items-center gap-1 text-sm font-semibold"
+                onClick={onNameClick}
               >
-                <button
-                  className={`rounded-full p-2 ${
-                    isHost ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
-                  }`}
+                <span className="overflow-hidden text-ellipsis text-sm font-bold">
+                  {name}
+                </span>
+                {isHost && (
+                  <Badge
+                    variant="default"
+                    className="bg-primary-500 hover:bg-primary-500"
+                  >
+                    host
+                  </Badge>
+                )}
+              </p>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <p className="text-xs text-gray-500 hover:underline">
+                      {createdAt}
+                    </p>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{fullTime}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            {menuItems?.every(item => item === null) ? null : (
+              <DropdownMenu {...dropdownMenuProps} open={openMenu}>
+                <DropdownMenuTrigger
+                  {...dropdownTriggerProps}
+                  onClick={() => {
+                    setOpenMenu(true);
+                  }}
                 >
-                  <MoreVerticalIcon className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                ref={ref}
-                {...dropdownContentProps}
-                onInteractOutside={() => {
-                  setOpenMenu(false);
-                }}
-              >
-                <Dialog open={openAlert}>
-                  {menuItems?.map(item => {
-                    return (
-                      <>
-                        <DropdownMenuItem
-                          key={item.id}
-                          onClick={
-                            item.dialog
-                              ? () => {
-                                  setOpenAlert(true);
-                                }
-                              : () => {
-                                  item.onClick && item.onClick();
+                  <button
+                    className={`rounded-full p-2 ${
+                      isHost ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
+                    }`}
+                  >
+                    <MoreVerticalIcon className="h-4 w-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  ref={ref}
+                  {...dropdownContentProps}
+                  onInteractOutside={() => {
+                    setOpenMenu(false);
+                  }}
+                >
+                  <Dialog open={openAlert}>
+                    {menuItems?.map(item => {
+                      return (
+                        <>
+                          <DropdownMenuItem
+                            key={item.id}
+                            onClick={
+                              item.dialog
+                                ? () => {
+                                    setOpenAlert(true);
+                                  }
+                                : () => {
+                                    item.onClick && item.onClick();
+                                    setOpenMenu(false);
+                                  }
+                            }
+                            {...item.itemProps}
+                          >
+                            {item.icon}
+                            <span>{item.text}</span>
+                          </DropdownMenuItem>
+                          <DialogContent
+                            onInteractOutside={() => {
+                              setOpenMenu(false);
+                              setOpenAlert(false);
+                            }}
+                          >
+                            <DialogHeader>
+                              <DialogTitle>{item.dialogTitle}</DialogTitle>
+                              <DialogDescription>
+                                {item.dialogDescription}
+                              </DialogDescription>
+                            </DialogHeader>
+                            <DialogFooter>
+                              <Button
+                                variant={item.dialogCancelVariant}
+                                onClick={() => {
                                   setOpenMenu(false);
-                                }
-                          }
-                          {...item.itemProps}
-                        >
-                          {item.icon}
-                          <span>{item.text}</span>
-                        </DropdownMenuItem>
-                        <DialogContent
-                          onInteractOutside={() => {
-                            setOpenMenu(false);
-                            setOpenAlert(false);
-                          }}
-                        >
-                          <DialogHeader>
-                            <DialogTitle>{item.dialogTitle}</DialogTitle>
-                            <DialogDescription>
-                              {item.dialogDescription}
-                            </DialogDescription>
-                          </DialogHeader>
-                          <DialogFooter>
-                            <Button
-                              variant={item.dialogCancelVariant}
-                              onClick={() => {
-                                setOpenMenu(false);
-                                setOpenAlert(false);
-                              }}
-                            >
-                              {item.dialogCancelText}
-                            </Button>
-                            <Button
-                              variant={item.dialogConfirmVariant}
-                              onClick={() => {
-                                if (item && item.onClick) {
-                                  item.onClick();
-                                }
-                                setOpenMenu(false);
-                                setOpenAlert(false);
-                              }}
-                            >
-                              {item.dialogConfirmText}
-                            </Button>
-                          </DialogFooter>
-                        </DialogContent>
-                        {item.separator ? <DropdownMenuSeparator /> : null}
-                      </>
-                    );
-                  })}
-                </Dialog>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
+                                  setOpenAlert(false);
+                                }}
+                              >
+                                {item.dialogCancelText}
+                              </Button>
+                              <Button
+                                variant={item.dialogConfirmVariant}
+                                onClick={() => {
+                                  if (item && item.onClick) {
+                                    item.onClick();
+                                  }
+                                  setOpenMenu(false);
+                                  setOpenAlert(false);
+                                }}
+                              >
+                                {item.dialogConfirmText}
+                              </Button>
+                            </DialogFooter>
+                          </DialogContent>
+                          {item.separator ? <DropdownMenuSeparator /> : null}
+                        </>
+                      );
+                    })}
+                  </Dialog>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+          </div>
         </div>
-      </div>
+      )
     );
   }
 );
@@ -287,32 +293,57 @@ PostCardHeader.displayName = 'PostCardHeader';
 
 interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
   isHost: boolean;
+  isDeleted: boolean;
   content: string;
+  deletedText?: string;
   replyLabel?: string;
   onReplyClick?: () => void;
 }
 
 const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
-  ({ className, isHost, content, replyLabel, onReplyClick, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn('flex flex-col gap-2 text-sm text-black', className)}
-      {...props}
-    >
-      {content}
+  (
+    {
+      className,
+      isHost,
+      isDeleted,
+      deletedText,
+      content,
+      replyLabel,
+      onReplyClick,
+      ...props
+    },
+    ref
+  ) => (
+    <>
+      {isDeleted ? (
+        <div className="flex items-center gap-2 py-2">
+          <TrashIcon />
+          {deletedText}
+        </div>
+      ) : (
+        <div
+          ref={ref}
+          className={cn('flex flex-col gap-2 text-sm text-black', className)}
+          {...props}
+        >
+          {content}
+        </div>
+      )}
       {onReplyClick ? (
         <Button
           variant="ghost"
           onClick={onReplyClick}
           className={`inline-flex items-center justify-start gap-2 p-0 text-primary-500 hover:text-primary-500 hover:underline ${
-            isHost ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
+            !isDeleted && isHost
+              ? 'hover:bg-amber-200/50'
+              : 'hover:bg-slate-200/50'
           }`}
         >
           <MessageSquareIcon />
           {replyLabel}
         </Button>
       ) : null}
-    </div>
+    </>
   )
 );
 PostCardContent.displayName = 'PostCardContent';
