@@ -148,10 +148,17 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                   <PostCardContent
                     isHost={MockReplyPostData.isHost}
                     isDeleted={MockReplyPostData.deleted}
-                    content={MockReplyPostData.content}
-                    deletedText="This post has been deleted."
+                    content={
+                      MockReplyPostData.deleted
+                        ? 'This post has been deleted.'
+                        : MockReplyPostData.content
+                    }
                     replyLabel={`${MockReplyPostData.replyCount} replies`}
-                    hasReply={MockReplyPostData.replyCount > 0}
+                    hasReplyButton={
+                      !MockReplyPostData.deleted ||
+                      (MockReplyPostData.deleted &&
+                        MockReplyPostData.replyCount > 0)
+                    }
                   />
                 </PostCard>
                 <ReplySeparator
@@ -178,9 +185,12 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     <PostCardContent
                       isHost={item.isHost}
                       isDeleted={item.deleted}
-                      content={item.content}
-                      deletedText="This post has been deleted."
-                      hasReply={MockReplyPostData.replyCount > 0}
+                      content={
+                        item.deleted
+                          ? 'This post has been deleted.'
+                          : item.content
+                      }
+                      hasReplyButton={false}
                     />
                   </PostCard>
                 ))}
@@ -208,11 +218,16 @@ export const DefaultBoard: StoryObj<typeof Board> = {
                     <PostCardContent
                       isHost={item.isHost}
                       isDeleted={item.deleted}
-                      content={item.content}
-                      deletedText="This post has been deleted."
+                      content={
+                        item.deleted
+                          ? 'This post has been deleted.'
+                          : item.content
+                      }
                       replyLabel={`${item.replyCount} replies`}
                       onReplyClick={handleReplyClick}
-                      hasReply={item.replyCount > 0}
+                      hasReplyButton={
+                        !item.deleted || (item.deleted && item.replyCount > 0)
+                      }
                     />
                   </PostCard>
                 ))}
@@ -288,7 +303,7 @@ export const DefaultPostCard: StoryObj<typeof PostCard> = {
               content={item.content}
               replyLabel={`${item.replyCount} replies`}
               onReplyClick={handleReplyClick}
-              hasReply={item.replyCount > 0}
+              hasReplyButton={item.replyCount > 0}
             />
           </PostCard>
         ))}

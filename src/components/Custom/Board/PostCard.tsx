@@ -315,9 +315,8 @@ interface PostCardContentProps extends React.HTMLAttributes<HTMLDivElement> {
   isHost: boolean;
   isDeleted: boolean;
   content: string;
-  deletedText?: string;
   replyLabel?: string;
-  hasReply: boolean;
+  hasReplyButton: boolean;
   onReplyClick?: () => void;
 }
 
@@ -327,10 +326,9 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
       className,
       isHost,
       isDeleted,
-      deletedText,
       content,
       replyLabel,
-      hasReply,
+      hasReplyButton,
       onReplyClick,
       ...props
     },
@@ -340,7 +338,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
       {isDeleted ? (
         <div className="flex items-center gap-2 py-2">
           <TrashIcon />
-          {deletedText}
+          {content}
         </div>
       ) : (
         <div
@@ -351,7 +349,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
           {content}
         </div>
       )}
-      {isDeleted && !hasReply ? null : onReplyClick ? (
+      {hasReplyButton ? (
         <Button
           variant="ghost"
           onClick={onReplyClick}
