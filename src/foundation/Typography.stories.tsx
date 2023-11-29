@@ -4,12 +4,8 @@ import type { StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'Foundation/Typography',
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
-    nextjs: {
-      appDirectory: true,
-    },
   },
 };
 
