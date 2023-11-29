@@ -247,17 +247,9 @@ const pluginConfig = plugin.withOptions(
       theme: {
         extend: {
           colors: {
-            'umoh-purple': {
-              50: '#f2ebff',
-              100: '#e3d6ff',
-              200: '#c7adff',
-              300: '#ac85ff',
-              400: '#905cff',
-              500: '#7433ff',
-              600: '#5726bf',
-              700: '#3a1a80',
-              800: '#1d0d40',
-              900: '#0c051a',
+            primary: {
+              default: '#7433ff',
+              hover: '#5f2eea',
             },
             danger: {
               default: '#ef4444',
@@ -274,6 +266,18 @@ const pluginConfig = plugin.withOptions(
             info: {
               default: '#3b82f6',
               hover: '#2563eb',
+            },
+            'umoh-purple': {
+              50: '#f2ebff',
+              100: '#e3d6ff',
+              200: '#c7adff',
+              300: '#ac85ff',
+              400: '#905cff',
+              500: '#7433ff',
+              600: '#5726bf',
+              700: '#3a1a80',
+              800: '#1d0d40',
+              900: '#0c051a',
             },
           },
           textColor: {
