@@ -91,50 +91,40 @@ const pluginConfig = plugin.withOptions(
       theme: {
         extend: {
           colors: {
-            primary: {
-              50: '#F0EFFA',
-              100: '#E0DEF5',
-              200: '#C1BEEA',
-              300: '#A39DE0',
-              400: '#847DD5',
-              500: '#6056DB',
-              600: '#4C4598',
-              700: '#332E66',
-              800: '#191733',
-              900: '#0A0914',
+            'umoh-purple': {
+              50: '#f2ebff',
+              100: '#e3d6ff',
+              200: '#c7adff',
+              300: '#ac85ff',
+              400: '#905cff',
+              500: '#7433ff',
+              600: '#5726bf',
+              700: '#3a1a80',
+              800: '#1d0d40',
+              900: '#0c051a',
             },
-            secondary: {
-              white: '#ffffff',
-              red: '#EB5757',
-              green: '#0DD354',
-              blue: '#3970FF',
-              yellow: '#FFDF39',
+            danger: {
+              default: '#ef4444',
+              hover: '#dc2626',
             },
-            neutral: {
-              50: '#F9FAFC',
-              100: '#F2F5F7',
-              200: '#E5EAF0',
-              300: '#D9E0E8',
-              400: '#CCD5E1',
-              500: '#BFCBD9',
-              600: '#8F98A3',
-              700: '#60666D',
-              800: '#303336',
-              900: '#131416',
+            warning: {
+              default: '#facc15',
+              hover: '#eab308',
+            },
+            success: {
+              default: '#22c55e',
+              hover: '#16a34a',
+            },
+            info: {
+              default: '#3b82f6',
+              hover: '#2563eb',
             },
           },
           textColor: {
-            main: '#131416',
-            subtle: '#303336',
-            subtlest: '#60666D',
+            primary: '#111827',
+            secondary: '#374151',
             inverse: '#ffffff',
-            brand: '#6056DB',
-          },
-          icon: {
-            error: '#EB5757',
-            success: '#0DD354',
-            info: '#3970FF',
-            warning: '#FFDF39',
+            brand: '#7433ff',
           },
           keyframes: {
             'accordion-down': {
