@@ -474,6 +474,7 @@ const pluginConfig = plugin.withOptions(
           screens: {
             'board-mobile': '768px',
             'board-mobile-max': { max: '767px' },
+            tablet: '768px',
           },
         },
       },
