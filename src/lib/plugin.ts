@@ -245,6 +245,12 @@ const pluginConfig = plugin.withOptions(
   () => {
     return {
       theme: {
+        container: {
+          center: true,
+          screens: {
+            xl: '1280px',
+          },
+        },
         extend: {
           colors: {
             primary: {
