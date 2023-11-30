@@ -460,16 +460,6 @@ const pluginConfig = plugin.withOptions(
           animation: {
             'accordion-down': 'accordion-down 0.2s ease-out',
             'accordion-up': 'accordion-up 0.2s ease-out',
-            wiggle: 'wiggle 1s ease-in-out infinite',
-            heartBeat: 'heartBeat 1s infinite',
-            hflip: 'flipHorizontal 2s infinite',
-            vflip: 'flipVertical 2s infinite',
-            swing: 'swing 2s ease-out infinite',
-            rubberBand: 'rubberBand 1s infinite',
-            flash: 'flash 2s infinite',
-            headShake: 'headShake 2s infinite',
-            wobble: 'wobble 1s infinite',
-            jello: 'jello 2s infinite',
           },
           screens: {
             'board-mobile': '768px',
