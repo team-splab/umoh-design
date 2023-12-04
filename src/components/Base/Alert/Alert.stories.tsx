@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert, AlertDescription, AlertTitle } from 'components';
-import { LuTerminal } from 'react-icons/lu';
+import { Terminal } from 'lucide-react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -56,7 +56,7 @@ export const DefaultAlert: StoryObj<typeof Alert> = {
   },
   render: args => (
     <Alert variant="default" {...args}>
-      <LuTerminal className="h-4 w-4" />
+      <Terminal className="h-4 w-4" />
       <AlertTitle>Heads up!</AlertTitle>
       <AlertDescription>
         You can add components to your app using the cli.
@@ -75,7 +75,7 @@ export const DestructiveAlert: StoryObj<typeof Alert> = {
   },
   render: args => (
     <Alert variant="destructive" {...args}>
-      <LuTerminal className="h-4 w-4" />
+      <Terminal className="h-4 w-4" />
       <AlertTitle>Heads up!</AlertTitle>
       <AlertDescription>
         You can add components to your app using the cli.

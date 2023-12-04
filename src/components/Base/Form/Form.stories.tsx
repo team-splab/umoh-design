@@ -30,8 +30,8 @@ import {
 import { format } from 'date-fns';
 import { cn } from 'lib/twUtils';
 import { toast } from 'lib/useToast';
+import { CalendarIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { LuCalendar } from 'react-icons/lu';
 import * as z from 'zod';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -436,7 +436,7 @@ export const WithCalendarForm: StoryObj<typeof Form> = {
                         ) : (
                           <span>Pick a date</span>
                         )}
-                        <LuCalendar className="ml-auto h-4 w-4 opacity-50" />
+                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
                     </FormControl>
                   </PopoverTrigger>

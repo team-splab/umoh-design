@@ -18,21 +18,21 @@ import {
   DropdownMenuTrigger,
 } from 'components';
 import {
-  LuCloud,
-  LuCreditCard,
-  LuGithub,
-  LuKeyboard,
-  LuLifeBuoy,
-  LuLogOut,
-  LuMail,
-  LuMessageSquare,
-  LuPlus,
-  LuPlusCircle,
-  LuSettings,
-  LuUser,
-  LuUserPlus,
-  LuUsers,
-} from 'react-icons/lu';
+  Cloud,
+  CreditCard,
+  Github,
+  Keyboard,
+  LifeBuoy,
+  LogOut,
+  Mail,
+  MessageSquare,
+  Plus,
+  PlusCircle,
+  Settings,
+  User,
+  UserPlus,
+  Users,
+} from 'lucide-react';
 
 import { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -212,22 +212,22 @@ export const ExampleDropdownMenu: StoryObj<typeof DropdownMenu> = {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <LuUser className="mr-2 h-4 w-4" />
+            <User className="mr-2 h-4 w-4" />
             <span>Profile</span>
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <LuCreditCard className="mr-2 h-4 w-4" />
+            <CreditCard className="mr-2 h-4 w-4" />
             <span>Billing</span>
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <LuSettings className="mr-2 h-4 w-4" />
+            <Settings className="mr-2 h-4 w-4" />
             <span>Settings</span>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <LuKeyboard className="mr-2 h-4 w-4" />
+            <Keyboard className="mr-2 h-4 w-4" />
             <span>Keyboard shortcuts</span>
             <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
           </DropdownMenuItem>
@@ -235,54 +235,54 @@ export const ExampleDropdownMenu: StoryObj<typeof DropdownMenu> = {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <LuUsers className="mr-2 h-4 w-4" />
+            <Users className="mr-2 h-4 w-4" />
             <span>Team</span>
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
-              <LuUserPlus className="mr-2 h-4 w-4" />
+              <UserPlus className="mr-2 h-4 w-4" />
               <span>Invite users</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
                 <DropdownMenuItem>
-                  <LuMail className="mr-2 h-4 w-4" />
+                  <Mail className="mr-2 h-4 w-4" />
                   <span>Email</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <LuMessageSquare className="mr-2 h-4 w-4" />
+                  <MessageSquare className="mr-2 h-4 w-4" />
                   <span>Message</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <LuPlusCircle className="mr-2 h-4 w-4" />
+                  <PlusCircle className="mr-2 h-4 w-4" />
                   <span>More...</span>
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
           <DropdownMenuItem>
-            <LuPlus className="mr-2 h-4 w-4" />
+            <Plus className="mr-2 h-4 w-4" />
             <span>New Team</span>
             <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LuGithub className="mr-2 h-4 w-4" />
+          <Github className="mr-2 h-4 w-4" />
           <span>GitHub</span>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <LuLifeBuoy className="mr-2 h-4 w-4" />
+          <LifeBuoy className="mr-2 h-4 w-4" />
           <span>Support</span>
         </DropdownMenuItem>
         <DropdownMenuItem disabled>
-          <LuCloud className="mr-2 h-4 w-4" />
+          <Cloud className="mr-2 h-4 w-4" />
           <span>API</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LuLogOut className="mr-2 h-4 w-4" />
+          <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

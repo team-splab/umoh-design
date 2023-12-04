@@ -8,7 +8,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from 'components';
-import { LuCalendarDays } from 'react-icons/lu';
+import { CalendarDays } from 'lucide-react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -111,7 +111,7 @@ export const ExampleHoverCard: StoryObj<typeof HoverCard> = {
                 The React Framework – created and maintained by @vercel.
               </p>
               <div className="flex items-center pt-2">
-                <LuCalendarDays className="mr-2 h-4 w-4 opacity-70" />
+                <CalendarDays className="mr-2 h-4 w-4 opacity-70" />
                 <span className="text-muted-foreground text-xs">
                   Joined December 2021
                 </span>

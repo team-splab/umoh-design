@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { cn } from 'lib/twUtils';
-import { LuChevronDown } from 'react-icons/lu';
+import { ChevronDown } from 'lucide-react';
 
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
@@ -34,7 +34,7 @@ const AccordionTrigger = React.forwardRef<
       {...props}
     >
       {children}
-      <LuChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+      <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));

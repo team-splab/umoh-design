@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'components';
-import { LuChevronRight, LuLoader2, LuMail } from 'react-icons/lu';
+import { ChevronRight, Loader2, Mail } from 'lucide-react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -190,7 +190,7 @@ export const IconButton: StoryObj<typeof Button> = {
   },
   render: args => (
     <Button size="icon" {...args}>
-      <LuChevronRight className="h-4 w-4" />
+      <ChevronRight className="h-4 w-4" />
     </Button>
   ),
 };
@@ -205,8 +205,8 @@ export const WithIconButton: StoryObj<typeof Button> = {
   },
   render: args => (
     <Button {...args}>
-      <LuMail className="mr-2 h-4 w-4" />
-      Login with Elumail
+      <Mail className="mr-2 h-4 w-4" />
+      Login with Email
     </Button>
   ),
 };
@@ -221,7 +221,7 @@ export const LoadingButton: StoryObj<typeof Button> = {
   },
   render: args => (
     <Button disabled {...args}>
-      <LuLoader2 className="mr-2 h-4 w-4 animate-spin" />
+      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
       Please wait
     </Button>
   ),

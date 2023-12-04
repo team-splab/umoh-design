@@ -3,7 +3,7 @@
 import React from 'react';
 import { Button, Skeleton, Textarea } from 'components';
 import { cn } from 'lib/twUtils';
-import { LuChevronUp, LuMessageSquarePlus, LuRefreshCw } from 'react-icons/lu';
+import { ChevronUp, MessageSquarePlusIcon, RefreshCwIcon } from 'lucide-react';
 
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
@@ -42,13 +42,13 @@ const BoardHeader = React.forwardRef<
   return (
     <AccordionPrimitive.Trigger
       className={cn(
-        'flex items-center justify-between border-b-2 font-medium text-brand hover:bg-slate-100',
+        'flex items-center justify-between border-b-2 font-medium text-primary-500 hover:bg-slate-100',
         className
       )}
       {...props}
     >
       <div className="flex items-center gap-1 p-2 text-sm board-mobile:p-4 board-mobile:text-base">
-        <LuMessageSquarePlus className="h-5 w-5" />
+        <MessageSquarePlusIcon />
         {headerTitle}
       </div>
       <div className="flex gap-1">
@@ -62,7 +62,7 @@ const BoardHeader = React.forwardRef<
             }}
             onAnimationEnd={() => setEffect(false)}
           >
-            <LuRefreshCw
+            <RefreshCwIcon
               className={`h-4 w-4 shrink-0 delay-75 ${
                 effect && 'animate-[spin_1s]'
               }`}
@@ -73,7 +73,7 @@ const BoardHeader = React.forwardRef<
           ref={ref}
           className="pointer-events-none rounded-full p-2 [&[data-state=open]>svg]:rotate-180"
         >
-          <LuChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200 ease-out" />
+          <ChevronUp className="h-4 w-4 shrink-0 transition-transform duration-200 ease-out" />
         </AccordionPrimitive.Trigger>
       </div>
     </AccordionPrimitive.Trigger>
@@ -166,10 +166,7 @@ const BoardPostButton = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <Button
     type="submit"
-    className={cn(
-      'mr-2 h-8 bg-primary-default hover:bg-primary-hover',
-      className
-    )}
+    className={cn('mr-2 h-8 bg-primary-500 hover:bg-primary-600', className)}
     ref={ref}
     {...props}
   >

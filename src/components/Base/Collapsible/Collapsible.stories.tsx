@@ -5,7 +5,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from 'components';
-import { LuChevronsUpDown } from 'react-icons/lu';
+import { ChevronsUpDown } from 'lucide-react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -103,7 +103,7 @@ export const ExampleCollapsible: StoryObj<typeof Collapsible> = {
           </h4>
           <CollapsibleTrigger asChild>
             <Button variant="ghost" size="sm" className="w-9 p-0">
-              <LuChevronsUpDown className="h-4 w-4" />
+              <ChevronsUpDown className="h-4 w-4" />
               <span className="sr-only">Toggle</span>
             </Button>
           </CollapsibleTrigger>
