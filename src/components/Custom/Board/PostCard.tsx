@@ -25,11 +25,11 @@ import {
 } from 'components';
 import { cn } from 'lib/twUtils';
 import {
-  ChevronLeftIcon,
-  MessageSquareIcon,
-  MoreVerticalIcon,
-  TrashIcon,
-} from 'lucide-react';
+  LuChevronLeft,
+  LuMessageSquare,
+  LuMoreVertical,
+  LuTrash,
+} from 'react-icons/lu';
 
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
@@ -52,7 +52,7 @@ const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
           {`📩 ${name}`}
         </span>
         {isHost ? (
-          <Badge className="bg-primary-500 py-0.5 text-xs font-medium hover:bg-primary-500">
+          <Badge className="bg-primary-default py-0.5 text-xs font-medium hover:bg-primary-hover">
             host
           </Badge>
         ) : null}
@@ -192,7 +192,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
               {isHost && (
                 <Badge
                   variant="default"
-                  className="bg-primary-500 hover:bg-primary-500"
+                  className="bg-primary-default hover:bg-primary-hover"
                 >
                   host
                 </Badge>
@@ -224,7 +224,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
                     isHost ? 'hover:bg-amber-200/50' : 'hover:bg-slate-200/50'
                   }`}
                 >
-                  <MoreVerticalIcon className="h-4 w-4" />
+                  <LuMoreVertical className="h-4 w-4" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
@@ -337,7 +337,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
     <>
       {isDeleted ? (
         <div className="flex items-center gap-2 py-2">
-          <TrashIcon />
+          <LuTrash />
           {content}
         </div>
       ) : (
@@ -353,13 +353,13 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
         <Button
           variant="ghost"
           onClick={onReplyClick}
-          className={`inline-flex items-center justify-start gap-2 p-0 text-primary-500 hover:text-primary-500 hover:underline ${
+          className={`inline-flex items-center justify-start gap-2 p-0 text-brand hover:text-brand hover:underline ${
             !isDeleted && isHost
               ? 'hover:bg-amber-200/50'
               : 'hover:bg-slate-200/50'
           }`}
         >
-          <MessageSquareIcon />
+          <LuMessageSquare className="h-5 w-5" />
           {replyLabel}
         </Button>
       ) : null}
@@ -386,7 +386,7 @@ const ReplyHeader = React.forwardRef<HTMLDivElement, ReplyHeaderProps>(
         onClick={onBackClick}
         className="group flex items-center border-b p-2 hover:underline"
       >
-        <ChevronLeftIcon className="h-6 w-6 duration-300 ease-out group-hover:translate-x-[-4px]" />
+        <LuChevronLeft className="h-6 w-6 duration-300 ease-out group-hover:translate-x-[-4px]" />
         {label}
       </button>
     </div>
@@ -400,10 +400,10 @@ interface ReplySeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
 const ReplySeparator = React.forwardRef<HTMLDivElement, ReplySeparatorProps>(
   ({ className, replyLabel, ...props }, ref) => (
     <div ref={ref} className={cn('flex w-full p-2', className)} {...props}>
-      <Badge className="mr-2 shrink-0 bg-primary-500 hover:bg-primary-500">
+      <Badge className="mr-2 shrink-0 bg-primary-default hover:bg-primary-hover">
         {replyLabel}
       </Badge>
-      <Separator className="my-2 shrink bg-primary-500" />
+      <Separator className="my-2 shrink bg-primary-default" />
     </div>
   )
 );

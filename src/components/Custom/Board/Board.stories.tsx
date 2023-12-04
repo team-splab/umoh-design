@@ -21,8 +21,8 @@ import {
   ReplyHeader,
   ReplySeparator,
 } from 'components';
-import { Edit3Icon, Trash2Icon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { LuPencil, LuTrash2 } from 'react-icons/lu';
 import * as z from 'zod';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -414,7 +414,7 @@ export const ExampleBoardSkeleton: StoryObj<typeof BoardSkeleton> = {
 const MockPostMenuItems: PostCardHeaderProps['menuItems'] = [
   {
     id: '1',
-    icon: <Trash2Icon />,
+    icon: <LuTrash2 />,
     text: 'Delete',
     onClick: () => {
       console.log('Delete');
@@ -430,7 +430,7 @@ const MockPostMenuItems: PostCardHeaderProps['menuItems'] = [
     ? [
         {
           id: '2',
-          icon: <Edit3Icon />,
+          icon: <LuPencil />,
           text: 'Edit',
           onClick: () => {
             console.log('Edit');
@@ -447,7 +447,7 @@ const MockPostMenuItems: PostCardHeaderProps['menuItems'] = [
 const MockReplyMenuItems: PostCardHeaderProps['menuItems'] = [
   {
     id: '1',
-    icon: <Trash2Icon />,
+    icon: <LuTrash2 />,
     text: 'Delete',
     onClick: () => {
       console.log('Delete');
@@ -461,7 +461,7 @@ const MockReplyMenuItems: PostCardHeaderProps['menuItems'] = [
     ? [
         {
           id: '2',
-          icon: <Edit3Icon />,
+          icon: <LuPencil />,
           text: 'Edit',
           onClick: () => {
             console.log('Edit');
