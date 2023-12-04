@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from 'lib/twUtils';
@@ -10,7 +12,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: 'bg-primary-default hover:bg-primary-hover text-white',
-        destructive: 'bg-danger-default text-gray-50 hover:bg-danger-hover',
+        destructive: 'bg-danger-default hover:bg-danger-hover text-gray-50',
         outline:
           'border border-gray-200 bg-white hover:bg-gray-100 hover:text-gray-900',
         secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-100/80',
