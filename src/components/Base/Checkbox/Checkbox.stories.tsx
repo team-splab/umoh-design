@@ -105,6 +105,29 @@ export const WithTextCheckbox: StoryObj<typeof Checkbox> = {
   ),
 };
 
+export const CustomCheckbox: StoryObj<typeof Checkbox> = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Text와 함께 사용한 Example Checkbox입니다.',
+      },
+    },
+  },
+  render: args => (
+    <div className="items-top flex space-x-2">
+      <Checkbox variant="chip" {...args}>
+        🚀 Backend
+      </Checkbox>
+      <Checkbox variant="chip" {...args}>
+        🎨 Frontend
+      </Checkbox>
+      <Checkbox variant="chip" {...args}>
+        📱 Mobile
+      </Checkbox>
+    </div>
+  ),
+};
+
 export const DisabledCheckbox: StoryObj<typeof Checkbox> = {
   parameters: {
     docs: {
