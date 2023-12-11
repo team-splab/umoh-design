@@ -42,7 +42,7 @@ const meta = {
         defaultValue: { summary: 'false' },
       },
       control: {
-        type: 'boolean',
+        type: 'radio',
       },
     },
   },
@@ -94,7 +94,7 @@ export const ExampleSheet: StoryObj<typeof Sheet> = {
       <SheetTrigger asChild>
         <Button variant="outline">Open</Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent side={'bottom-to-center'}>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>
