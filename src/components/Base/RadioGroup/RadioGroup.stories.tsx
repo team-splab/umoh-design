@@ -123,28 +123,22 @@ export const DefaultRadioGroup: StoryObj<typeof RadioGroup> = {
   ),
 };
 
-export const ExampleRadioGroup: StoryObj<typeof RadioGroup> = {
+export const ExampleOnboardingRadioGroup: StoryObj<typeof RadioGroup> = {
   parameters: {
     docs: {
       description: {
-        story: '예시로 사용되는 Example RadioGroup 입니다.',
+        story: '예시로 사용되는 Example Onboarding RadioGroup 입니다.',
       },
     },
   },
   render: args => (
-    <RadioGroup defaultValue="comfortable" {...args}>
-      <div className="flex items-center space-x-2">
-        <RadioGroupItem value="default" id="r1" />
-        <Label htmlFor="r1">Default</Label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <RadioGroupItem value="comfortable" id="r2" />
-        <Label htmlFor="r2">Comfortable</Label>
-      </div>
-      <div className="flex items-center space-x-2">
-        <RadioGroupItem value="compact" id="r3" />
-        <Label htmlFor="r3">Compact</Label>
-      </div>
+    <RadioGroup {...args}>
+      <RadioGroupItem variant="onboarding" value="host">
+        For event hosting
+      </RadioGroupItem>
+      <RadioGroupItem variant="onboarding" value="user">
+        To join many evenents
+      </RadioGroupItem>
     </RadioGroup>
   ),
 };
