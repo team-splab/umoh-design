@@ -7,12 +7,12 @@ import { cn } from 'lib/twUtils';
 import { Slot } from '@radix-ui/react-slot';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        default: 'bg-primary-default hover:bg-primary-hover text-white',
-        destructive: 'bg-danger-default hover:bg-danger-hover text-gray-50',
+        default: 'bg-primary-default text-white hover:bg-primary-hover',
+        destructive: 'bg-danger-default text-gray-50 hover:bg-danger-hover',
         outline:
           'border border-gray-200 bg-white hover:bg-gray-100 hover:text-gray-900',
         secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-100/80',

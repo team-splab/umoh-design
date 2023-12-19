@@ -25,7 +25,7 @@ const radioGroupVariants = cva('', {
   variants: {
     variant: {
       default:
-        'aspect-square h-4 w-4 rounded-full border border-gray-900 text-gray-900 ring-offset-white focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+        'aspect-square h-4 w-4 rounded-full border border-gray-900 text-gray-900 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
       onboarding:
         'flex appearance-none items-center justify-center whitespace-nowrap rounded-lg border border-primary-default bg-white p-4 text-brand body1-medium disabled:pointer-events-none disabled:opacity-50 data-[state=checked]:bg-primary-default/20',
     },
