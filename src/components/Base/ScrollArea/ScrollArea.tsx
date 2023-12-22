@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { RefObject, useEffect } from 'react';
 import { useState, type WheelEvent } from 'react';
 import { cn } from 'lib/twUtils';
 
@@ -15,6 +15,8 @@ const ScrollArea = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
   ScrollAreaProps
 >(({ className, children, shadow, ...props }, ref) => {
+  const scrollAreaRef = React.useRef(null);
+
   const [scrollTop, setScrollTop] = useState(0);
   const [scrollHeight, setScrollHeight] = useState(0);
   const [clientHeight, setClientHeight] = useState(0);
@@ -24,6 +26,18 @@ const ScrollArea = React.forwardRef<
     setScrollHeight(event.currentTarget.scrollHeight);
     setClientHeight(event.currentTarget.clientHeight);
   };
+
+  useEffect(() => {
+    const resetRefSizes = (ref: RefObject<HTMLDivElement>) => {
+      if (!ref.current) return;
+
+      setScrollTop(ref.current.scrollTop);
+      setScrollHeight(ref.current.scrollHeight);
+      setClientHeight(ref.current.clientHeight);
+    };
+
+    resetRefSizes(scrollAreaRef);
+  }, []);
 
   const getVisibleSides = (): { top: boolean; bottom: boolean } => {
     const isBottom = clientHeight === scrollHeight - scrollTop;
@@ -43,6 +57,7 @@ const ScrollArea = React.forwardRef<
       {...props}
     >
       <ScrollAreaPrimitive.Viewport
+        ref={scrollAreaRef}
         onScroll={onScrollHandler}
         className="h-full w-full rounded-[inherit]"
       >
