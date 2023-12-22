@@ -112,7 +112,7 @@ export const ExampleScrollArea: StoryObj<typeof ScrollArea> = {
       (_, i, a) => `v1.2.0-beta.${a.length - i}`
     );
     return (
-      <ScrollArea className="h-72 w-48 rounded-md border" {...args}>
+      <ScrollArea className="h-72 w-48 rounded-md border" shadow {...args}>
         <div className="p-4">
           <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
           {tags.map(tag => (
