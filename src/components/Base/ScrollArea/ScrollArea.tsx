@@ -9,81 +9,104 @@ import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 export interface ScrollAreaProps
   extends React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> {
   shadow?: boolean;
+  shadowTopProps?: React.ComponentPropsWithoutRef<'div'>;
+  shadowBottomProps?: React.ComponentPropsWithoutRef<'div'>;
 }
 
 const ScrollArea = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
   ScrollAreaProps
->(({ className, children, shadow, ...props }, ref) => {
-  const scrollAreaRef = React.useRef(null);
+>(
+  (
+    {
+      className,
+      children,
+      shadow,
+      shadowTopProps,
+      shadowBottomProps,
+      ...props
+    },
+    ref
+  ) => {
+    const scrollAreaRef = React.useRef(null);
 
-  const [scrollTop, setScrollTop] = useState(0);
-  const [scrollHeight, setScrollHeight] = useState(0);
-  const [clientHeight, setClientHeight] = useState(0);
+    const [scrollTop, setScrollTop] = useState(0);
+    const [scrollHeight, setScrollHeight] = useState(0);
+    const [clientHeight, setClientHeight] = useState(0);
 
-  const onScrollHandler = (event: WheelEvent<HTMLDivElement>) => {
-    setScrollTop(event.currentTarget.scrollTop);
-    setScrollHeight(event.currentTarget.scrollHeight);
-    setClientHeight(event.currentTarget.clientHeight);
-  };
-
-  useEffect(() => {
-    const resetRefSizes = (ref: RefObject<HTMLDivElement>) => {
-      if (!ref.current) return;
-
-      setScrollTop(ref.current.scrollTop);
-      setScrollHeight(ref.current.scrollHeight);
-      setClientHeight(ref.current.clientHeight);
+    const onScrollHandler = (event: WheelEvent<HTMLDivElement>) => {
+      setScrollTop(event.currentTarget.scrollTop);
+      setScrollHeight(event.currentTarget.scrollHeight);
+      setClientHeight(event.currentTarget.clientHeight);
     };
 
-    resetRefSizes(scrollAreaRef);
-  }, []);
+    useEffect(() => {
+      const resetRefSizes = (ref: RefObject<HTMLDivElement>) => {
+        if (!ref.current) return;
 
-  const getVisibleSides = (): { top: boolean; bottom: boolean } => {
-    const isBottom = clientHeight === scrollHeight - scrollTop;
-    const isTop = scrollTop === 0;
-    const isBetween = scrollTop > 0 && clientHeight < scrollHeight - scrollTop;
+        setScrollTop(ref.current.scrollTop);
+        setScrollHeight(ref.current.scrollHeight);
+        setClientHeight(ref.current.clientHeight);
+      };
 
-    return {
-      top: (isBottom || isBetween) && !(isTop && isBottom),
-      bottom: (isTop || isBetween) && !(isTop && isBottom),
+      resetRefSizes(scrollAreaRef);
+    }, []);
+
+    const getVisibleSides = (): { top: boolean; bottom: boolean } => {
+      const isBottom = clientHeight === scrollHeight - scrollTop;
+      const isTop = scrollTop === 0;
+      const isBetween =
+        scrollTop > 0 && clientHeight < scrollHeight - scrollTop;
+
+      return {
+        top: (isBottom || isBetween) && !(isTop && isBottom),
+        bottom: (isTop || isBetween) && !(isTop && isBottom),
+      };
     };
-  };
 
-  return (
-    <ScrollAreaPrimitive.Root
-      ref={ref}
-      className={cn('relative overflow-hidden', className)}
-      {...props}
-    >
-      <ScrollAreaPrimitive.Viewport
-        ref={scrollAreaRef}
-        onScroll={onScrollHandler}
-        className="h-full w-full rounded-[inherit]"
+    return (
+      <ScrollAreaPrimitive.Root
+        ref={ref}
+        className={cn('relative overflow-hidden', className)}
+        {...props}
       >
-        {shadow ? (
-          <div>
-            <div
-              className={`pointer-events-none sticky top-0 z-10 -mb-4 h-4 w-full bg-gradient-to-b from-gray-100 transition-opacity duration-300 ${
-                getVisibleSides().top ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-            {children}
-            <div
-              className={`pointer-events-none sticky bottom-0 -mt-4 h-4 w-full rotate-180 bg-gradient-to-b from-gray-100 transition-opacity duration-300 ${
-                getVisibleSides().bottom ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          </div>
-        ) : (
-          children
-        )}
-      </ScrollAreaPrimitive.Viewport>
-      <ScrollBar />
-      <ScrollAreaPrimitive.Corner />
-    </ScrollAreaPrimitive.Root>
-  );
-});
+        <ScrollAreaPrimitive.Viewport
+          ref={scrollAreaRef}
+          onScroll={onScrollHandler}
+          className="h-full w-full rounded-[inherit]"
+        >
+          {shadow ? (
+            <div>
+              <div
+                className={cn(
+                  `pointer-events-none sticky top-0 z-10 -mb-4 h-4 w-full bg-gradient-to-b from-gray-100 transition-opacity duration-300 ${
+                    getVisibleSides().top ? 'opacity-100' : 'opacity-0'
+                  }`,
+                  shadowTopProps?.className
+                )}
+                {...shadowTopProps}
+              />
+              {children}
+              <div
+                className={cn(
+                  `pointer-events-none sticky bottom-0 -mt-4 h-4 w-full rotate-180 bg-gradient-to-b from-gray-100 transition-opacity duration-300 ${
+                    getVisibleSides().bottom ? 'opacity-100' : 'opacity-0'
+                  }`,
+                  shadowBottomProps?.className
+                )}
+                {...shadowBottomProps}
+              />
+            </div>
+          ) : (
+            children
+          )}
+        </ScrollAreaPrimitive.Viewport>
+        <ScrollBar />
+        <ScrollAreaPrimitive.Corner />
+      </ScrollAreaPrimitive.Root>
+    );
+  }
+);
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
 
 const ScrollBar = React.forwardRef<
