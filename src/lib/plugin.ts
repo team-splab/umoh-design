@@ -142,6 +142,13 @@ const pluginConfig = plugin.withOptions(
           fontWeight: '500',
           lineHeight: '24px',
         },
+        '.body1-regular': {
+          fontFamily: 'Pretendard',
+          fontSize: '16px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          lineHeight: '24px',
+        },
         '.body2-extrabold': {
           fontFamily: 'Pretendard',
           fontSize: '14px',
@@ -168,6 +175,13 @@ const pluginConfig = plugin.withOptions(
           fontSize: '14px',
           fontStyle: 'normal',
           fontWeight: '500',
+          lineHeight: '24px',
+        },
+        '.body2-regular': {
+          fontFamily: 'Pretendard',
+          fontSize: '14px',
+          fontStyle: 'normal',
+          fontWeight: '400',
           lineHeight: '24px',
         },
         '.detail1-bold': {
