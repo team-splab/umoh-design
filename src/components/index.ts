@@ -25,6 +25,7 @@ export * from './Base/Pagination/Pagination';
 export * from './Base/Popover/Popover';
 export * from './Base/Progress/Progress';
 export * from './Base/RadioGroup/RadioGroup';
+export * from './Base/Resizable/Resizable';
 export * from './Base/ScrollArea/ScrollArea';
 export * from './Base/Select/Select';
 export * from './Base/Separator/Separator';
