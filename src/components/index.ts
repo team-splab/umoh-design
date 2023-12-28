@@ -32,6 +32,7 @@ export * from './Base/Separator/Separator';
 export * from './Base/Sheet/Sheet';
 export * from './Base/Skeleton/Skeleton';
 export * from './Base/Slider/Slider';
+export * from './Base/Sonner/Sonner';
 export * from './Base/Switch/Switch';
 export * from './Base/Table/Columns';
 export * from './Base/Table/DataTable';
