@@ -21,6 +21,7 @@ export * from './Base/Input/Input';
 export * from './Base/Label/Label';
 export * from './Base/Menubar/Menubar';
 export * from './Base/NavigationMenu/NavigationMenu';
+export * from './Base/Pagination/Pagination';
 export * from './Base/Popover/Popover';
 export * from './Base/Progress/Progress';
 export * from './Base/RadioGroup/RadioGroup';
