@@ -13,6 +13,7 @@ export * from './Base/Checkbox/Checkbox';
 export * from './Base/Collapsible/Collapsible';
 export * from './Base/ContextMenu/ContextMenu';
 export * from './Base/Dialog/Dialog';
+export * from './Base/Drawer/Drawer';
 export * from './Base/DropdownMenu/DropdownMenu';
 export * from './Base/Form/Form';
 export * from './Base/HoverCard/HoverCard';
