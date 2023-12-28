@@ -8,6 +8,7 @@ export * from './Base/Badge/Badge';
 export * from './Base/Button/Button';
 export * from './Base/Calendar/Calendar';
 export * from './Base/Card/Card';
+export * from './Base/Carousel/Carousel';
 export * from './Base/Checkbox/Checkbox';
 export * from './Base/Collapsible/Collapsible';
 export * from './Base/ContextMenu/ContextMenu';
