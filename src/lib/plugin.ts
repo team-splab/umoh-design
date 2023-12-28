@@ -303,6 +303,7 @@ const pluginConfig = plugin.withOptions(
           textColor: {
             primary: '#111827',
             secondary: '#374151',
+            tertiary: '#9ca3af',
             inverse: '#ffffff',
             brand: '#7433ff',
           },
