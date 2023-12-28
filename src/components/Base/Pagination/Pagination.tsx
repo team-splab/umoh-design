@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import { cn } from 'lib/twUtils';
 import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
