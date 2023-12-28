@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Input } from 'components';
+import { Search } from 'lucide-react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -90,6 +91,26 @@ export const DefaultInput: StoryObj<typeof Input> = {
     },
   },
   render: args => <Input type="email" placeholder="Email" {...args} />,
+};
+
+export const ElementInput: StoryObj<typeof Input> = {
+  parameters: {
+    docs: {
+      description: {
+        story: '기본으로 사용되는 Default Input입니다.',
+      },
+    },
+  },
+  render: args => (
+    <Input
+      type="email"
+      placeholder="Email"
+      leftElement={<Search className="h-4 w-4" />}
+      rightElement={<Search className="h-4 w-4" />}
+      className="px-8"
+      {...args}
+    />
+  ),
 };
 
 export const FileInput: StoryObj<typeof Input> = {
