@@ -34,7 +34,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">48px</div>
           </div>
         </div>
-        <div className="max-md:max-w-ful H1-boldl H1-bold grow self-stretch whitespace-nowrap text-black">
+        <div className="max-md:max-w-ful H1-boldl grow self-stretch whitespace-nowrap text-black H1-bold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -55,7 +55,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">48px</div>
           </div>
         </div>
-        <div className="max-md:max-w-full H1-semibold grow self-stretch whitespace-nowrap text-black">
+        <div className="max-md:max-w-full grow self-stretch whitespace-nowrap text-black H1-semibold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -79,7 +79,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">43px</div>
           </div>
         </div>
-        <div className="max-md:max-w-full H2-bold grow self-stretch whitespace-nowrap text-black">
+        <div className="max-md:max-w-full grow self-stretch whitespace-nowrap text-black H2-bold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -100,7 +100,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">43px</div>
           </div>
         </div>
-        <div className="max-md:max-w-full H2-semibold grow self-stretch whitespace-nowrap text-black">
+        <div className="max-md:max-w-full grow self-stretch whitespace-nowrap text-black H2-semibold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -124,7 +124,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">36px</div>
           </div>
         </div>
-        <div className="max-md:max-w-full H3-bold grow self-start whitespace-nowrap text-black">
+        <div className="max-md:max-w-full grow self-start whitespace-nowrap text-black H3-bold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -145,7 +145,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">36px</div>
           </div>
         </div>
-        <div className="max-md:max-w-full H3-semibold grow self-start whitespace-nowrap text-black">
+        <div className="max-md:max-w-full grow self-start whitespace-nowrap text-black H3-semibold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -166,7 +166,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">36px</div>
           </div>
         </div>
-        <div className="max-md:max-w-full H3-medium grow self-start whitespace-nowrap text-black">
+        <div className="max-md:max-w-full grow self-start whitespace-nowrap text-black H3-medium">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -190,7 +190,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">30px</div>
           </div>
         </div>
-        <div className="max-md:max-w-full H4-bold grow self-start whitespace-nowrap text-black">
+        <div className="max-md:max-w-full grow self-start whitespace-nowrap text-black H4-bold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -211,7 +211,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">30px</div>
           </div>
         </div>
-        <div className="max-md:max-w-full H4-semibold grow self-start whitespace-nowrap text-black">
+        <div className="max-md:max-w-full grow self-start whitespace-nowrap text-black H4-semibold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -232,7 +232,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">30px</div>
           </div>
         </div>
-        <div className="max-md:max-w-full H4-medium grow self-start whitespace-nowrap text-black">
+        <div className="max-md:max-w-full grow self-start whitespace-nowrap text-black H4-medium">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -256,7 +256,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">24px</div>
           </div>
         </div>
-        <div className="H5-bold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black H5-bold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -277,7 +277,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">24px</div>
           </div>
         </div>
-        <div className="H5-semibold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black H5-semibold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -298,7 +298,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">24px</div>
           </div>
         </div>
-        <div className="H5-medium grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black H5-medium">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -324,7 +324,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">24px</div>
           </div>
         </div>
-        <div className="body1-extrabold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black body1-extrabold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -345,7 +345,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">24px</div>
           </div>
         </div>
-        <div className="body1-bold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black body1-bold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -366,7 +366,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">24px</div>
           </div>
         </div>
-        <div className="body1-semibold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black body1-semibold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -387,7 +387,28 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">24px</div>
           </div>
         </div>
-        <div className="body1-medium grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black body1-medium">
+          The quick brown fox jumps over the lazy dog.
+        </div>
+      </div>
+      <div className="max-md:max-w-full max-md:mt-10 mt-12 self-start whitespace-nowrap text-2xl font-bold text-black">
+        regular
+      </div>
+      <div className="max-md:flex-wrap mt-6 flex w-[554px] max-w-full items-stretch gap-2 self-start">
+        <div className="flex grow basis-[0%] flex-col items-stretch">
+          <div className="flex items-stretch justify-between gap-1">
+            <div className="whitespace-nowrap text-sm text-black">
+              Pretendard
+            </div>
+            <div className="whitespace-nowrap text-sm text-black">Regular</div>
+          </div>
+          <div className="max-md:justify-center mt-2 flex items-stretch gap-1">
+            <div className="whitespace-nowrap text-sm text-black">16px</div>
+            <div className="text-sm text-black">/</div>
+            <div className="whitespace-nowrap text-sm text-black">24px</div>
+          </div>
+        </div>
+        <div className="grow self-start whitespace-nowrap text-black body1-regular">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -413,7 +434,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">24px</div>
           </div>
         </div>
-        <div className="body2-extrabold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black body2-extrabold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -434,7 +455,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">24px</div>
           </div>
         </div>
-        <div className="body2-bold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black body2-bold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -455,7 +476,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">24px</div>
           </div>
         </div>
-        <div className="body2-semibold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black body2-semibold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -476,7 +497,28 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">24px</div>
           </div>
         </div>
-        <div className="body2-medium grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black body2-medium">
+          The quick brown fox jumps over the lazy dog.
+        </div>
+      </div>
+      <div className="max-md:max-w-full max-md:mt-10 mt-12 self-start whitespace-nowrap text-2xl font-bold text-black">
+        regular
+      </div>
+      <div className="max-md:flex-wrap mt-6 flex w-[496px] max-w-full items-stretch gap-2 self-start">
+        <div className="flex grow basis-[0%] flex-col items-stretch">
+          <div className="flex items-stretch justify-between gap-1">
+            <div className="whitespace-nowrap text-sm text-black">
+              Pretendard
+            </div>
+            <div className="whitespace-nowrap text-sm text-black">Regular</div>
+          </div>
+          <div className="max-md:justify-center mt-2 flex items-stretch gap-1">
+            <div className="whitespace-nowrap text-sm text-black">14px</div>
+            <div className="text-sm text-black">/</div>
+            <div className="whitespace-nowrap text-sm text-black">24px</div>
+          </div>
+        </div>
+        <div className="grow self-start whitespace-nowrap text-black body2-regular">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -500,7 +542,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">20px</div>
           </div>
         </div>
-        <div className="detail1-bold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black detail1-bold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -521,7 +563,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">20px</div>
           </div>
         </div>
-        <div className="detail1-semibold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black detail1-semibold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -542,7 +584,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">20px</div>
           </div>
         </div>
-        <div className="detail1-medium grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black detail1-medium">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -566,7 +608,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">12px</div>
           </div>
         </div>
-        <div className="detail2-bold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black detail2-bold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -587,7 +629,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">12px</div>
           </div>
         </div>
-        <div className="detail2-semibold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black detail2-semibold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -608,7 +650,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">12px</div>
           </div>
         </div>
-        <div className="detail2-medium grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black detail2-medium">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -632,7 +674,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">10px</div>
           </div>
         </div>
-        <div className="detail3-bold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black detail3-bold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -653,7 +695,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">10px</div>
           </div>
         </div>
-        <div className="detail3-semibold grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black detail3-semibold">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
@@ -674,7 +716,7 @@ export const Typography: StoryObj = {
             <div className="whitespace-nowrap text-sm text-black">10px</div>
           </div>
         </div>
-        <div className="detail3-medium grow self-start whitespace-nowrap text-black">
+        <div className="grow self-start whitespace-nowrap text-black detail3-medium">
           The quick brown fox jumps over the lazy dog.
         </div>
       </div>
