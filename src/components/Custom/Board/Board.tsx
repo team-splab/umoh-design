@@ -42,7 +42,7 @@ const BoardHeader = React.forwardRef<
   return (
     <AccordionPrimitive.Trigger
       className={cn(
-        'flex items-center justify-between border-b-2 font-medium text-primary-500 hover:bg-slate-100',
+        'flex items-center justify-between border-b-2 font-medium text-brand hover:bg-slate-100',
         className
       )}
       {...props}
@@ -166,7 +166,10 @@ const BoardPostButton = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <Button
     type="submit"
-    className={cn('mr-2 h-8 bg-primary-500 hover:bg-primary-600', className)}
+    className={cn(
+      'mr-2 h-8 bg-primary-default hover:bg-primary-hover',
+      className
+    )}
     ref={ref}
     {...props}
   >

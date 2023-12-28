@@ -52,7 +52,7 @@ const PreviewCard = React.forwardRef<HTMLDivElement, PreviewCardProps>(
           {`📩 ${name}`}
         </span>
         {isHost ? (
-          <Badge className="bg-primary-500 py-0.5 text-xs font-medium hover:bg-primary-500">
+          <Badge className="bg-primary-default py-0.5 text-xs font-medium hover:bg-primary-hover">
             host
           </Badge>
         ) : null}
@@ -192,7 +192,7 @@ const PostCardHeader = React.forwardRef<HTMLDivElement, PostCardHeaderProps>(
               {isHost && (
                 <Badge
                   variant="default"
-                  className="bg-primary-500 hover:bg-primary-500"
+                  className="bg-primary-default hover:bg-primary-hover"
                 >
                   host
                 </Badge>
@@ -353,7 +353,7 @@ const PostCardContent = React.forwardRef<HTMLDivElement, PostCardContentProps>(
         <Button
           variant="ghost"
           onClick={onReplyClick}
-          className={`inline-flex items-center justify-start gap-2 p-0 text-primary-500 hover:text-primary-500 hover:underline ${
+          className={`inline-flex items-center justify-start gap-2 p-0 text-brand hover:underline ${
             !isDeleted && isHost
               ? 'hover:bg-amber-200/50'
               : 'hover:bg-slate-200/50'
@@ -400,10 +400,10 @@ interface ReplySeparatorProps extends React.HTMLAttributes<HTMLDivElement> {
 const ReplySeparator = React.forwardRef<HTMLDivElement, ReplySeparatorProps>(
   ({ className, replyLabel, ...props }, ref) => (
     <div ref={ref} className={cn('flex w-full p-2', className)} {...props}>
-      <Badge className="mr-2 shrink-0 bg-primary-500 hover:bg-primary-500">
+      <Badge className="mr-2 shrink-0 bg-primary-default hover:bg-primary-default">
         {replyLabel}
       </Badge>
-      <Separator className="my-2 shrink bg-primary-500" />
+      <Separator className="my-2 shrink bg-primary-default" />
     </div>
   )
 );
