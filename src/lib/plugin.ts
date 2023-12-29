@@ -253,6 +253,9 @@ const pluginConfig = plugin.withOptions(
           lineHeight: '10px',
           letterSpacing: '-0.24px',
         },
+        '.h-screen-dvh': {
+          height: ['100vh', '100dvh'],
+        },
       });
     };
   },
