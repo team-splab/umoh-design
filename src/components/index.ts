@@ -1,3 +1,5 @@
+'use client';
+
 export * from '../lib/useToast';
 export * from './Base/Accordion/Accordion';
 export * from './Base/AleartDialog/AlertDialog';
