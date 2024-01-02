@@ -256,6 +256,12 @@ const pluginConfig = plugin.withOptions(
         '.h-screen-dvh': {
           height: ['100vh', '100dvh'],
         },
+        '.min-h-screen-dvh': {
+          minHeight: ['100vh', '100dvh'],
+        },
+        '.max-h-screen-dvh': {
+          maxHeight: ['100vh', '100dvh'],
+        },
       });
     };
   },
